@@ -13,9 +13,61 @@ export type Project = {
   demoUrl?: string;
   lessons: string[];
   futureWork: string[];
+  flagship?: boolean;
+  metrics?: { label: string; value: string }[];
 };
 
 export const projects: Project[] = [
+  {
+    slug: "intelligent-analytics",
+    name: "Intelligent Analytics",
+    flagship: true,
+    summary:
+      "An analytics product that turns raw operational data into decision-ready insights, combining a modern data pipeline with LLM-driven interpretation.",
+    outcome:
+      "Reduced time-to-insight from days to minutes for business teams, with fully traceable, auditable answers.",
+    businessContext:
+      "Business teams needed to reason over large volumes of operational data without waiting on analysts for every question.",
+    problem:
+      "Existing dashboards answered known questions well but could not handle open-ended, exploratory ones. Ad-hoc SQL was slow, error-prone and inaccessible to non-technical users.",
+    solution:
+      "A layered analytics platform: a typed semantic layer over the warehouse, a query planner that decomposes natural-language questions into safe, deterministic queries, and an LLM interpretation layer that produces explanations with citations back to the underlying data.",
+    architecture:
+      "Ingestion into a versioned warehouse, a semantic model expressed as typed metrics and dimensions, a planner that generates SQL against the semantic layer only, and a generation service that narrates results with source rows attached to every claim.",
+    keyDecisions: [
+      "LLMs never write raw SQL — they compose against a typed semantic layer, which eliminates entire classes of hallucinations.",
+      "Every answer is traceable to the exact rows that produced it, in one click.",
+      "Query planning, execution and narration are separate services with strict interfaces.",
+    ],
+    features: [
+      "Natural-language analytics with cited sources",
+      "Typed semantic layer over the warehouse",
+      "Deterministic, cacheable query plans",
+      "Role-aware row-level access",
+      "Full audit trail per question",
+    ],
+    stack: [
+      "TypeScript",
+      "Python",
+      "PostgreSQL",
+      "dbt",
+      "OpenAI / Anthropic APIs",
+      "Redis",
+    ],
+    metrics: [
+      { label: "Time to insight", value: "Days → Minutes" },
+      { label: "Traceability", value: "100% cited answers" },
+      { label: "Semantic coverage", value: "80+ typed metrics" },
+    ],
+    lessons: [
+      "The semantic layer, not the model, was the single biggest quality lever.",
+      "Treating narration as a rendering step over structured results made evaluation tractable.",
+    ],
+    futureWork: [
+      "Automated anomaly narratives on scheduled runs.",
+      "Feedback loop to promote frequently-asked questions into first-class metrics.",
+    ],
+  },
   {
     slug: "intelligent-workflow-engine",
     name: "Intelligent Workflow Engine",
@@ -88,3 +140,5 @@ export const projects: Project[] = [
     ],
   },
 ];
+
+export const flagshipProject = projects.find((p) => p.flagship) ?? projects[0];
