@@ -27,34 +27,35 @@
   --color-accent-soft: var(--accent-soft);
   --color-ring: var(--ring);
 
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-sans: "Geist", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 :root {
-  --radius: 0.625rem;
+  --radius: 0.5rem;
 
-  /* Dark engineered precision palette */
-  --canvas: oklch(0.145 0.005 285);
-  --surface: oklch(0.185 0.005 285);
-  --surface-2: oklch(0.21 0.006 285);
+  /* Modern Engineering — Light Mode */
+  --canvas: oklch(0.99 0.003 85);          /* warm white */
+  --surface: oklch(0.975 0.004 85);         /* soft sand */
+  --surface-2: oklch(0.955 0.005 85);
   --background: var(--canvas);
-  --foreground: oklch(0.985 0 0);
+  --foreground: oklch(0.185 0.005 285);     /* deep charcoal */
 
-  --border: oklch(1 0 0 / 0.06);
-  --border-strong: oklch(1 0 0 / 0.12);
+  --border: oklch(0.185 0.005 285 / 0.09);
+  --border-strong: oklch(0.185 0.005 285 / 0.18);
 
-  --muted: oklch(0.28 0.005 285);
-  --muted-foreground: oklch(0.7 0.01 285);
-  --subtle: oklch(0.55 0.008 285);
+  --muted: oklch(0.94 0.004 85);
+  --muted-foreground: oklch(0.42 0.008 285);
+  --subtle: oklch(0.58 0.008 285);
 
-  --primary: oklch(0.985 0 0);
-  --primary-foreground: oklch(0.15 0.005 285);
+  --primary: oklch(0.185 0.005 285);        /* charcoal buttons */
+  --primary-foreground: oklch(0.99 0.003 85);
 
-  --accent: oklch(0.75 0.16 155);
-  --accent-soft: oklch(0.75 0.16 155 / 0.12);
+  /* Deep engineering blue — trust, restraint */
+  --accent: oklch(0.44 0.16 258);
+  --accent-soft: oklch(0.44 0.16 258 / 0.08);
 
-  --ring: oklch(1 0 0 / 0.15);
+  --ring: oklch(0.44 0.16 258 / 0.35);
 }
 
 @layer base {
@@ -70,25 +71,32 @@
     background-color: var(--color-canvas);
     color: var(--color-muted-foreground);
     font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
-    font-feature-settings: "cv11", "ss01";
     ::selection {
-      background: oklch(0.3 0.005 285);
-      color: oklch(0.98 0 0);
+      background: var(--color-accent-soft);
+      color: var(--color-foreground);
     }
   }
 
   h1, h2, h3, h4 {
     color: var(--color-foreground);
-    letter-spacing: -0.015em;
+    letter-spacing: -0.02em;
+    font-feature-settings: "ss01";
+  }
+
+  a, button {
+    transition: color 200ms ease, background-color 200ms ease,
+                border-color 200ms ease, opacity 200ms ease;
   }
 }
 
 @utility eyebrow {
-  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
   font-weight: 500;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--color-subtle);
 }
