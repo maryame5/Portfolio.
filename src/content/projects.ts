@@ -8,6 +8,7 @@ export type Project = {
   solution: string;
   architecture: string;
   keyDecisions: string[];
+  engineeringHighlight: string;
   features: string[];
   stack: string[];
   demoUrl?: string;
@@ -23,22 +24,24 @@ export const projects: Project[] = [
     name: "Intelligent Analytics",
     flagship: true,
     summary:
-      "An analytics product that turns raw operational data into decision-ready insights, combining a modern data pipeline with LLM-driven interpretation.",
+      "Enterprise AI-powered analytics platform that turns raw operational data into decision-ready insights with fully cited, auditable answers.",
     outcome:
-      "Reduced time-to-insight from days to minutes for business teams, with fully traceable, auditable answers.",
+      "Reduced time-to-insight from days to minutes for business teams, with fully traceable answers.",
     businessContext:
       "Business teams needed to reason over large volumes of operational data without waiting on analysts for every question.",
     problem:
       "Existing dashboards answered known questions well but could not handle open-ended, exploratory ones. Ad-hoc SQL was slow, error-prone and inaccessible to non-technical users.",
     solution:
-      "A layered analytics platform: a typed semantic layer over the warehouse, a query planner that decomposes natural-language questions into safe, deterministic queries, and an LLM interpretation layer that produces explanations with citations back to the underlying data.",
+      "A layered analytics platform: a typed semantic layer over the warehouse, a query planner that decomposes natural-language questions into safe deterministic queries, and an LLM interpretation layer that produces explanations with citations back to the underlying data.",
     architecture:
       "Ingestion into a versioned warehouse, a semantic model expressed as typed metrics and dimensions, a planner that generates SQL against the semantic layer only, and a generation service that narrates results with source rows attached to every claim.",
     keyDecisions: [
-      "LLMs never write raw SQL — they compose against a typed semantic layer, which eliminates entire classes of hallucinations.",
+      "LLMs never write raw SQL — they compose against a typed semantic layer, eliminating entire classes of hallucinations.",
       "Every answer is traceable to the exact rows that produced it, in one click.",
       "Query planning, execution and narration are separate services with strict interfaces.",
     ],
+    engineeringHighlight:
+      "A typed semantic layer that lets language models reason over the warehouse without ever writing raw SQL.",
     features: [
       "Natural-language analytics with cited sources",
       "Typed semantic layer over the warehouse",
@@ -51,7 +54,7 @@ export const projects: Project[] = [
       "Python",
       "PostgreSQL",
       "dbt",
-      "OpenAI / Anthropic APIs",
+      "OpenAI / Anthropic",
       "Redis",
     ],
     metrics: [
@@ -69,74 +72,77 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug: "intelligent-workflow-engine",
-    name: "Intelligent Workflow Engine",
+    slug: "admin-crm-service",
+    name: "Admin & CRM Service",
     summary:
-      "A configurable engine that combines rule-based logic and language models to automate multi-step business workflows.",
+      "Internal admin and CRM platform unifying client, portfolio and operational data for a regulated investment firm.",
     outcome:
-      "Cut turnaround time on repetitive operational tasks while keeping human control on high-risk decisions.",
+      "Consolidated three legacy tools into one product, cutting operational handoffs and improving auditability.",
     businessContext:
-      "Internal operations teams spent significant time on repetitive, semi-structured tasks that were hard to automate with pure rule engines.",
+      "Operators were juggling disconnected internal tools to serve clients under tight regulatory constraints.",
     problem:
-      "Rules alone could not handle unstructured inputs; pure LLM calls were unreliable, expensive and non-auditable at scale.",
+      "Fragmented systems produced duplicated records, inconsistent state and slow audits.",
     solution:
-      "A workflow engine where each step is a typed contract — rules, LLM calls, or human checkpoints — composed into deterministic, resumable pipelines.",
+      "A domain-modeled service exposing a unified API and back-office UI, with event-sourced state changes for full traceability.",
     architecture:
-      "Event-driven backend with a durable state store, an orchestrator scheduling steps, and adapters isolating model providers behind a stable interface.",
+      "Modular monolith with clear bounded contexts, PostgreSQL as event store, background workers for integrations, and a React admin front-end.",
     keyDecisions: [
-      "Model calls treated as replaceable adapters, never called directly from business logic.",
-      "Every workflow run is fully replayable from persisted events for audit and debugging.",
-      "Human-in-the-loop is a first-class step type, not an escape hatch.",
+      "Started as a modular monolith to keep operations simple until domain boundaries were proven.",
+      "Made every state change an append-only event to satisfy audit requirements natively.",
     ],
+    engineeringHighlight:
+      "Event-sourced core that turned regulatory audits from a reconstruction project into a query.",
     features: [
-      "Declarative workflow definition",
-      "Durable, resumable execution",
-      "Provider-agnostic model adapters",
-      "Structured audit trail",
+      "Unified client and portfolio view",
+      "Role-based access and approval flows",
+      "Fully audited state changes",
+      "Integrations with market-data providers",
     ],
-    stack: ["TypeScript", "Node.js", "PostgreSQL", "Redis", "OpenAI / Anthropic APIs"],
+    stack: ["Java", "Spring Boot", "React", "PostgreSQL", "Kafka"],
     lessons: [
-      "Isolating model providers behind adapters made evaluation and cost tuning tractable.",
-      "Treating audit and replay as core requirements shaped every architectural choice.",
+      "Bounded contexts modeled with the business early paid off every quarter after.",
+      "Audit-by-design is cheaper than audit-by-retrofit.",
     ],
     futureWork: [
-      "Cost- and latency-aware routing across models.",
-      "Offline evaluation harness for step-level regression testing.",
+      "Extract high-throughput contexts into dedicated services.",
+      "Introduce a read-model store optimized for operator dashboards.",
     ],
   },
   {
-    slug: "domain-aware-assistant",
-    name: "Domain-Aware Assistant",
+    slug: "aos-micepp-portal",
+    name: "AOS MICEPP Portal",
     summary:
-      "A retrieval-augmented assistant grounded in a curated knowledge base for a specific business domain.",
+      "Full-stack service portal delivering digital public services across multiple regional offices.",
     outcome:
-      "Reduced time to reliable answers for internal specialists without exposing raw model outputs to end users.",
+      "Enabled citizens and administrators to complete regulated workflows online, replacing paper-based processes.",
     businessContext:
-      "Domain experts needed fast, grounded answers from a large body of internal documentation and structured data.",
+      "A public-sector organization needed to digitize regulated services under a strict delivery window.",
     problem:
-      "Generic assistants hallucinated on domain-specific questions; static search returned documents but not answers.",
+      "Manual, paper-driven workflows were slow, hard to audit and inaccessible outside office hours.",
     solution:
-      "A retrieval layer over curated sources feeding a constrained generation step, with citations and confidence signals surfaced to the user.",
+      "A service portal with role-based access, workflow engine and administrative back-office, deployed across regional offices with a shared data model.",
     architecture:
-      "Ingestion pipeline building typed chunks, a vector store with metadata filtering, and a generation service enforcing citation and refusal patterns.",
+      "Spring Boot backend exposing a REST API, Angular front-end, PostgreSQL persistence, containerized deployment per region.",
     keyDecisions: [
-      "Retrieval quality prioritized over model choice.",
-      "Refuse-when-unsure was a product requirement, not an afterthought.",
-      "Every answer carries traceable sources.",
+      "Modeled regulated workflows explicitly instead of embedding them in UI code.",
+      "Standardized API and UI conventions upfront so the team could scale contributions.",
     ],
+    engineeringHighlight:
+      "A workflow model that let non-developers reason about regulated processes with the engineering team.",
     features: [
-      "Metadata-scoped retrieval",
-      "Citations on every answer",
-      "Explicit refusal on low confidence",
+      "Citizen-facing service requests",
+      "Administrative back-office",
+      "Role-based access control",
+      "Multi-office deployment",
     ],
-    stack: ["Python", "FastAPI", "pgvector", "TypeScript", "React"],
+    stack: ["Spring Boot", "Angular", "PostgreSQL", "Docker"],
     lessons: [
-      "Most quality gains came from ingestion and retrieval, not from the generation model.",
-      "Small evaluation sets, run often, beat large ones run rarely.",
+      "Investing in shared conventions early made every subsequent feature faster.",
+      "Explicit workflow modeling out-performed clever ad-hoc code.",
     ],
     futureWork: [
-      "Feedback loop to promote and demote sources based on usage.",
-      "Structured extraction to complement free-text answers.",
+      "Introduce a shared design system across public-sector services.",
+      "Add analytics on workflow bottlenecks.",
     ],
   },
 ];
