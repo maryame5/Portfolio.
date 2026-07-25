@@ -430,9 +430,7 @@ function Home() {
       <section className="border-t border-border py-28 md:py-32">
         <div className="mx-auto max-w-4xl px-6 text-center">
           <Reveal>
-            <SectionLabel index="06">
-              <>Get in touch</>
-            </SectionLabel>
+            <SectionLabel index="06">Get in touch</SectionLabel>
             <h2 className="mt-6 text-balance text-4xl font-semibold tracking-tight text-foreground md:text-5xl">
               Let's build something impactful.
             </h2>
