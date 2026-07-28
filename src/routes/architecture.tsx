@@ -1,5 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteShell } from "@/components/site-shell";
+import { PageHeader } from "@/components/page-header";
+import { Reveal } from "@/components/reveal";
 import { architectureCases } from "@/content/architecture";
 import { site } from "@/content/site";
 
@@ -7,74 +9,112 @@ export const Route = createFileRoute("/architecture")({
   head: () => ({
     meta: [
       { title: `Architecture — ${site.name}` },
-      { name: "description", content: "System-thinking case studies: business problem, constraints, decisions, trade-offs, outcomes." },
+      {
+        name: "description",
+        content:
+          "Architecture decisions, constraints and trade-offs behind multi-agent analytics, distributed Java backends and public-service platforms.",
+      },
       { property: "og:title", content: `Architecture — ${site.name}` },
-      { property: "og:description", content: "How I think about designing production software systems." },
+      {
+        property: "og:description",
+        content: "The reasoning behind the systems: constraints, decisions, trade-offs, outcomes.",
+      },
     ],
   }),
   component: ArchitecturePage,
 });
 
-function Block({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <div>
-      <h4 className="eyebrow mb-3">{title}</h4>
-      <div className="text-sm leading-relaxed text-muted-foreground">{children}</div>
-    </div>
-  );
-}
-
-function List({ items }: { items: string[] }) {
-  return (
-    <ul className="space-y-2">
-      {items.map((i) => (
-        <li key={i} className="flex gap-3">
-          <span className="mt-2 h-px w-3 shrink-0 bg-border-strong" />
-          <span>{i}</span>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
 function ArchitecturePage() {
   return (
     <SiteShell>
-      <section className="px-6 pt-24 pb-16">
-        <div className="mx-auto max-w-3xl">
-          <p className="eyebrow mb-6">Architecture</p>
-          <h1 className="text-4xl font-semibold text-foreground md:text-5xl">
-            How I think about systems.
-          </h1>
-          <p className="mt-6 max-w-[52ch] text-lg text-muted-foreground">
-            Architecture-first case studies. Each one starts from a real business problem,
-            names the constraints and the trade-offs, and explains the decision that shipped.
-          </p>
-        </div>
-      </section>
+      <PageHeader
+        eyebrow="Architecture"
+        title={<>Decisions, <span className="serif-accent text-gradient">not diagrams</span>.</>}
+        lead="Each system below is presented the way an engineering team would review it: the business problem, the constraints it had to respect, the decisions taken and what they cost."
+      />
 
-      <section className="pb-32">
-        <div className="mx-auto max-w-3xl space-y-24 px-6">
-          {architectureCases.map((c) => (
-            <article key={c.slug} className="border-t border-border pt-12">
-              <h2 className="text-2xl font-semibold text-foreground md:text-3xl">
-                {c.title}
-              </h2>
+      <section className="px-6 pb-28">
+        <div className="mx-auto max-w-5xl space-y-6">
+          {architectureCases.map((a, i) => (
+            <Reveal key={a.slug} delay={0.04 * i}>
+              <article className="card-surface p-8 md:p-10">
+                <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-subtle">
+                  {a.scope}
+                </p>
+                <h2 className="mt-3 text-2xl font-semibold text-foreground md:text-3xl">
+                  {a.title}
+                </h2>
+                <p className="mt-5 max-w-3xl text-base leading-relaxed text-muted-foreground">
+                  {a.businessProblem}
+                </p>
 
-              <div className="mt-10 grid gap-10">
-                <Block title="Business problem">{c.businessProblem}</Block>
-                <Block title="Constraints"><List items={c.constraints} /></Block>
-                <Block title="Architecture decisions"><List items={c.decisions} /></Block>
-                <Block title="Technology choices"><List items={c.technologyChoices} /></Block>
-                <Block title="Trade-offs considered"><List items={c.tradeoffs} /></Block>
-                <Block title="Lessons learned"><List items={c.lessons} /></Block>
-                <Block title="Outcome">
-                  <div className="border-l-2 border-accent/40 bg-accent-soft/40 p-5">
-                    <p className="text-sm italic text-foreground/90">{c.outcome}</p>
+                <div className="mt-9 grid gap-4 md:grid-cols-2">
+                  <div className="rounded-xl border border-border bg-surface/40 p-6">
+                    <p className="eyebrow mb-4">Constraints</p>
+                    <ul className="space-y-2.5 text-sm text-muted-foreground">
+                      {a.constraints.map((c) => (
+                        <li key={c} className="flex gap-3">
+                          <span className="mt-2 h-px w-3 shrink-0 bg-border-strong" />
+                          <span>{c}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                </Block>
-              </div>
-            </article>
+                  <div className="rounded-xl border border-border bg-surface/40 p-6">
+                    <p className="eyebrow mb-4">Layers</p>
+                    <div className="space-y-3">
+                      {a.layers.map((l) => (
+                        <div key={l.name} className="grid gap-1 md:grid-cols-[110px_1fr] md:gap-3">
+                          <span className="font-mono text-[10px] uppercase tracking-[0.1em] text-accent">
+                            {l.name}
+                          </span>
+                          <span className="text-sm text-muted-foreground">{l.detail}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-10">
+                  <p className="eyebrow mb-4">Engineering decisions</p>
+                  <div className="space-y-4">
+                    {a.decisions.map((d, idx) => (
+                      <div key={d.decision} className="rounded-xl border border-border p-6">
+                        <div className="flex items-start gap-4">
+                          <span className="font-mono text-[11px] text-accent">
+                            {String(idx + 1).padStart(2, "0")}
+                          </span>
+                          <div>
+                            <h3 className="text-base font-medium text-foreground">{d.decision}</h3>
+                            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                              {d.rationale}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mt-10 grid gap-6 border-t border-border pt-7 md:grid-cols-2">
+                  <div>
+                    <p className="eyebrow mb-3">Trade-offs</p>
+                    <ul className="space-y-2.5 text-sm text-muted-foreground">
+                      {a.tradeoffs.map((t) => (
+                        <li key={t} className="flex gap-3">
+                          <span className="mt-2 h-px w-3 shrink-0 bg-accent" />
+                          <span>{t}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <p className="eyebrow mb-3">Outcome</p>
+                    <p className="text-sm leading-relaxed text-muted-foreground">{a.outcome}</p>
+                  </div>
+                </div>
+              </article>
+            </Reveal>
           ))}
         </div>
       </section>

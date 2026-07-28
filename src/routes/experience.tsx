@@ -1,5 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteShell } from "@/components/site-shell";
+import { PageHeader } from "@/components/page-header";
+import { Reveal } from "@/components/reveal";
 import { experiences } from "@/content/experience";
 import { site } from "@/content/site";
 
@@ -7,9 +9,15 @@ export const Route = createFileRoute("/experience")({
   head: () => ({
     meta: [
       { title: `Experience — ${site.name}` },
-      { name: "description", content: `Professional experience of ${site.name}, ${site.role}.` },
+      {
+        name: "description",
+        content: `Internships and production systems delivered by ${site.name}: multi-agent analytics, distributed Java backends and public-service platforms.`,
+      },
       { property: "og:title", content: `Experience — ${site.name}` },
-      { property: "og:description", content: `Roles, responsibilities and achievements across teams and companies.` },
+      {
+        property: "og:description",
+        content: "Context, action and measurable result for every role.",
+      },
     ],
   }),
   component: ExperiencePage,
@@ -18,72 +26,105 @@ export const Route = createFileRoute("/experience")({
 function ExperiencePage() {
   return (
     <SiteShell>
-      <section className="px-6 pt-24 pb-16">
-        <div className="mx-auto max-w-3xl">
-          <p className="eyebrow mb-6">Experience</p>
-          <h1 className="text-4xl font-semibold text-foreground md:text-5xl">
-            Where I've built software.
-          </h1>
-          <p className="mt-6 max-w-[52ch] text-lg text-muted-foreground">
-            Roles focused on designing and shipping production software in enterprise contexts,
-            with an increasing focus on integrating AI into real products.
-          </p>
-        </div>
-      </section>
+      <PageHeader
+        eyebrow="Experience"
+        title={<>Systems shipped in <span className="serif-accent text-gradient">real conditions</span>.</>}
+        lead="Every role below produced software that runs: business users, internal operators or citizens on the other side of the screen."
+      />
 
-      <section className="pb-32">
-        <div className="mx-auto max-w-3xl space-y-16 px-6">
-          {experiences.map((e) => (
-            <article key={e.slug} className="border-t border-border pt-10">
-              <div className="mb-6 flex flex-col justify-between gap-2 md:flex-row md:items-baseline">
-                <div>
-                  <h2 className="text-xl font-semibold text-foreground">
-                    {e.role} · {e.company}
-                  </h2>
-                  <p className="mt-1 text-sm text-muted-foreground">{e.context}</p>
+      <section className="px-6 pb-28">
+        <div className="mx-auto max-w-5xl space-y-6">
+          {experiences.map((e, i) => (
+            <Reveal key={e.slug} delay={0.04 * i}>
+              <article className="card-surface p-8 md:p-10">
+                <div className="flex flex-col justify-between gap-3 border-b border-border pb-7 md:flex-row md:items-baseline">
+                  <div>
+                    <h2 className="text-2xl font-semibold text-foreground">{e.company}</h2>
+                    <p className="mt-1.5 text-sm text-accent">{e.role}</p>
+                    <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.12em] text-subtle">
+                      {e.companyKind} · {e.location}
+                    </p>
+                  </div>
+                  <span className="font-mono text-xs text-subtle">{e.period}</span>
                 </div>
-                <span className="font-mono text-xs text-subtle">{e.period}</span>
-              </div>
 
-              <div className="grid gap-8 md:grid-cols-2">
-                <div>
-                  <h3 className="eyebrow mb-3">Responsibilities</h3>
-                  <ul className="space-y-2 text-sm text-muted-foreground">
-                    {e.responsibilities.map((r) => (
-                      <li key={r} className="flex gap-3">
-                        <span className="mt-2 h-px w-3 shrink-0 bg-border-strong" />
-                        <span>{r}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <h3 className="eyebrow mb-3">Achievements</h3>
-                  <ul className="space-y-2 text-sm text-muted-foreground">
-                    {e.achievements.map((a) => (
-                      <li key={a} className="flex gap-3">
-                        <span className="mt-2 h-px w-3 shrink-0 bg-accent" />
-                        <span>{a}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
+                <p className="mt-7 font-mono text-[10px] uppercase tracking-[0.14em] text-subtle">
+                  {e.projectName}
+                </p>
+                <p className="mt-3 text-base leading-relaxed text-muted-foreground">
+                  {e.description}
+                </p>
 
-              <div className="mt-8">
-                <h3 className="eyebrow mb-3">Stack</h3>
-                <div className="flex flex-wrap gap-2">
-                  {e.stack.map((s) => (
-                    <span
-                      key={s}
-                      className="rounded border border-border px-2 py-1 font-mono text-[11px] text-muted-foreground"
-                    >
-                      {s}
-                    </span>
+                <div className="mt-7 rounded-xl border border-border bg-surface/40 p-5">
+                  <p className="eyebrow mb-2">Business context</p>
+                  <p className="text-sm leading-relaxed text-muted-foreground">
+                    {e.businessContext}
+                  </p>
+                </div>
+
+                <div className="mt-10 space-y-5">
+                  <p className="eyebrow">What I delivered</p>
+                  {e.achievements.map((a, idx) => (
+                    <div key={a.title} className="rounded-xl border border-border p-6">
+                      <div className="flex items-start gap-4">
+                        <span className="font-mono text-[11px] text-accent">
+                          {String(idx + 1).padStart(2, "0")}
+                        </span>
+                        <div className="flex-1">
+                          <h3 className="text-base font-medium text-foreground">{a.title}</h3>
+                          <dl className="mt-4 space-y-3">
+                            {[
+                              ["Context", a.context],
+                              ["Action", a.action],
+                              ["Result", a.result],
+                            ].map(([k, v]) => (
+                              <div key={k} className="grid gap-1 md:grid-cols-[80px_1fr] md:gap-4">
+                                <dt className="font-mono text-[10px] uppercase tracking-[0.12em] text-subtle">
+                                  {k}
+                                </dt>
+                                <dd className="text-sm leading-relaxed text-muted-foreground">{v}</dd>
+                              </div>
+                            ))}
+                          </dl>
+                          {a.tech.length > 0 && (
+                            <div className="mt-5 flex flex-wrap gap-1.5">
+                              {a.tech.map((t) => (
+                                <span
+                                  key={t}
+                                  className="rounded-full border border-border px-2.5 py-1 font-mono text-[10px] text-subtle"
+                                >
+                                  {t}
+                                </span>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
                   ))}
                 </div>
-              </div>
-            </article>
+
+                <div className="mt-9 grid gap-6 border-t border-border pt-7 md:grid-cols-[1fr_1fr]">
+                  <div>
+                    <p className="eyebrow mb-2">Architecture</p>
+                    <p className="text-sm leading-relaxed text-muted-foreground">{e.architecture}</p>
+                  </div>
+                  <div>
+                    <p className="eyebrow mb-2">Stack</p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {e.stack.map((s) => (
+                        <span
+                          key={s}
+                          className="rounded-full border border-border bg-surface/50 px-2.5 py-1 font-mono text-[10px] text-muted-foreground"
+                        >
+                          {s}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </Reveal>
           ))}
         </div>
       </section>
