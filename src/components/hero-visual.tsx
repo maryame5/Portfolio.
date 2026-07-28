@@ -1,140 +1,101 @@
-/**
- * Hero visual — a minimal engineering blueprint composition.
- * Pure SVG + tokens. No illustration, no stock imagery.
- */
+"use client";
+
+import { motion, useReducedMotion } from "framer-motion";
+
+const nodes = [
+  { id: "src", label: "RAW DATA", x: 20, y: 40, w: 92 },
+  { id: "qual", label: "QUALITY · HITL", x: 20, y: 110, w: 92 },
+  { id: "orch", label: "ORCHESTRATOR", x: 158, y: 75, w: 108, accent: true },
+  { id: "insight", label: "INSIGHT AGENT", x: 306, y: 18, w: 104 },
+  { id: "retail", label: "RETAIL AGENT", x: 306, y: 78, w: 104 },
+  { id: "manu", label: "MANUFACTURING", x: 306, y: 138, w: 104 },
+];
+
+const edges = [
+  "M112,54 C136,54 136,88 158,88",
+  "M112,124 C136,124 136,100 158,100",
+  "M266,88 C288,88 288,32 306,32",
+  "M266,94 C288,94 288,92 306,92",
+  "M266,100 C288,100 288,152 306,152",
+];
+
 export function HeroVisual() {
+  const reduce = useReducedMotion();
+
   return (
-    <div className="relative aspect-square w-full max-w-[520px]">
-      {/* Ambient wash */}
-      <div
-        aria-hidden
-        className="absolute inset-0 -z-10 rounded-2xl bg-gradient-to-br from-accent-soft to-transparent"
-      />
-      {/* Blueprint grid */}
-      <svg
-        viewBox="0 0 400 400"
-        className="h-full w-full"
-        role="img"
-        aria-label="Abstract system architecture diagram"
-      >
-        <defs>
-          <pattern
-            id="grid"
-            width="20"
-            height="20"
-            patternUnits="userSpaceOnUse"
-          >
-            <path
-              d="M 20 0 L 0 0 0 20"
+    <div className="relative w-full">
+      <div className="glow-orb -right-10 top-0 h-64 w-64 bg-accent/25" />
+      <div className="glow-orb -bottom-10 left-4 h-56 w-56 bg-accent-2/20" />
+
+      <div className="card-surface relative overflow-hidden p-5">
+        <div className="grid-backdrop pointer-events-none absolute inset-0 opacity-60" />
+        <div className="relative flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.18em] text-subtle">
+          <span>intelligent-analytics / topology</span>
+          <span className="flex items-center gap-1.5 text-accent">
+            <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+            live
+          </span>
+        </div>
+
+        <svg viewBox="0 0 430 190" className="relative mt-4 w-full" role="img" aria-label="Multi-agent analytics topology diagram">
+          {edges.map((d, i) => (
+            <motion.path
+              key={d}
+              d={d}
               fill="none"
-              stroke="currentColor"
-              strokeWidth="0.5"
-              className="text-foreground/8"
+              stroke="var(--color-accent)"
+              strokeWidth="1"
+              strokeOpacity="0.5"
+              initial={reduce ? undefined : { pathLength: 0, opacity: 0 }}
+              animate={reduce ? undefined : { pathLength: 1, opacity: 1 }}
+              transition={{ duration: 1.1, delay: 0.3 + i * 0.12, ease: "easeInOut" }}
             />
-          </pattern>
-        </defs>
-        <rect width="400" height="400" fill="url(#grid)" />
+          ))}
 
-        {/* Connector lines */}
-        <g
-          stroke="currentColor"
-          strokeWidth="1"
-          className="text-foreground/25"
-          fill="none"
-        >
-          <path d="M 100 120 L 200 120" />
-          <path d="M 200 120 L 300 120" />
-          <path d="M 100 200 L 200 200" />
-          <path d="M 200 200 L 300 200" />
-          <path d="M 100 280 L 200 280" />
-          <path d="M 200 280 L 300 280" />
-          <path d="M 200 120 L 200 280" />
-        </g>
-
-        {/* Nodes */}
-        <g>
-          {[
-            { x: 100, y: 120, label: "ingest" },
-            { x: 100, y: 200, label: "model" },
-            { x: 100, y: 280, label: "api" },
-            { x: 200, y: 120, label: "planner" },
-            { x: 200, y: 200, label: "core" },
-            { x: 200, y: 280, label: "eval" },
-            { x: 300, y: 120, label: "ui" },
-            { x: 300, y: 200, label: "audit" },
-            { x: 300, y: 280, label: "obs" },
-          ].map((n) => (
-            <g key={`${n.x}-${n.y}`}>
+          {nodes.map((n, i) => (
+            <motion.g
+              key={n.id}
+              initial={reduce ? undefined : { opacity: 0, y: 8 }}
+              animate={reduce ? undefined : { opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+            >
               <rect
-                x={n.x - 30}
-                y={n.y - 14}
-                width="60"
-                height="28"
-                rx="4"
-                className="fill-canvas"
-                stroke="currentColor"
+                x={n.x}
+                y={n.y}
+                width={n.w}
+                height={28}
+                rx={8}
+                fill={n.accent ? "var(--color-accent-soft)" : "var(--color-surface-2)"}
+                stroke={n.accent ? "var(--color-accent)" : "var(--color-border-strong)"}
                 strokeWidth="1"
-                style={{ color: "var(--foreground)" }}
-                opacity="0.9"
               />
               <text
-                x={n.x}
-                y={n.y + 4}
+                x={n.x + n.w / 2}
+                y={n.y + 18}
                 textAnchor="middle"
-                fontSize="10"
-                fontFamily="ui-monospace, 'Geist Mono', monospace"
-                className="fill-muted-foreground"
+                fill={n.accent ? "var(--color-accent)" : "var(--color-muted-foreground)"}
+                fontSize="8"
+                fontFamily="var(--font-mono)"
+                letterSpacing="0.1em"
               >
                 {n.label}
               </text>
-            </g>
+            </motion.g>
           ))}
-        </g>
+        </svg>
 
-        {/* Accent focal node */}
-        <g>
-          <circle
-            cx="200"
-            cy="200"
-            r="46"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1"
-            className="text-accent/40"
-          />
-          <circle
-            cx="200"
-            cy="200"
-            r="6"
-            className="fill-accent"
-          />
-        </g>
-      </svg>
-
-      {/* Corner ticks */}
-      <div className="pointer-events-none absolute inset-0">
-        {["top-0 left-0", "top-0 right-0", "bottom-0 left-0", "bottom-0 right-0"].map(
-          (pos) => (
-            <span
-              key={pos}
-              className={`absolute ${pos} h-3 w-3 border-foreground/30`}
-              style={{
-                borderTopWidth: pos.includes("top") ? 1 : 0,
-                borderBottomWidth: pos.includes("bottom") ? 1 : 0,
-                borderLeftWidth: pos.includes("left") ? 1 : 0,
-                borderRightWidth: pos.includes("right") ? 1 : 0,
-              }}
-            />
-          ),
-        )}
-      </div>
-
-      {/* Meta labels */}
-      <div className="absolute -bottom-2 left-0 font-mono text-[10px] uppercase tracking-[0.18em] text-subtle">
-        system.overview
-      </div>
-      <div className="absolute -top-2 right-0 font-mono text-[10px] uppercase tracking-[0.18em] text-subtle">
-        v1.0
+        <div className="relative mt-4 grid grid-cols-3 gap-3 border-t border-border pt-4">
+          {[
+            { k: "Deterministic KPI", v: "DuckDB" },
+            { k: "Approval gate", v: "Human-in-loop" },
+            { k: "Routing", v: "LangGraph" },
+          ].map((m) => (
+            <div key={m.k}>
+              <p className="font-mono text-[9px] uppercase tracking-[0.14em] text-subtle">{m.k}</p>
+              <p className="mt-1 text-xs text-foreground">{m.v}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
