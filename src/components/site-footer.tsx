@@ -22,7 +22,6 @@ export function SiteFooter() {
                 <Link to="/experience" className="text-muted-foreground hover:text-accent">Experience</Link>
                 <Link to="/projects" className="text-muted-foreground hover:text-accent">Projects</Link>
                 <Link to="/architecture" className="text-muted-foreground hover:text-accent">Architecture</Link>
-                <Link to="/about" className="text-muted-foreground hover:text-accent">About</Link>
                 <Link to="/contact" className="text-muted-foreground hover:text-accent">Contact</Link>
               </div>
             </div>
