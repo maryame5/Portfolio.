@@ -1,17 +1,19 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { Download } from "lucide-react";
+import { ArrowUpRight, Menu, X } from "lucide-react";
 import { site } from "@/content/site";
 
 const links = [
   { to: "/experience", label: "Experience" },
   { to: "/projects", label: "Projects" },
   { to: "/architecture", label: "Architecture" },
+  { to: "/about", label: "About" },
   { to: "/contact", label: "Contact" },
 ] as const;
 
 export function SiteNav() {
   const [elevated, setElevated] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setElevated(window.scrollY > 12);
@@ -24,36 +26,67 @@ export function SiteNav() {
     <nav
       className={`fixed top-0 z-50 w-full transition-all duration-300 ${
         elevated
-          ? "border-b border-border bg-canvas/85 backdrop-blur-md shadow-[0_1px_0_0_rgba(0,0,0,0.02)]"
-          : "border-b border-transparent bg-canvas/60 backdrop-blur-sm"
+          ? "border-b border-border bg-canvas/80 backdrop-blur-xl"
+          : "border-b border-transparent"
       }`}
     >
-      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-6">
-        <div className="flex items-center gap-8">
-          <Link to="/" className="text-sm font-semibold tracking-tight text-foreground">
-            {site.name}
-          </Link>
-          <div className="hidden items-center gap-7 md:flex">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
+        <Link to="/" className="group flex items-center gap-3">
+          <span className="grid h-8 w-8 place-items-center rounded-lg border border-border-strong bg-surface font-mono text-[11px] font-medium text-accent">
+            {site.initials}
+          </span>
+          <span className="text-sm font-medium tracking-tight text-foreground">
+            {site.shortName}
+          </span>
+        </Link>
+
+        <div className="hidden items-center gap-8 md:flex">
+          {links.map((l) => (
+            <Link
+              key={l.to}
+              to={l.to}
+              className="relative text-sm text-muted-foreground transition-colors hover:text-foreground"
+              activeProps={{ className: "text-sm text-foreground" }}
+            >
+              {l.label}
+            </Link>
+          ))}
+        </div>
+
+        <div className="flex items-center gap-3">
+          <a
+            href={site.resumeUrl}
+            className="hidden items-center gap-1.5 rounded-full border border-border-strong px-4 py-1.5 text-sm text-foreground hover:border-accent hover:text-accent sm:inline-flex"
+          >
+            Resume
+            <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={2} />
+          </a>
+          <button
+            aria-label="Toggle menu"
+            onClick={() => setOpen((v) => !v)}
+            className="grid h-9 w-9 place-items-center rounded-lg border border-border text-foreground md:hidden"
+          >
+            {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+          </button>
+        </div>
+      </div>
+
+      {open && (
+        <div className="border-t border-border bg-canvas/95 backdrop-blur-xl md:hidden">
+          <div className="mx-auto flex max-w-6xl flex-col gap-1 px-6 py-4">
             {links.map((l) => (
               <Link
                 key={l.to}
                 to={l.to}
-                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-                activeProps={{ className: "text-sm text-foreground" }}
+                onClick={() => setOpen(false)}
+                className="rounded-lg px-2 py-2.5 text-sm text-muted-foreground hover:bg-surface hover:text-foreground"
               >
                 {l.label}
               </Link>
             ))}
           </div>
         </div>
-        <a
-          href={site.resumeUrl}
-          className="inline-flex items-center gap-2 rounded-md bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground ring-1 ring-border-strong transition-opacity hover:opacity-90"
-        >
-          <Download className="h-3.5 w-3.5" strokeWidth={2} />
-          Resume
-        </a>
-      </div>
+      )}
     </nav>
   );
 }
