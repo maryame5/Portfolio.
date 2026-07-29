@@ -37,28 +37,38 @@
   --radius: 0.75rem;
 
   /* Ink & Signal — deep ink canvas, luminous signal accents */
-  --canvas: oklch(0.16 0.014 268);
-  --surface: oklch(0.195 0.016 268);
-  --surface-2: oklch(0.23 0.018 268);
+  --canvas: oklch(0.175 0.018 264);
+  --surface: oklch(0.213 0.021 264);
+  --surface-2: oklch(0.248 0.024 264);
   --background: var(--canvas);
   --foreground: oklch(0.975 0.005 95);
 
-  --border: oklch(0.98 0.01 95 / 0.09);
-  --border-strong: oklch(0.98 0.01 95 / 0.2);
+  --border: oklch(0.98 0.01 95 / 0.1);
+  --border-strong: oklch(0.98 0.01 95 / 0.22);
 
-  --muted: oklch(0.24 0.016 268);
-  --muted-foreground: oklch(0.76 0.012 268);
-  --subtle: oklch(0.6 0.015 268);
+  --muted: oklch(0.25 0.02 264);
+  --muted-foreground: oklch(0.775 0.014 264);
+  --subtle: oklch(0.615 0.017 264);
 
   --primary: oklch(0.975 0.005 95);
-  --primary-foreground: oklch(0.16 0.014 268);
+  --primary-foreground: oklch(0.175 0.018 264);
 
   --accent: oklch(0.78 0.15 178);        /* signal teal */
   --accent-2: oklch(0.7 0.16 300);       /* violet counterpoint */
+  --accent-3: oklch(0.8 0.13 78);        /* warm amber highlight */
   --accent-soft: oklch(0.78 0.15 178 / 0.12);
 
   --ring: oklch(0.78 0.15 178 / 0.4);
+
+  --shadow-card:
+    0 1px 0 0 oklch(1 0 0 / 0.05) inset,
+    0 20px 40px -28px oklch(0 0 0 / 0.9);
+  --shadow-lifted:
+    0 1px 0 0 oklch(1 0 0 / 0.08) inset,
+    0 32px 64px -32px oklch(0 0 0 / 0.95),
+    0 0 0 1px oklch(0.78 0.15 178 / 0.12);
 }
+
 
 @layer base {
   * {
