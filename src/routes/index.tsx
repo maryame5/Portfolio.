@@ -230,7 +230,9 @@ function HomePage() {
 
 
       {/* PRINCIPLES */}
-      <section className="border-t border-border px-6 py-24">
+      <section className="section-aura relative px-6 py-24">
+        <hr className="rule-fade absolute inset-x-0 top-0" />
+
         <div className="mx-auto max-w-6xl">
           <Reveal>
             <p className="eyebrow mb-4">Engineering principles</p>
@@ -259,7 +261,9 @@ function HomePage() {
       </section>
 
       {/* PROJECTS */}
-      <section className="border-t border-border px-6 py-24">
+      <section className="relative px-6 py-24">
+        <hr className="rule-fade absolute inset-x-0 top-0" />
+
         <div className="mx-auto max-w-6xl">
           <Reveal>
             <div className="flex flex-wrap items-end justify-between gap-4">
@@ -312,7 +316,9 @@ function HomePage() {
       </section>
 
       {/* ARCHITECTURE */}
-      <section className="border-t border-border px-6 py-24">
+      <section className="section-aura relative px-6 py-24">
+        <hr className="rule-fade absolute inset-x-0 top-0" />
+
         <div className="mx-auto max-w-6xl">
           <Reveal>
             <div className="flex flex-wrap items-end justify-between gap-4">
@@ -358,7 +364,9 @@ function HomePage() {
       </section>
 
       {/* STACK */}
-      <section className="border-t border-border px-6 py-24">
+      <section className="relative px-6 py-24">
+        <hr className="rule-fade absolute inset-x-0 top-0" />
+
         <div className="mx-auto max-w-6xl">
           <Reveal>
             <p className="eyebrow mb-4">Technology</p>
@@ -393,7 +401,10 @@ function HomePage() {
       </section>
 
       {/* CTA */}
-      <section className="relative overflow-hidden border-t border-border px-6 py-28">
+      <section className="section-aura relative overflow-hidden px-6 py-28">
+        <hr className="rule-fade absolute inset-x-0 top-0" />
+        <div className="grid-backdrop pointer-events-none absolute inset-0 opacity-40 [mask-image:radial-gradient(60%_60%_at_50%_50%,black,transparent)]" />
+
         <div className="glow-orb left-1/2 top-0 h-72 w-72 -translate-x-1/2 bg-accent/20" />
         <div className="relative mx-auto max-w-3xl text-center">
           <Reveal>
