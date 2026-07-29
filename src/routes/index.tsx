@@ -120,6 +120,28 @@ function HomePage() {
         </Reveal>
       </section>
 
+      {/* CAPABILITY TICKER */}
+      <section className="relative overflow-hidden py-6">
+        <hr className="rule-fade absolute inset-x-0 top-0" />
+        <div className="marquee-mask flex gap-10 whitespace-nowrap">
+          {[0, 1].map((dup) => (
+            <div key={dup} className="marquee-track flex shrink-0 items-center gap-10" aria-hidden={dup === 1}>
+              {capabilityMarquee.map((c) => (
+                <span
+                  key={c}
+                  className="inline-flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.18em] text-subtle"
+                >
+                  <span className="h-1 w-1 rounded-full bg-accent/70" />
+                  {c}
+                </span>
+              ))}
+            </div>
+          ))}
+        </div>
+        <hr className="rule-fade absolute inset-x-0 bottom-0" />
+      </section>
+
+
       {/* FLAGSHIP */}
       <section className="section-aura relative px-6 py-24">
         <hr className="rule-fade absolute inset-x-0 top-0" />
