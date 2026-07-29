@@ -217,6 +217,50 @@ function HomePage() {
               </div>
             </Reveal>
           )}
+
+          <Reveal delay={0.12}>
+            <div className="card-surface mt-4 grid gap-px overflow-hidden bg-border md:grid-cols-[1.15fr_0.85fr]">
+              <div className="panel p-7">
+                <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-accent">
+                  System at a glance
+                </p>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                  {flagshipProject.architecture}
+                </p>
+                <div className="mt-6 flex flex-wrap gap-1.5">
+                  {flagshipProject.stack.slice(0, 10).map((s) => (
+                    <span
+                      key={s}
+                      className="rounded-full border border-border bg-surface/60 px-2.5 py-1 font-mono text-[10px] text-muted-foreground"
+                    >
+                      {s}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div className="panel p-7">
+                <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-subtle">
+                  Data flow
+                </p>
+                <ol className="mt-5 space-y-4">
+                  {["Bronze — raw landing on MinIO", "Quality scoring + HITL approval", "Silver — validated dataset", "Agent routing via LangGraph", "Dashboards, NLQ and ML outputs"].map(
+                    (step, i, arr) => (
+                      <li key={step} className="relative flex gap-3 pl-1">
+                        <span className="relative mt-1 flex h-2 w-2 shrink-0">
+                          <span className="h-2 w-2 rounded-full bg-accent/80" />
+                          {i < arr.length - 1 && (
+                            <span className="absolute left-1/2 top-2 h-6 w-px -translate-x-1/2 bg-gradient-to-b from-accent/50 to-transparent" />
+                          )}
+                        </span>
+                        <span className="text-sm leading-snug text-muted-foreground">{step}</span>
+                      </li>
+                    ),
+                  )}
+                </ol>
+              </div>
+            </div>
+          </Reveal>
+
         </div>
       </section>
 
