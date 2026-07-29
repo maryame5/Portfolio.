@@ -100,22 +100,30 @@ function HomePage() {
         </div>
 
         <Reveal delay={0.25}>
-          <div className="relative mx-auto mt-20 grid max-w-6xl grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border bg-border md:grid-cols-4">
-            {stats.map((s) => (
-              <div key={s.label} className="bg-canvas p-6">
-                <p className="text-3xl font-semibold tracking-tight text-foreground">{s.value}</p>
-                <p className="mt-2 text-sm text-foreground">{s.label}</p>
-                <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.12em] text-subtle">
-                  {s.detail}
-                </p>
-              </div>
-            ))}
+          <div className="relative mx-auto mt-20 max-w-6xl">
+            <div className="card-surface grid grid-cols-2 divide-x divide-y divide-border md:grid-cols-4 md:divide-y-0">
+              {stats.map((s) => (
+                <div key={s.label} className="group relative p-7">
+                  <span
+                    aria-hidden
+                    className="absolute left-0 top-0 h-full w-px bg-gradient-to-b from-transparent via-accent/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                  />
+                  <p className="num-display text-4xl font-semibold">{s.value}</p>
+                  <p className="mt-3 text-sm text-foreground">{s.label}</p>
+                  <p className="mt-1.5 font-mono text-[10px] uppercase tracking-[0.12em] text-subtle">
+                    {s.detail}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </Reveal>
       </section>
 
       {/* FLAGSHIP */}
-      <section className="border-t border-border px-6 py-24">
+      <section className="section-aura relative px-6 py-24">
+        <hr className="rule-fade absolute inset-x-0 top-0" />
+
         <div className="mx-auto max-w-6xl">
           <Reveal>
             <div className="flex flex-wrap items-end justify-between gap-4">
