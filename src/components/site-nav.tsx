@@ -25,10 +25,17 @@ export function SiteNav() {
     <nav
       className={`fixed top-0 z-50 w-full transition-all duration-300 ${
         elevated
-          ? "border-b border-border bg-canvas/80 backdrop-blur-xl"
+          ? "glass-nav border-b border-border shadow-[0_18px_40px_-32px_oklch(0_0_0/0.9)]"
           : "border-b border-transparent"
       }`}
     >
+      {elevated && (
+        <span
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 -bottom-px h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent"
+        />
+      )}
+
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
         <Link to="/" className="group flex items-center gap-3">
           <span className="grid h-8 w-8 place-items-center rounded-lg border border-border-strong bg-surface font-mono text-[11px] font-medium text-accent">

@@ -29,7 +29,25 @@ export const Route = createFileRoute("/")({
   component: HomePage,
 });
 
+const capabilityMarquee = [
+  "Multi-agent orchestration",
+  "LangGraph",
+  "FastAPI",
+  "Spring Boot",
+  "Event-driven microservices",
+  "Data quality · DAMA-DMBOK",
+  "DuckDB",
+  "PostgreSQL",
+  "Kafka · RabbitMQ",
+  "React · TypeScript",
+  "Angular",
+  "Docker · CI/CD",
+  "Keycloak OIDC",
+  "MLflow",
+];
+
 function HomePage() {
+
   const otherProjects = projects.filter((p) => p.slug !== flagshipProject.slug).slice(0, 5);
 
   return (
@@ -100,22 +118,52 @@ function HomePage() {
         </div>
 
         <Reveal delay={0.25}>
-          <div className="relative mx-auto mt-20 grid max-w-6xl grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border bg-border md:grid-cols-4">
-            {stats.map((s) => (
-              <div key={s.label} className="bg-canvas p-6">
-                <p className="text-3xl font-semibold tracking-tight text-foreground">{s.value}</p>
-                <p className="mt-2 text-sm text-foreground">{s.label}</p>
-                <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.12em] text-subtle">
-                  {s.detail}
-                </p>
-              </div>
-            ))}
+          <div className="relative mx-auto mt-20 max-w-6xl">
+            <div className="card-surface grid grid-cols-2 divide-x divide-y divide-border md:grid-cols-4 md:divide-y-0">
+              {stats.map((s) => (
+                <div key={s.label} className="group relative p-7">
+                  <span
+                    aria-hidden
+                    className="absolute left-0 top-0 h-full w-px bg-gradient-to-b from-transparent via-accent/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                  />
+                  <p className="num-display text-4xl font-semibold">{s.value}</p>
+                  <p className="mt-3 text-sm text-foreground">{s.label}</p>
+                  <p className="mt-1.5 font-mono text-[10px] uppercase tracking-[0.12em] text-subtle">
+                    {s.detail}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </Reveal>
       </section>
 
+      {/* CAPABILITY TICKER */}
+      <section className="relative overflow-hidden py-6">
+        <hr className="rule-fade absolute inset-x-0 top-0" />
+        <div className="marquee-mask flex gap-10 whitespace-nowrap">
+          {[0, 1].map((dup) => (
+            <div key={dup} className="marquee-track flex shrink-0 items-center gap-10" aria-hidden={dup === 1}>
+              {capabilityMarquee.map((c) => (
+                <span
+                  key={c}
+                  className="inline-flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.18em] text-subtle"
+                >
+                  <span className="h-1 w-1 rounded-full bg-accent/70" />
+                  {c}
+                </span>
+              ))}
+            </div>
+          ))}
+        </div>
+        <hr className="rule-fade absolute inset-x-0 bottom-0" />
+      </section>
+
+
       {/* FLAGSHIP */}
-      <section className="border-t border-border px-6 py-24">
+      <section className="section-aura relative px-6 py-24">
+        <hr className="rule-fade absolute inset-x-0 top-0" />
+
         <div className="mx-auto max-w-6xl">
           <Reveal>
             <div className="flex flex-wrap items-end justify-between gap-4">
@@ -169,11 +217,56 @@ function HomePage() {
               </div>
             </Reveal>
           )}
+
+          <Reveal delay={0.12}>
+            <div className="card-surface mt-4 grid gap-px overflow-hidden bg-border md:grid-cols-[1.15fr_0.85fr]">
+              <div className="panel p-7">
+                <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-accent">
+                  System at a glance
+                </p>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                  {flagshipProject.architecture}
+                </p>
+                <div className="mt-6 flex flex-wrap gap-1.5">
+                  {flagshipProject.stack.slice(0, 10).map((s) => (
+                    <span
+                      key={s}
+                      className="rounded-full border border-border bg-surface/60 px-2.5 py-1 font-mono text-[10px] text-muted-foreground"
+                    >
+                      {s}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div className="panel p-7">
+                <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-subtle">
+                  Data flow
+                </p>
+                <ol className="mt-5 space-y-4">
+                  {["Bronze — raw landing on MinIO", "Quality scoring + HITL approval", "Silver — validated dataset", "Agent routing via LangGraph", "Dashboards, NLQ and ML outputs"].map(
+                    (step, i, arr) => (
+                      <li key={step} className="relative flex gap-3 pl-1">
+                        <span className="relative mt-1 flex h-2 w-2 shrink-0">
+                          <span className="h-2 w-2 rounded-full bg-accent/80" />
+                          {i < arr.length - 1 && (
+                            <span className="absolute left-1/2 top-2 h-6 w-px -translate-x-1/2 bg-gradient-to-b from-accent/50 to-transparent" />
+                          )}
+                        </span>
+                        <span className="text-sm leading-snug text-muted-foreground">{step}</span>
+                      </li>
+                    ),
+                  )}
+                </ol>
+              </div>
+            </div>
+          </Reveal>
+
         </div>
       </section>
 
       {/* EXPERIENCE */}
-      <section className="border-t border-border px-6 py-24">
+      <section className="relative px-6 py-24">
+        <hr className="rule-fade absolute inset-x-0 top-0" />
         <div className="mx-auto max-w-6xl">
           <Reveal>
             <p className="eyebrow mb-4">Experience</p>
@@ -182,13 +275,20 @@ function HomePage() {
             </h2>
           </Reveal>
 
-          <div className="mt-14 space-y-px overflow-hidden rounded-2xl border border-border bg-border">
+          <div className="card-surface mt-14 divide-y divide-border">
             {experiences.map((e, i) => (
               <Reveal key={e.slug} delay={0.05 * i}>
                 <Link
                   to="/experience"
-                  className="group grid gap-4 bg-canvas p-7 transition-colors hover:bg-surface/60 md:grid-cols-[200px_1fr_auto]"
+                  className="group relative grid gap-4 p-7 transition-colors hover:bg-surface/50 md:grid-cols-[36px_200px_1fr_auto]"
                 >
+                  <span
+                    aria-hidden
+                    className="absolute left-0 top-0 h-full w-[2px] scale-y-0 bg-gradient-to-b from-accent via-accent to-accent-2 transition-transform duration-300 group-hover:scale-y-100"
+                  />
+                  <span className="hidden pt-1 font-mono text-[11px] text-subtle md:block">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
                   <div>
                     <p className="text-base font-medium text-foreground">{e.company}</p>
                     <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.12em] text-subtle">
@@ -203,7 +303,7 @@ function HomePage() {
                   </div>
                   <div className="flex items-start justify-between gap-4 md:flex-col md:items-end">
                     <span className="font-mono text-[11px] text-subtle">{e.period}</span>
-                    <ArrowUpRight className="h-4 w-4 text-subtle transition-all group-hover:text-accent" />
+                    <ArrowUpRight className="h-4 w-4 text-subtle transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent" />
                   </div>
                 </Link>
               </Reveal>
@@ -212,8 +312,11 @@ function HomePage() {
         </div>
       </section>
 
+
       {/* PRINCIPLES */}
-      <section className="border-t border-border px-6 py-24">
+      <section className="section-aura relative px-6 py-24">
+        <hr className="rule-fade absolute inset-x-0 top-0" />
+
         <div className="mx-auto max-w-6xl">
           <Reveal>
             <p className="eyebrow mb-4">Engineering principles</p>
@@ -242,7 +345,9 @@ function HomePage() {
       </section>
 
       {/* PROJECTS */}
-      <section className="border-t border-border px-6 py-24">
+      <section className="relative px-6 py-24">
+        <hr className="rule-fade absolute inset-x-0 top-0" />
+
         <div className="mx-auto max-w-6xl">
           <Reveal>
             <div className="flex flex-wrap items-end justify-between gap-4">
@@ -295,7 +400,9 @@ function HomePage() {
       </section>
 
       {/* ARCHITECTURE */}
-      <section className="border-t border-border px-6 py-24">
+      <section className="section-aura relative px-6 py-24">
+        <hr className="rule-fade absolute inset-x-0 top-0" />
+
         <div className="mx-auto max-w-6xl">
           <Reveal>
             <div className="flex flex-wrap items-end justify-between gap-4">
@@ -341,7 +448,9 @@ function HomePage() {
       </section>
 
       {/* STACK */}
-      <section className="border-t border-border px-6 py-24">
+      <section className="relative px-6 py-24">
+        <hr className="rule-fade absolute inset-x-0 top-0" />
+
         <div className="mx-auto max-w-6xl">
           <Reveal>
             <p className="eyebrow mb-4">Technology</p>
@@ -376,7 +485,10 @@ function HomePage() {
       </section>
 
       {/* CTA */}
-      <section className="relative overflow-hidden border-t border-border px-6 py-28">
+      <section className="section-aura relative overflow-hidden px-6 py-28">
+        <hr className="rule-fade absolute inset-x-0 top-0" />
+        <div className="grid-backdrop pointer-events-none absolute inset-0 opacity-40 [mask-image:radial-gradient(60%_60%_at_50%_50%,black,transparent)]" />
+
         <div className="glow-orb left-1/2 top-0 h-72 w-72 -translate-x-1/2 bg-accent/20" />
         <div className="relative mx-auto max-w-3xl text-center">
           <Reveal>
