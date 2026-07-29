@@ -181,7 +181,8 @@ function HomePage() {
       </section>
 
       {/* EXPERIENCE */}
-      <section className="border-t border-border px-6 py-24">
+      <section className="relative px-6 py-24">
+        <hr className="rule-fade absolute inset-x-0 top-0" />
         <div className="mx-auto max-w-6xl">
           <Reveal>
             <p className="eyebrow mb-4">Experience</p>
@@ -190,13 +191,20 @@ function HomePage() {
             </h2>
           </Reveal>
 
-          <div className="mt-14 space-y-px overflow-hidden rounded-2xl border border-border bg-border">
+          <div className="card-surface mt-14 divide-y divide-border">
             {experiences.map((e, i) => (
               <Reveal key={e.slug} delay={0.05 * i}>
                 <Link
                   to="/experience"
-                  className="group grid gap-4 bg-canvas p-7 transition-colors hover:bg-surface/60 md:grid-cols-[200px_1fr_auto]"
+                  className="group relative grid gap-4 p-7 transition-colors hover:bg-surface/50 md:grid-cols-[36px_200px_1fr_auto]"
                 >
+                  <span
+                    aria-hidden
+                    className="absolute left-0 top-0 h-full w-[2px] scale-y-0 bg-gradient-to-b from-accent via-accent to-accent-2 transition-transform duration-300 group-hover:scale-y-100"
+                  />
+                  <span className="hidden pt-1 font-mono text-[11px] text-subtle md:block">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
                   <div>
                     <p className="text-base font-medium text-foreground">{e.company}</p>
                     <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.12em] text-subtle">
@@ -211,7 +219,7 @@ function HomePage() {
                   </div>
                   <div className="flex items-start justify-between gap-4 md:flex-col md:items-end">
                     <span className="font-mono text-[11px] text-subtle">{e.period}</span>
-                    <ArrowUpRight className="h-4 w-4 text-subtle transition-all group-hover:text-accent" />
+                    <ArrowUpRight className="h-4 w-4 text-subtle transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent" />
                   </div>
                 </Link>
               </Reveal>
@@ -219,6 +227,7 @@ function HomePage() {
           </div>
         </div>
       </section>
+
 
       {/* PRINCIPLES */}
       <section className="border-t border-border px-6 py-24">
