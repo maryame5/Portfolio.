@@ -25,7 +25,9 @@
   --color-primary-foreground: var(--primary-foreground);
   --color-accent: var(--accent);
   --color-accent-2: var(--accent-2);
+  --color-accent-3: var(--accent-3);
   --color-accent-soft: var(--accent-soft);
+
   --color-ring: var(--ring);
 
   --font-sans: "Geist", ui-sans-serif, system-ui, -apple-system, sans-serif;
