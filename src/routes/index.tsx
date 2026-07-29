@@ -29,7 +29,25 @@ export const Route = createFileRoute("/")({
   component: HomePage,
 });
 
+const capabilityMarquee = [
+  "Multi-agent orchestration",
+  "LangGraph",
+  "FastAPI",
+  "Spring Boot",
+  "Event-driven microservices",
+  "Data quality · DAMA-DMBOK",
+  "DuckDB",
+  "PostgreSQL",
+  "Kafka · RabbitMQ",
+  "React · TypeScript",
+  "Angular",
+  "Docker · CI/CD",
+  "Keycloak OIDC",
+  "MLflow",
+];
+
 function HomePage() {
+
   const otherProjects = projects.filter((p) => p.slug !== flagshipProject.slug).slice(0, 5);
 
   return (
