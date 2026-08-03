@@ -3,7 +3,7 @@ import { SiteShell } from "@/components/site-shell";
 import { PageHeader } from "@/components/page-header";
 import { Reveal } from "@/components/reveal";
 import { experiences } from "@/content/experience";
-import { site } from "@/content/site";
+import { site, education, certifications, languages } from "@/content/site";
 
 export const Route = createFileRoute("/experience")({
   head: () => ({
@@ -128,6 +128,61 @@ function ExperiencePage() {
           ))}
         </div>
       </section>
+
+      <hr className="rule-fade mx-auto max-w-5xl" />
+
+      <section className="section-aura px-6 py-24">
+        <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-[1.2fr_1fr]">
+          <Reveal>
+            <div className="card-surface h-full p-8">
+              <p className="eyebrow mb-6">Education</p>
+              <ol className="space-y-6">
+                {education.map((e) => (
+                  <li key={e.institution} className="border-l border-border pl-5">
+                    <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-accent">
+                      {e.period}
+                    </span>
+                    <h3 className="mt-2 text-base font-medium text-foreground">{e.degree}</h3>
+                    <p className="mt-1 text-sm text-muted-foreground">{e.field}</p>
+                    <p className="mt-1 text-sm text-subtle">{e.institution}</p>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.06}>
+            <div className="space-y-6">
+              <div className="card-surface p-8">
+                <p className="eyebrow mb-6">Certifications</p>
+                <ul className="space-y-4">
+                  {certifications.map((c) => (
+                    <li key={c.name} className="border-t border-border pt-4 first:border-0 first:pt-0">
+                      <p className="text-sm font-medium text-foreground">{c.name}</p>
+                      <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.12em] text-subtle">
+                        {c.issuer} · {c.year}
+                      </p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="card-surface p-8">
+                <p className="eyebrow mb-6">Languages</p>
+                <dl className="space-y-3">
+                  {languages.map((l) => (
+                    <div key={l.language} className="flex items-baseline justify-between border-t border-border pt-3 first:border-0 first:pt-0">
+                      <dt className="text-sm text-foreground">{l.language}</dt>
+                      <dd className="font-mono text-[11px] text-subtle">{l.level}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
     </SiteShell>
   );
 }
+
