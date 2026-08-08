@@ -54,9 +54,10 @@ function HomePage() {
     <SiteShell>
       {/* HERO */}
       <section className="relative overflow-hidden px-6 pt-24 pb-24 md:pt-32">
-        <div className="grid-backdrop pointer-events-none absolute inset-0 opacity-50 [mask-image:radial-gradient(70%_60%_at_40%_0%,black,transparent)]" />
-        <div className="glow-orb -top-20 left-1/4 h-80 w-80 bg-accent/20" />
-        <div className="glow-orb right-0 top-40 h-72 w-72 bg-accent-2/15" />
+        <span className="horizon-beam -top-px opacity-70" aria-hidden />
+        <div className="glow-orb -top-24 left-1/4 h-[26rem] w-[26rem] bg-accent/25" />
+        <div className="glow-orb right-0 top-40 h-80 w-80 bg-accent-2/20" />
+
 
         <div className="relative mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
