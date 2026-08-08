@@ -54,9 +54,10 @@ function HomePage() {
     <SiteShell>
       {/* HERO */}
       <section className="relative overflow-hidden px-6 pt-24 pb-24 md:pt-32">
-        <div className="grid-backdrop pointer-events-none absolute inset-0 opacity-50 [mask-image:radial-gradient(70%_60%_at_40%_0%,black,transparent)]" />
-        <div className="glow-orb -top-20 left-1/4 h-80 w-80 bg-accent/20" />
-        <div className="glow-orb right-0 top-40 h-72 w-72 bg-accent-2/15" />
+        <span className="horizon-beam -top-px opacity-70" aria-hidden />
+        <div className="glow-orb -top-24 left-1/4 h-[26rem] w-[26rem] bg-accent/25" />
+        <div className="glow-orb right-0 top-40 h-80 w-80 bg-accent-2/20" />
+
 
         <div className="relative mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
@@ -72,7 +73,7 @@ function HomePage() {
 
             <Reveal delay={0.05}>
               <h1 className="mt-8 text-[2.6rem] font-semibold leading-[1.03] tracking-tight text-foreground md:text-[4rem]">
-                I build <span className="serif-accent text-gradient">intelligent systems</span> that
+                I build <span className="serif-accent text-accent">intelligent systems</span> that
                 give business teams their autonomy back.
               </h1>
             </Reveal>
@@ -82,6 +83,14 @@ function HomePage() {
                 {site.intro}
               </p>
             </Reveal>
+
+            <Reveal delay={0.12}>
+              <p className="mt-6 max-w-xl border-l border-accent/40 pl-4 text-sm leading-relaxed text-subtle">
+                Written by hand, not by template — every diagram on this site maps a system I
+                actually shipped, and every number below is something I can walk you through.
+              </p>
+            </Reveal>
+
 
             <Reveal delay={0.15}>
               <div className="mt-9 flex flex-wrap items-center gap-3">
@@ -103,13 +112,15 @@ function HomePage() {
             </Reveal>
 
             <Reveal delay={0.2}>
-              <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-[11px] uppercase tracking-[0.14em] text-subtle">
+              <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 font-mono text-[11px] uppercase tracking-[0.14em] text-subtle">
+                <span className="signature normal-case">{site.shortName}</span>
                 <span className="inline-flex items-center gap-1.5">
                   <MapPin className="h-3 w-3" /> {site.location}
                 </span>
-                <span>INSEA · Data & Software Engineering</span>
+                <span>INSEA · Data &amp; Software Engineering</span>
               </div>
             </Reveal>
+
           </div>
 
           <Reveal delay={0.15}>
