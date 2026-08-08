@@ -112,13 +112,15 @@ function HomePage() {
             </Reveal>
 
             <Reveal delay={0.2}>
-              <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-[11px] uppercase tracking-[0.14em] text-subtle">
+              <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 font-mono text-[11px] uppercase tracking-[0.14em] text-subtle">
+                <span className="signature not-italic-0 normal-case">{site.shortName}</span>
                 <span className="inline-flex items-center gap-1.5">
                   <MapPin className="h-3 w-3" /> {site.location}
                 </span>
-                <span>INSEA · Data & Software Engineering</span>
+                <span>INSEA · Data &amp; Software Engineering</span>
               </div>
             </Reveal>
+
           </div>
 
           <Reveal delay={0.15}>
