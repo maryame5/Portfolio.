@@ -73,7 +73,7 @@ function HomePage() {
 
             <Reveal delay={0.05}>
               <h1 className="mt-8 text-[2.6rem] font-semibold leading-[1.03] tracking-tight text-foreground md:text-[4rem]">
-                I build <span className="serif-accent text-gradient">intelligent systems</span> that
+                I build <span className="serif-accent text-accent">intelligent systems</span> that
                 give business teams their autonomy back.
               </h1>
             </Reveal>
@@ -83,6 +83,14 @@ function HomePage() {
                 {site.intro}
               </p>
             </Reveal>
+
+            <Reveal delay={0.12}>
+              <p className="mt-6 max-w-xl border-l border-accent/40 pl-4 text-sm leading-relaxed text-subtle">
+                Written by hand, not by template — every diagram on this site maps a system I
+                actually shipped, and every number below is something I can walk you through.
+              </p>
+            </Reveal>
+
 
             <Reveal delay={0.15}>
               <div className="mt-9 flex flex-wrap items-center gap-3">
