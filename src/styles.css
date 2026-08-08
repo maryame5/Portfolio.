@@ -319,10 +319,10 @@
    Reads as drafting paper rather than a generic "tech grid". */
 @utility blueprint {
   background-image:
-    linear-gradient(to right, oklch(0.98 0.01 95 / 0.028) 1px, transparent 1px),
-    linear-gradient(to bottom, oklch(0.98 0.01 95 / 0.028) 1px, transparent 1px),
-    linear-gradient(to right, oklch(0.78 0.15 178 / 0.075) 1px, transparent 1px),
-    linear-gradient(to bottom, oklch(0.78 0.15 178 / 0.075) 1px, transparent 1px);
+    linear-gradient(to right, oklch(0.98 0.01 95 / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(0.98 0.01 95 / 0.05) 1px, transparent 1px),
+    linear-gradient(to right, oklch(0.78 0.15 178 / 0.14) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(0.78 0.15 178 / 0.14) 1px, transparent 1px);
   background-size: 24px 24px, 24px 24px, 96px 96px, 96px 96px;
 }
 
@@ -331,8 +331,8 @@
   position: fixed;
   inset: -20% -10%;
   pointer-events: none;
-  opacity: 0.55;
-  filter: blur(120px);
+  opacity: 0.9;
+  filter: blur(110px);
   background:
     radial-gradient(32rem 26rem at 18% 22%, oklch(0.78 0.15 178 / 0.3), transparent 62%),
     radial-gradient(30rem 24rem at 82% 34%, oklch(0.7 0.16 300 / 0.26), transparent 62%),

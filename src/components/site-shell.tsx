@@ -9,12 +9,12 @@ export function SiteShell({ children }: { children: ReactNode }) {
       <div className="aurora-field z-0" aria-hidden />
       <div
         aria-hidden
-        className="blueprint pointer-events-none fixed inset-0 z-0 opacity-[0.55] [mask-image:radial-gradient(120%_90%_at_50%_0%,black_10%,transparent_75%)]"
+        className="blueprint pointer-events-none fixed inset-0 z-0 opacity-90 [mask-image:radial-gradient(120%_90%_at_50%_0%,black_10%,transparent_75%)]"
       />
       <div className="grain fixed z-0" aria-hidden />
       <div
         aria-hidden
-        className="pointer-events-none fixed inset-0 z-0 [background:radial-gradient(120%_80%_at_50%_0%,transparent_38%,oklch(0.11_0.02_268/0.6)_100%)]"
+        className="pointer-events-none fixed inset-0 z-0 [background:radial-gradient(120%_80%_at_50%_0%,transparent_45%,oklch(0.12_0.02_268/0.42)_100%)]"
       />
       <div className="relative z-10">
         <SiteNav />
