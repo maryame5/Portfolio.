@@ -64,7 +64,7 @@ export const projects: Project[] = [
       "Two-tier token validation cache (Caffeine local + Redis distributed) holding P95 under 20ms.",
       "Atomic quota enforcement with PostgreSQL SELECT FOR UPDATE and scheduled resets — zero overrun in production.",
       "360° client profile assembled in one request through OpenFeign inter-service calls.",
-      "Multi-provider OAuth2 (Google, GitHub, LinkedIn and more) with secure account linking and RabbitMQ support notifications.",
+      "OAuth2 multi-provider sign-in with secure account linking and RabbitMQ support notifications.",
       "AOP-based observability tracing every sensitive operation without polluting business code.",
     ],
     architecture:
