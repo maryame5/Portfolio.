@@ -155,6 +155,7 @@ export const projects: Project[] = [
     name: "Bank Review Pipeline — ETL & NLP",
     category: "Data Engineering · NLP",
     year: "2024",
+    repo: "https://github.com/maryame5/bank-review-pipeline",
     summary:
       "An end-to-end Airflow + dbt pipeline collecting and analysing customer reviews for every bank branch in Morocco.",
     narrative:
