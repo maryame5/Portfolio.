@@ -528,10 +528,10 @@ function HomePage() {
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <a
-                href={site.resumeUrl}
+                href={site.resumeRequestUrl}
                 className="inline-flex items-center gap-2 rounded-full border border-border-strong px-5 py-2.5 text-sm text-foreground hover:border-accent hover:text-accent"
               >
-                <Download className="h-4 w-4" /> Resume
+                <Mail className="h-4 w-4" /> Ask for my CV
               </a>
             </div>
           </Reveal>
