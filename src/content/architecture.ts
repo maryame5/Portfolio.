@@ -56,7 +56,7 @@ export const architectureCases: ArchitectureCase[] = [
       { name: "Ingestion", detail: "Bronze layer on MinIO — source data untouched" },
       { name: "Quality", detail: "Profiling + 5-dimension scoring + HITL plan → Silver" },
       { name: "Orchestration", detail: "LangGraph StateGraph with conditional sector routing" },
-      { name: "Computation", detail: "DuckDB deterministic execution, SELECT-only validation" },
+      { name: "Computation", detail: "DuckDB deterministic execution, sqlglot AST SELECT-only validation" },
       { name: "Persistence", detail: "PostgreSQL JSONB — projects, dashboards, conversations" },
       { name: "Experience", detail: "React 18 rendering dashboards from structured config" },
     ],
