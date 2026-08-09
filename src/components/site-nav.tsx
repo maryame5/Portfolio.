@@ -61,10 +61,10 @@ export function SiteNav() {
 
         <div className="flex items-center gap-3">
           <a
-            href={site.resumeUrl}
+            href={site.resumeRequestUrl}
             className="hidden items-center gap-1.5 rounded-full border border-border-strong px-4 py-1.5 text-sm text-foreground hover:border-accent hover:text-accent sm:inline-flex"
           >
-            Resume
+            Ask for my CV
             <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={2} />
           </a>
           <button
