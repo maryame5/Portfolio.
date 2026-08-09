@@ -132,6 +132,7 @@ export const projects: Project[] = [
     category: "AI · Machine Learning · Analytics",
     year: "2024",
     context: "National hackathon — 3rd place, delivered in 48h",
+    repo: "https://github.com/maryame5/Intelligente-analytics-aeroportuaire",
     summary:
       "A predictive platform surfacing the service factors that drive passenger satisfaction, queryable in natural language.",
     narrative:
