@@ -226,14 +226,14 @@ export const projects: Project[] = [
     summary:
       "A generative pipeline turning raw text into a stylised video through syntax analysis, image generation and compilation.",
     narrative:
-      "The pipeline parses a text into its grammatical actors and actions, generates a stylised frame for each beat through diffusion models, then compiles the frames into a coherent animated sequence.",
+      "The pipeline parses a text with spaCy to extract the scenes it contains, generates a stylised frame for each one with Stable Diffusion, then compiles the frames into a coherent animated sequence with MoviePy.",
     highlights: [
-      "spaCy syntactic parsing (nsubj/dobj) driving scene extraction.",
-      "Stable Diffusion and Ghibli Diffusion generation combining txt2img and img2img.",
+      "spaCy syntactic analysis driving scene extraction.",
+      "Stable Diffusion image generation for each extracted scene.",
       "MoviePy compilation into a final stylised video.",
     ],
     architecture: "Sequential Python pipeline: text parsing → prompt construction → diffusion generation → frame compilation.",
-    stack: ["Python", "Stable Diffusion", "Ghibli Diffusion", "spaCy", "MoviePy"],
+    stack: ["Python", "Stable Diffusion", "spaCy", "MoviePy"],
   },
 ];
 
