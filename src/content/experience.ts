@@ -93,7 +93,6 @@ export const experiences: Experience[] = [
       "MinIO", "DuckDB", "MLflow", "joblib", "scikit-learn", "XGBoost", "React 18",
       "TypeScript", "Zustand", "TanStack Query", "Power BI", "pytest", "Docker", "Keycloak 23",
     ],
-
   },
   {
     slug: "lotus-capital",
