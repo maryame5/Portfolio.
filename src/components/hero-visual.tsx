@@ -1,7 +1,3 @@
-"use client";
-
-import { motion, useReducedMotion } from "framer-motion";
-
 const nodes = [
   { id: "src", label: "RAW DATA", x: 20, y: 40, w: 92 },
   { id: "qual", label: "QUALITY · HITL", x: 20, y: 110, w: 92 },
@@ -20,8 +16,6 @@ const edges = [
 ];
 
 export function HeroVisual() {
-  const reduce = useReducedMotion();
-
   return (
     <div className="relative w-full">
       <div className="glow-orb -right-10 top-0 h-64 w-64 bg-accent/25" />
@@ -37,27 +31,31 @@ export function HeroVisual() {
           </span>
         </div>
 
-        <svg viewBox="0 0 430 190" className="relative mt-4 w-full" role="img" aria-label="Multi-agent analytics topology diagram">
+        <svg
+          viewBox="0 0 430 190"
+          className="relative mt-4 w-full"
+          role="img"
+          aria-label="Multi-agent analytics topology diagram"
+        >
           {edges.map((d, i) => (
-            <motion.path
+            <path
               key={d}
               d={d}
+              pathLength={1}
               fill="none"
               stroke="var(--color-accent)"
               strokeWidth="1"
               strokeOpacity="0.5"
-              initial={reduce ? undefined : { pathLength: 0, opacity: 0 }}
-              animate={reduce ? undefined : { pathLength: 1, opacity: 1 }}
-              transition={{ duration: 1.1, delay: 0.3 + i * 0.12, ease: "easeInOut" }}
+              className="draw-in"
+              style={{ ["--reveal-delay" as string]: `${300 + i * 120}ms` }}
             />
           ))}
 
           {nodes.map((n, i) => (
-            <motion.g
+            <g
               key={n.id}
-              initial={reduce ? undefined : { opacity: 0, y: 8 }}
-              animate={reduce ? undefined : { opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className="reveal"
+              style={{ ["--reveal-delay" as string]: `${i * 100}ms` }}
             >
               <rect
                 x={n.x}
@@ -80,7 +78,7 @@ export function HeroVisual() {
               >
                 {n.label}
               </text>
-            </motion.g>
+            </g>
           ))}
         </svg>
 
