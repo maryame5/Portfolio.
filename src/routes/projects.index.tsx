@@ -261,16 +261,30 @@ function ProjectsPage() {
                           ))}
                         </div>
 
-                        {study && (
-                          <Link
-                            to="/projects/$slug"
-                            params={{ slug: study }}
-                            className="group mt-7 inline-flex items-center gap-2 font-mono text-xs text-accent"
-                          >
-                            Read the full case study
-                            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-                          </Link>
-                        )}
+                        <div className="mt-7 flex flex-wrap items-center gap-6">
+                          {study && (
+                            <Link
+                              to="/projects/$slug"
+                              params={{ slug: study }}
+                              className="group inline-flex items-center gap-2 font-mono text-xs text-accent"
+                            >
+                              Read the full case study
+                              <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                            </Link>
+                          )}
+                          {p.repo && (
+                            <a
+                              href={p.repo}
+                              target="_blank"
+                              rel="noreferrer noopener"
+                              className="group inline-flex items-center gap-2 font-mono text-xs text-muted-foreground hover:text-accent"
+                            >
+                              View source on GitHub
+                              <ArrowRight className="h-3.5 w-3.5 -rotate-45 transition-transform group-hover:translate-x-1" />
+                            </a>
+                          )}
+                        </div>
+
                       </div>
                     )}
                   </div>
