@@ -14,7 +14,8 @@ export const architectureCases: ArchitectureCase[] = [
   {
     slug: "multi-agent-analytics",
     title: "Multi-agent analytics orchestration",
-    scope: "Intelligent Analytics — DXC Technology",
+    scope:
+      "Intelligent Analytics — DXC Technology. Six components: Frontend (React 18), API Backend (FastAPI/PostgreSQL), SSO Keycloak, Data Preparation Agent, Insight Agent, Sector Agents (Retail, Manufacturing).",
     businessProblem:
       "Non-technical users needed to go from a raw file to a sector prediction alone, while the organisation could not accept an AI system silently mutating data or inventing numbers.",
     constraints: [
