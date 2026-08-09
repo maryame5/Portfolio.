@@ -129,9 +129,9 @@ export const experiences: Experience[] = [
         tech: ["PostgreSQL SELECT FOR UPDATE", "Spring @Scheduled", "Spring AOP"],
       },
       {
-        title: "One-click sign-up through four identity providers",
+        title: "One-click sign-up through external identity providers",
         context: "Creating yet another account was friction at registration.",
-        action: "Integrated four external OAuth2 providers with secure account linking and automatic support notifications.",
+        action: "Integrated external OAuth2 identity providers with secure account linking and automatic support notifications.",
         result: "Users register in one click from an existing account, and support is notified automatically.",
         tech: ["OAuth2 multi-provider", "Spring Security", "RabbitMQ"],
       },
