@@ -10,8 +10,10 @@ export type Project = {
   architecture: string;
   stack: string[];
   featured?: boolean;
+  repo?: string;
   metrics?: { label: string; value: string }[];
 };
+
 
 export const projects: Project[] = [
   {
