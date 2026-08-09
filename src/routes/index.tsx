@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, ArrowUpRight, Download, MapPin } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Mail, MapPin } from "lucide-react";
 import { SiteShell } from "@/components/site-shell";
 import { Reveal } from "@/components/reveal";
 import { HeroVisual } from "@/components/hero-visual";
@@ -72,22 +72,29 @@ function HomePage() {
             </Reveal>
 
             <Reveal delay={0.05}>
-              <h1 className="mt-8 text-[2.6rem] font-semibold leading-[1.03] tracking-tight text-foreground md:text-[4rem]">
-                I build <span className="serif-accent text-accent">intelligent systems</span> that
-                give business teams their autonomy back.
+              <h1 className="mt-8 text-[2.2rem] font-semibold leading-[1.06] tracking-tight text-foreground md:text-[3.4rem]">
+                AI &amp; Software Engineer{" "}
+                <span className="text-muted-foreground">|</span> Full-Stack Developer{" "}
+                <span className="text-muted-foreground">|</span>{" "}
+                <span className="serif-accent text-accent">Data &amp; Analytics Agent Architect</span>
               </h1>
             </Reveal>
 
+            <Reveal delay={0.08}>
+              <p className="mt-6 max-w-xl text-xl leading-snug text-foreground">
+                {site.tagline}
+              </p>
+            </Reveal>
+
             <Reveal delay={0.1}>
-              <p className="mt-7 max-w-xl text-lg leading-relaxed text-muted-foreground">
-                {site.intro}
+              <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground">
+                {site.headline}
               </p>
             </Reveal>
 
             <Reveal delay={0.12}>
               <p className="mt-6 max-w-xl border-l border-accent/40 pl-4 text-sm leading-relaxed text-subtle">
-                Written by hand, not by template — every diagram on this site maps a system I
-                actually shipped, and every number below is something I can walk you through.
+                {site.intro}
               </p>
             </Reveal>
 
@@ -102,14 +109,15 @@ function HomePage() {
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                 </Link>
                 <a
-                  href={site.resumeUrl}
+                  href={site.resumeRequestUrl}
                   className="inline-flex items-center gap-2 rounded-full border border-border-strong px-5 py-2.5 text-sm text-foreground hover:border-accent hover:text-accent"
                 >
-                  <Download className="h-4 w-4" />
-                  Download resume
+                  <Mail className="h-4 w-4" />
+                  Ask for my CV
                 </a>
               </div>
             </Reveal>
+
 
             <Reveal delay={0.2}>
               <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 font-mono text-[11px] uppercase tracking-[0.14em] text-subtle">
@@ -520,10 +528,10 @@ function HomePage() {
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <a
-                href={site.resumeUrl}
+                href={site.resumeRequestUrl}
                 className="inline-flex items-center gap-2 rounded-full border border-border-strong px-5 py-2.5 text-sm text-foreground hover:border-accent hover:text-accent"
               >
-                <Download className="h-4 w-4" /> Resume
+                <Mail className="h-4 w-4" /> Ask for my CV
               </a>
             </div>
           </Reveal>

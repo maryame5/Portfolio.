@@ -10,8 +10,10 @@ export type Project = {
   architecture: string;
   stack: string[];
   featured?: boolean;
+  repo?: string;
   metrics?: { label: string; value: string }[];
 };
+
 
 export const projects: Project[] = [
   {
@@ -26,11 +28,11 @@ export const projects: Project[] = [
     narrative:
       "Business teams at DXC owned their data but not their analyses: every question went through a technical queue. The platform turns that queue into a guided product. Data lands untouched in a Bronze layer, gets profiled and scored on five quality dimensions, and the user validates the cleaning plan action by action. Once the Silver dataset exists, an Insight Agent generates a full dashboard for their sector, computed deterministically on real rows. From there they can ask questions in plain French, and each answer becomes a new dashboard block. Finally, sector agents translate ML outputs into retail or manufacturing decisions.",
     highlights: [
-      "Insight Agent: LLM-generated dashboard configuration, deterministically validated and computed on real data via DuckDB — no hallucinated KPI.",
-      "Data Preparation Agent: DAMA-DMBOK quality scoring across 5 dimensions, 7 anomaly types, 9 corrective strategies, Human-in-the-Loop approval before any mutation.",
-      "NLQ pipeline with double SQL security validation — SELECT only, every mutating statement blocked before execution.",
-      "Retail Agent (16 use cases) and Manufacturing Agent routed conditionally by a central LangGraph orchestrator, 29 unit tests on the retail contract.",
-      "React 18 frontend with four guided workflows, a global Zustand store and Keycloak 23 OIDC single sign-on across services.",
+      "Insight Agent: Azure OpenAI GPT-4o generates the dashboard configuration, a deterministic validator checks it, DuckDB computes every KPI on real rows — plus Power BI export of the generated dashboard.",
+      "Data Preparation Agent: DAMA-DMBOK quality scoring across 5 dimensions, 7 anomaly types, 9 corrective strategies, and a 7-step Predictive Data Validator, with Human-in-the-Loop approval before any mutation.",
+      "NLQ pipeline secured by a sqlglot AST parser — SELECT-only, every mutating statement rejected before execution — with Redis session memory and PostgreSQL conversation history.",
+      "Retail Agent (16 use cases) and Manufacturing Agent routed conditionally by a central LangGraph orchestrator; models trained in parallel with joblib and tracked in MLflow; 29 pytest unit tests on the retail contract.",
+      "React 18 frontend with four guided workflows, a global Zustand store, and Keycloak 23 OIDC single sign-on with RBAC across services.",
     ],
     architecture:
       "Medallion pipeline (Bronze/Silver on MinIO) → LangGraph orchestrator routing to specialised agents → FastAPI services persisting projects, dashboards and conversations in PostgreSQL JSONB → React 18 rendering dashboards from structured JSON config.",
@@ -40,10 +42,12 @@ export const projects: Project[] = [
       { label: "Sector use cases modelled", value: "16 retail + manufacturing" },
     ],
     stack: [
-      "Python", "FastAPI", "LangGraph", "Azure OpenAI", "DuckDB", "MinIO",
-      "PostgreSQL JSONB", "MLflow", "XGBoost", "React 18", "TypeScript",
-      "Zustand", "TanStack Query", "Recharts", "Keycloak 23", "Docker",
+      "Python", "FastAPI", "LangGraph", "Azure OpenAI GPT-4o", "DuckDB", "sqlglot",
+      "MinIO", "PostgreSQL JSONB", "Redis", "MLflow", "joblib", "XGBoost",
+      "React 18", "TypeScript", "Zustand", "TanStack Query", "Recharts",
+      "Keycloak 23", "Power BI", "pytest", "Docker",
     ],
+
   },
   {
     slug: "cqos-trading-platform",
@@ -60,7 +64,7 @@ export const projects: Project[] = [
       "Two-tier token validation cache (Caffeine local + Redis distributed) holding P95 under 20ms.",
       "Atomic quota enforcement with PostgreSQL SELECT FOR UPDATE and scheduled resets — zero overrun in production.",
       "360° client profile assembled in one request through OpenFeign inter-service calls.",
-      "Multi-provider OAuth2 (Google, GitHub, LinkedIn and more) with secure account linking and RabbitMQ support notifications.",
+      "OAuth2 multi-provider sign-in with secure account linking and RabbitMQ support notifications.",
       "AOP-based observability tracing every sensitive operation without polluting business code.",
     ],
     architecture:
@@ -78,6 +82,7 @@ export const projects: Project[] = [
     year: "2025",
     context: "Ministry of Investment (MICEPP)",
     featured: true,
+    repo: "https://github.com/maryame5/aos_micepp",
     summary:
       "A public-service portal digitising social benefit claims for civil servants, with real-time tracking, complaint auditing and an admin back-office.",
     narrative:
@@ -102,14 +107,16 @@ export const projects: Project[] = [
     name: "EasyApply — Smart Recruitment Platform",
     category: "AI · Microservices · Full-Stack",
     year: "2024",
+    repo: "https://github.com/maryame5/Easyapply_project",
     summary:
-      "A recruitment platform that replaces manual CV screening with semantic matching between candidates and job offers.",
+      "A recruitment platform that replaces manual CV screening with embedding-based semantic matching between candidates and job offers.",
     narrative:
-      "Recruiters spent hours sorting hundreds of CVs per offer — slow, subjective and exhausting. EasyApply computes a semantic similarity score between each candidate and the offer, extracts skills and education from raw PDF CVs, and surfaces only the most relevant profiles.",
+      "Recruiters spent hours sorting hundreds of CVs per offer — slow, subjective and exhausting. EasyApply computes an embedding-based semantic similarity score between each candidate and the offer, extracts skills and education from raw PDF CVs, and surfaces only the most relevant profiles.",
     highlights: [
-      "Semantic matching engine scoring candidate–offer fit automatically.",
+      "Semantic matching by embeddings, scoring candidate–offer fit automatically.",
       "Skills, education and experience extracted from raw PDF CVs — candidates never retype their profile.",
       "Recruiter and candidate dashboards over semi-structured profiles.",
+
       "Microservices split so the AI engine and the product UI evolve independently.",
     ],
     architecture:
@@ -125,6 +132,7 @@ export const projects: Project[] = [
     category: "AI · Machine Learning · Analytics",
     year: "2024",
     context: "National hackathon — 3rd place, delivered in 48h",
+    repo: "https://github.com/maryame5/Intelligente-analytics-aeroportuaire",
     summary:
       "A predictive platform surfacing the service factors that drive passenger satisfaction, queryable in natural language.",
     narrative:
@@ -147,6 +155,7 @@ export const projects: Project[] = [
     name: "Bank Review Pipeline — ETL & NLP",
     category: "Data Engineering · NLP",
     year: "2024",
+    repo: "https://github.com/maryame5/bank-review-pipeline",
     summary:
       "An end-to-end Airflow + dbt pipeline collecting and analysing customer reviews for every bank branch in Morocco.",
     narrative:
@@ -191,10 +200,11 @@ export const projects: Project[] = [
     name: "Dental Practice Management",
     category: "Backend · Java · Spring MVC",
     year: "2024",
+    repo: "https://github.com/maryame5/CabinetDentaire",
     summary:
       "A Spring Boot application managing patients, appointments, treatments and invoices across three distinct business roles.",
     narrative:
-      "A dental practice runs on the same few operations repeated daily. The application models them explicitly — patients, appointments, treatments, invoices — behind role-based access for doctors, secretaries and patients.",
+      "A dental practice runs on the same few operations repeated daily. The application models them explicitly — patients, appointments, treatments, invoices — behind role-based access control for three distinct business roles.",
     highlights: [
       "Spring MVC architecture with Spring Security role-based access control.",
       "Full Hibernate/JPA domain model over MySQL.",
@@ -216,14 +226,14 @@ export const projects: Project[] = [
     summary:
       "A generative pipeline turning raw text into a stylised video through syntax analysis, image generation and compilation.",
     narrative:
-      "The pipeline parses a text into its grammatical actors and actions, generates a stylised frame for each beat through diffusion models, then compiles the frames into a coherent animated sequence.",
+      "The pipeline parses a text with spaCy to extract the scenes it contains, generates a stylised frame for each one with Stable Diffusion, then compiles the frames into a coherent animated sequence with MoviePy.",
     highlights: [
-      "spaCy syntactic parsing (nsubj/dobj) driving scene extraction.",
-      "Stable Diffusion and Ghibli Diffusion generation combining txt2img and img2img.",
+      "spaCy syntactic analysis driving scene extraction.",
+      "Stable Diffusion image generation for each extracted scene.",
       "MoviePy compilation into a final stylised video.",
     ],
     architecture: "Sequential Python pipeline: text parsing → prompt construction → diffusion generation → frame compilation.",
-    stack: ["Python", "Stable Diffusion", "Ghibli Diffusion", "spaCy", "MoviePy"],
+    stack: ["Python", "Stable Diffusion", "spaCy", "MoviePy"],
   },
 ];
 

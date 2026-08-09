@@ -40,58 +40,58 @@ export const experiences: Experience[] = [
         context:
           "Business users waited on analysts for every chart, and dashboards had to be configured by hand for each dataset.",
         action:
-          "Built the complete Insight Agent: LLM-generated analytics configuration, deterministic validation (columns, aggregations, visualisation types), KPI computation on real data (SUM/AVG/YOY/CAGR/DELTA) and dynamic rendering on the frontend.",
+          "Built the complete Insight Agent: Azure OpenAI GPT-4o generates the analytics configuration, a deterministic validator checks columns, aggregations and visualisation types, KPIs (SUM/AVG/YOY/CAGR/DELTA) are computed on real rows via DuckDB, the frontend renders dynamically, and the resulting dashboard can be exported to Power BI.",
         result:
           "Importing a file produces a sector-adapted dashboard with KPIs, charts and insight blocks — no configuration, no SQL. Indicators are always computed on real rows, never invented by the model.",
-        tech: ["Azure OpenAI", "DuckDB", "Recharts", "React 18", "TanStack Query"],
+        tech: ["Azure OpenAI GPT-4o", "DuckDB", "Power BI export", "Recharts", "React 18", "TanStack Query"],
       },
       {
         title: "Data cleaning validated action by action by the user",
         context:
           "Automated cleaning pipelines silently mutate data — unacceptable when the user is accountable for the numbers.",
         action:
-          "Built the Data Preparation Agent: untouched Bronze ingestion, automatic profiling, 5-dimension DAMA-DMBOK quality scoring (completeness 30%, validity 30%, accuracy 20%, uniqueness 10%, consistency 10%), detection of 7 anomaly types, 9 corrective strategies and an interactive Human-in-the-Loop plan producing Silver artefacts plus before/after reports.",
+          "Built the Data Preparation Agent: untouched Bronze ingestion, automatic profiling, 5-dimension DAMA-DMBOK quality scoring (completeness 30%, validity 30%, accuracy 20%, uniqueness 10%, consistency 10%), detection of 7 anomaly types, 9 corrective strategies, a 7-step Predictive Data Validator, and an interactive Human-in-the-Loop plan producing Silver artefacts plus before/after reports.",
         result:
           "The user sees a quality score, column-level anomalies and a cleaning plan they approve, refuse or override. No data is modified without explicit consent.",
-        tech: ["LangGraph", "YData Profiling", "Medallion Bronze/Silver", "MinIO", "HITL checkpoints"],
+        tech: ["LangGraph", "YData Profiling", "7-step Predictive Data Validator", "Medallion Bronze/Silver", "MinIO", "HITL checkpoints"],
       },
       {
         title: "Natural-language questions that grow the dashboard",
         context:
           "Exploratory questions never fit a pre-built dashboard, and letting an LLM run free SQL on production data is a security hazard.",
         action:
-          "Received NLQ-generated SQL, enforced double security validation (SELECT only; DROP/DELETE/UPDATE/INSERT/ALTER blocked), executed on the active dataset, turned results into visual components injected into the live dashboard and persisted them.",
+          "Received NLQ-generated SQL and validated it through a sqlglot AST parser (SELECT-only; DROP/DELETE/UPDATE/INSERT/ALTER rejected before execution), executed it on the active dataset, turned results into visual components injected into the live dashboard, and kept context through Redis session memory with PostgreSQL conversation history.",
         result:
           "Users ask questions in plain French; the answer — KPI, chart or table — is added to their dashboard, which enriches itself across the conversation and survives between sessions.",
-        tech: ["DuckDB", "React 18", "Zustand", "Recharts", "PostgreSQL JSONB"],
+        tech: ["sqlglot AST validation", "DuckDB", "Redis session memory", "PostgreSQL history", "React 18", "Zustand"],
       },
       {
         title: "Sector prediction flow with actionable business explanations",
         context:
           "ML metrics like RMSE or AUC mean nothing to a retail manager deciding what to do on Monday morning.",
         action:
-          "Built the Retail Agent (16 use cases: churn, demand forecasting, segmentation, stock, fraud, customer value) and Manufacturing Agent (scrap, predictive maintenance, defects, downtime), resolved business configuration through a Shared Config Registry, produced sector-worded explanations, validated 29 Retail unit tests and integrated both agents into the central LangGraph orchestrator with conditional routing and a standardised contract to the Training Agent.",
+          "Built the Retail Agent (16 use cases: churn, demand forecasting, segmentation, stock, fraud, customer value) and Manufacturing Agent (scrap, predictive maintenance, defects, downtime), resolved business configuration through a Shared Config Registry, trained candidate models in parallel with joblib and tracked runs in MLflow, produced sector-worded explanations, validated 29 Retail unit tests with pytest, and integrated both agents into the central LangGraph orchestrator with conditional routing and a standardised contract to the Training Agent.",
         result:
           "A user launches a prediction and receives both ML metrics and what to do about them, phrased in their own industry vocabulary.",
-        tech: ["LangGraph StateGraph", "Shared Config Registry", "scikit-learn", "XGBoost", "LightGBM", "MLflow"],
+        tech: ["LangGraph StateGraph", "Shared Config Registry", "scikit-learn", "XGBoost", "LightGBM", "joblib", "MLflow", "pytest"],
       },
       {
         title: "One coherent interface, one session, four workflows",
         context:
           "Six backend components mean nothing if the non-technical user cannot cross them without losing context or logging in again.",
         action:
-          "Built the complete React 18 frontend (onboarding, descriptive analysis, NLQ, prediction), a global Zustand store with local persistence, centralised TanStack Query API access, and the FastAPI backend persisting projects, metadata, conversations and dashboard configs, secured by Keycloak 23 OIDC SSO.",
+          "Built the complete React 18 frontend (onboarding, descriptive analysis, NLQ, prediction), a global Zustand store with local persistence, centralised TanStack Query API access, and the FastAPI backend persisting projects, metadata, conversations and dashboard configs, secured by Keycloak 23 OIDC SSO with RBAC.",
         result:
-          "A non-technical user goes from creating a project to predicting outcomes in one guided flow, with a single sign-on across all services.",
-        tech: ["React 18", "TypeScript", "Vite", "Zustand", "FastAPI", "SQLAlchemy", "Alembic", "Keycloak 23"],
+          "A non-technical user goes from creating a project to predicting outcomes in one guided flow, with a single sign-on and role-based access across all services.",
+        tech: ["React 18", "TypeScript", "Vite", "Zustand", "FastAPI", "SQLAlchemy", "Alembic", "Keycloak 23 OIDC + RBAC"],
       },
     ],
     architecture:
-      "Six components delivered inside a team platform: React 18 frontend, FastAPI/PostgreSQL backend with Keycloak SSO, Data Preparation Agent (profiling, 5-dimension quality, HITL, Bronze→Silver), Insight Agent (auto dashboard, NLQ, deterministic DuckDB computation), Retail and Manufacturing agents wired into the central LangGraph orchestrator with conditional routing into the predictive workflow.",
+      "Six components delivered inside a team platform, as named in the project: Frontend (React 18), API Backend (FastAPI/PostgreSQL), SSO Keycloak, Data Preparation Agent, Insight Agent, and the Sector Agents (Retail, Manufacturing) — the latter wired into the central LangGraph orchestrator with conditional routing into the predictive workflow.",
     stack: [
-      "Python", "FastAPI", "LangGraph", "Azure OpenAI", "PostgreSQL JSONB", "Redis",
-      "MinIO", "DuckDB", "MLflow", "scikit-learn", "XGBoost", "React 18",
-      "TypeScript", "Zustand", "TanStack Query", "Docker", "Keycloak 23",
+      "Python", "FastAPI", "LangGraph", "Azure OpenAI GPT-4o", "sqlglot", "PostgreSQL JSONB", "Redis",
+      "MinIO", "DuckDB", "MLflow", "joblib", "scikit-learn", "XGBoost", "React 18",
+      "TypeScript", "Zustand", "TanStack Query", "Power BI", "pytest", "Docker", "Keycloak 23",
     ],
   },
   {
@@ -129,9 +129,9 @@ export const experiences: Experience[] = [
         tech: ["PostgreSQL SELECT FOR UPDATE", "Spring @Scheduled", "Spring AOP"],
       },
       {
-        title: "One-click sign-up through four identity providers",
+        title: "One-click sign-up through external identity providers",
         context: "Creating yet another account was friction at registration.",
-        action: "Integrated four external OAuth2 providers with secure account linking and automatic support notifications.",
+        action: "Integrated external OAuth2 identity providers with secure account linking and automatic support notifications.",
         result: "Users register in one click from an existing account, and support is notified automatically.",
         tech: ["OAuth2 multi-provider", "Spring Security", "RabbitMQ"],
       },

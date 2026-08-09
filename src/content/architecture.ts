@@ -14,7 +14,8 @@ export const architectureCases: ArchitectureCase[] = [
   {
     slug: "multi-agent-analytics",
     title: "Multi-agent analytics orchestration",
-    scope: "Intelligent Analytics — DXC Technology",
+    scope:
+      "Intelligent Analytics — DXC Technology. Six components: Frontend (React 18), API Backend (FastAPI/PostgreSQL), SSO Keycloak, Data Preparation Agent, Insight Agent, Sector Agents (Retail, Manufacturing).",
     businessProblem:
       "Non-technical users needed to go from a raw file to a sector prediction alone, while the organisation could not accept an AI system silently mutating data or inventing numbers.",
     constraints: [
@@ -56,7 +57,7 @@ export const architectureCases: ArchitectureCase[] = [
       { name: "Ingestion", detail: "Bronze layer on MinIO — source data untouched" },
       { name: "Quality", detail: "Profiling + 5-dimension scoring + HITL plan → Silver" },
       { name: "Orchestration", detail: "LangGraph StateGraph with conditional sector routing" },
-      { name: "Computation", detail: "DuckDB deterministic execution, SELECT-only validation" },
+      { name: "Computation", detail: "DuckDB deterministic execution, sqlglot AST SELECT-only validation" },
       { name: "Persistence", detail: "PostgreSQL JSONB — projects, dashboards, conversations" },
       { name: "Experience", detail: "React 18 rendering dashboards from structured config" },
     ],

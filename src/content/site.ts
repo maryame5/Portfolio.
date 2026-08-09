@@ -6,10 +6,10 @@ export const site = {
   shortName: "Maryame",
   initials: "ME",
   role: "AI & Software Engineer",
-  title: "AI & Software Engineer · Full-Stack Developer · Data & Analytics Agent Architect",
-  headline: "I build intelligent systems that give business teams their autonomy back.",
-  tagline:
-    "Data & Software Engineering @ INSEA — multi-agent analytics, distributed Java backends, production-grade full-stack products.",
+  title: "AI & Software Engineer | Full-Stack Developer | Data & Analytics Agent Architect",
+  headline:
+    "Data & Software Engineering Student @ INSEA | Intelligent Analytics, Data Quality & Sector Agents",
+  tagline: "Building intelligent software products from data to impact.",
   intro:
     "Three engineering internships shipped in real conditions — tech consulting, fintech and public sector. I design the architecture, build the backend, train the agents and craft the interface that makes it all usable.",
   location: "Rabat, Morocco",
@@ -24,7 +24,11 @@ export const site = {
     github: "https://github.com/maryame5",
     linkedin: "https://linkedin.com/in/maryame-el-khalfi",
   },
-  resumeUrl: "/resume.pdf",
+  // No generic CV published yet — every "resume" CTA asks for it by email
+  // instead of pointing at a file that does not exist.
+  resumeRequestUrl:
+    "mailto:elkhalfimaryame@gmail.com?subject=CV%20request%20—%20Maryame%20El%20Khalfi",
+
 };
 
 export const stats = [

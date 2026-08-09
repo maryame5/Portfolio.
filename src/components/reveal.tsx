@@ -1,39 +1,33 @@
-"use client";
-
-import { motion, useReducedMotion, type HTMLMotionProps } from "framer-motion";
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 
 type RevealProps = {
   children: ReactNode;
   delay?: number;
   className?: string;
   as?: "div" | "section" | "article" | "li";
-} & Omit<HTMLMotionProps<"div">, "children">;
+  style?: CSSProperties;
+};
 
+/**
+ * Progressive-enhancement reveal.
+ *
+ * Pure CSS: the element is painted by the browser's animation with `both` fill,
+ * so it becomes visible even if JavaScript never hydrates. No SSR opacity:0
+ * inline style is emitted, and `prefers-reduced-motion` collapses it instantly.
+ */
 export function Reveal({
   children,
   delay = 0,
   className,
-  as = "div",
-  ...rest
+  as: Tag = "div",
+  style,
 }: RevealProps) {
-  const reduce = useReducedMotion();
-  const MotionTag = motion[as] as typeof motion.div;
-
-  if (reduce) {
-    return <div className={className}>{children}</div>;
-  }
-
   return (
-    <MotionTag
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.5, delay, ease: [0.22, 1, 0.36, 1] }}
-      className={className}
-      {...rest}
+    <Tag
+      className={className ? `reveal ${className}` : "reveal"}
+      style={{ ...style, ["--reveal-delay" as string]: `${Math.round(delay * 1000)}ms` }}
     >
       {children}
-    </MotionTag>
+    </Tag>
   );
 }
