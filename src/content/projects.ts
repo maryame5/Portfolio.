@@ -82,6 +82,7 @@ export const projects: Project[] = [
     year: "2025",
     context: "Ministry of Investment (MICEPP)",
     featured: true,
+    repo: "https://github.com/maryame5/aos_micepp",
     summary:
       "A public-service portal digitising social benefit claims for civil servants, with real-time tracking, complaint auditing and an admin back-office.",
     narrative:
