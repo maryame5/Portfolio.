@@ -200,10 +200,11 @@ export const projects: Project[] = [
     name: "Dental Practice Management",
     category: "Backend · Java · Spring MVC",
     year: "2024",
+    repo: "https://github.com/maryame5/CabinetDentaire",
     summary:
       "A Spring Boot application managing patients, appointments, treatments and invoices across three distinct business roles.",
     narrative:
-      "A dental practice runs on the same few operations repeated daily. The application models them explicitly — patients, appointments, treatments, invoices — behind role-based access for doctors, secretaries and patients.",
+      "A dental practice runs on the same few operations repeated daily. The application models them explicitly — patients, appointments, treatments, invoices — behind role-based access control for three distinct business roles.",
     highlights: [
       "Spring MVC architecture with Spring Security role-based access control.",
       "Full Hibernate/JPA domain model over MySQL.",
