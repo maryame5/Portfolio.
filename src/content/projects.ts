@@ -28,11 +28,11 @@ export const projects: Project[] = [
     narrative:
       "Business teams at DXC owned their data but not their analyses: every question went through a technical queue. The platform turns that queue into a guided product. Data lands untouched in a Bronze layer, gets profiled and scored on five quality dimensions, and the user validates the cleaning plan action by action. Once the Silver dataset exists, an Insight Agent generates a full dashboard for their sector, computed deterministically on real rows. From there they can ask questions in plain French, and each answer becomes a new dashboard block. Finally, sector agents translate ML outputs into retail or manufacturing decisions.",
     highlights: [
-      "Insight Agent: LLM-generated dashboard configuration, deterministically validated and computed on real data via DuckDB — no hallucinated KPI.",
-      "Data Preparation Agent: DAMA-DMBOK quality scoring across 5 dimensions, 7 anomaly types, 9 corrective strategies, Human-in-the-Loop approval before any mutation.",
-      "NLQ pipeline with double SQL security validation — SELECT only, every mutating statement blocked before execution.",
-      "Retail Agent (16 use cases) and Manufacturing Agent routed conditionally by a central LangGraph orchestrator, 29 unit tests on the retail contract.",
-      "React 18 frontend with four guided workflows, a global Zustand store and Keycloak 23 OIDC single sign-on across services.",
+      "Insight Agent: Azure OpenAI GPT-4o generates the dashboard configuration, a deterministic validator checks it, DuckDB computes every KPI on real rows — plus Power BI export of the generated dashboard.",
+      "Data Preparation Agent: DAMA-DMBOK quality scoring across 5 dimensions, 7 anomaly types, 9 corrective strategies, and a 7-step Predictive Data Validator, with Human-in-the-Loop approval before any mutation.",
+      "NLQ pipeline secured by a sqlglot AST parser — SELECT-only, every mutating statement rejected before execution — with Redis session memory and PostgreSQL conversation history.",
+      "Retail Agent (16 use cases) and Manufacturing Agent routed conditionally by a central LangGraph orchestrator; models trained in parallel with joblib and tracked in MLflow; 29 pytest unit tests on the retail contract.",
+      "React 18 frontend with four guided workflows, a global Zustand store, and Keycloak 23 OIDC single sign-on with RBAC across services.",
     ],
     architecture:
       "Medallion pipeline (Bronze/Silver on MinIO) → LangGraph orchestrator routing to specialised agents → FastAPI services persisting projects, dashboards and conversations in PostgreSQL JSONB → React 18 rendering dashboards from structured JSON config.",
@@ -42,10 +42,12 @@ export const projects: Project[] = [
       { label: "Sector use cases modelled", value: "16 retail + manufacturing" },
     ],
     stack: [
-      "Python", "FastAPI", "LangGraph", "Azure OpenAI", "DuckDB", "MinIO",
-      "PostgreSQL JSONB", "MLflow", "XGBoost", "React 18", "TypeScript",
-      "Zustand", "TanStack Query", "Recharts", "Keycloak 23", "Docker",
+      "Python", "FastAPI", "LangGraph", "Azure OpenAI GPT-4o", "DuckDB", "sqlglot",
+      "MinIO", "PostgreSQL JSONB", "Redis", "MLflow", "joblib", "XGBoost",
+      "React 18", "TypeScript", "Zustand", "TanStack Query", "Recharts",
+      "Keycloak 23", "Power BI", "pytest", "Docker",
     ],
+
   },
   {
     slug: "cqos-trading-platform",
