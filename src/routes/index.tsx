@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, ArrowUpRight, Download, MapPin } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Mail, MapPin } from "lucide-react";
 import { SiteShell } from "@/components/site-shell";
 import { Reveal } from "@/components/reveal";
 import { HeroVisual } from "@/components/hero-visual";
