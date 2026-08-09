@@ -107,14 +107,16 @@ export const projects: Project[] = [
     name: "EasyApply — Smart Recruitment Platform",
     category: "AI · Microservices · Full-Stack",
     year: "2024",
+    repo: "https://github.com/maryame5/Easyapply_project",
     summary:
-      "A recruitment platform that replaces manual CV screening with semantic matching between candidates and job offers.",
+      "A recruitment platform that replaces manual CV screening with embedding-based semantic matching between candidates and job offers.",
     narrative:
-      "Recruiters spent hours sorting hundreds of CVs per offer — slow, subjective and exhausting. EasyApply computes a semantic similarity score between each candidate and the offer, extracts skills and education from raw PDF CVs, and surfaces only the most relevant profiles.",
+      "Recruiters spent hours sorting hundreds of CVs per offer — slow, subjective and exhausting. EasyApply computes an embedding-based semantic similarity score between each candidate and the offer, extracts skills and education from raw PDF CVs, and surfaces only the most relevant profiles.",
     highlights: [
-      "Semantic matching engine scoring candidate–offer fit automatically.",
+      "Semantic matching by embeddings, scoring candidate–offer fit automatically.",
       "Skills, education and experience extracted from raw PDF CVs — candidates never retype their profile.",
       "Recruiter and candidate dashboards over semi-structured profiles.",
+
       "Microservices split so the AI engine and the product UI evolve independently.",
     ],
     architecture:
