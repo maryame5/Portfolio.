@@ -70,10 +70,10 @@ export const experiences: Experience[] = [
         context:
           "ML metrics like RMSE or AUC mean nothing to a retail manager deciding what to do on Monday morning.",
         action:
-          "Built the Retail Agent (16 use cases: churn, demand forecasting, segmentation, stock, fraud, customer value) and Manufacturing Agent (scrap, predictive maintenance, defects, downtime), resolved business configuration through a Shared Config Registry, trained candidate models in parallel with joblib and tracked runs in MLflow, produced sector-worded explanations, validated 29 Retail unit tests with pytest, and integrated both agents into the central LangGraph orchestrator with conditional routing and a standardised contract to the Training Agent.",
+          "Built the Retail Agent (16 use cases: churn, demand forecasting, segmentation, stock, fraud, customer value) and the Manufacturing Agent (scrap, predictive maintenance, defects, downtime): each provides a sector predictive configuration (task type, target, recommended variables, metrics, candidate models) to the predictive flow, then explains the results in domain vocabulary — no computation or training performed inside the agents. Validated 29 Retail unit tests with pytest, collaborated with the team on integrating the Training Agent, and wired both agents into the central LangGraph orchestrator with conditional routing.",
         result:
           "A user launches a prediction and receives both ML metrics and what to do about them, phrased in their own industry vocabulary.",
-        tech: ["LangGraph StateGraph", "Shared Config Registry", "scikit-learn", "XGBoost", "LightGBM", "joblib", "MLflow", "pytest"],
+        tech: ["Retail Agent", "Manufacturing Agent", "Sector predictive configuration", "LangGraph routing", "pytest"],
       },
       {
         title: "One coherent interface, one session, four workflows",
