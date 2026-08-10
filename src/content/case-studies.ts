@@ -94,92 +94,96 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: "intelligent-analytics",
     name: "Intelligent Analytics",
-    tagline: "Enterprise AI Multi-Agent Analytics Platform",
+    tagline: "Multi-Agent Analytics Platform — DXC Technology",
     oneLiner:
-      "A decision-support platform where specialised AI agents collaborate to turn enterprise data into cited, auditable answers business teams can act on.",
-    status: "Enterprise",
-    duration: "8 months",
-    role: "AI & Software Engineer — architecture, backend, agent orchestration",
-    primaryTech: ["FastAPI", "LangGraph", "PostgreSQL", "React", "Docker"],
-    demoUrl: "#demo",
+      "A multi-agent analytics platform that takes a business user from a raw file to a sector reading of their data, where every sensitive step goes through an explicit human decision rather than a silent automatic one.",
+    status: "Internship",
+    duration: "Final-year engineering project (PFE) — DXC Technology",
+    role:
+      "Designed and built the Frontend, the application Backend, the Data Preparation Agent, the Insight Agent, the Retail Agent and the Manufacturing Agent — plus their functional integration with the Orchestrator and the shared services the user journey depends on.",
+    primaryTech: ["React 18", "FastAPI", "DuckDB", "PostgreSQL/JSONB", "sqlglot"],
     heroEmphasis: [
-      "Artificial Intelligence",
-      "Enterprise",
-      "Decision Support",
-      "Analytics",
+      "Multi-Agent",
+      "Data Quality",
+      "Human-in-the-Loop",
+      "Verified Analytics",
     ],
     heroMock: "dashboard",
 
     businessContext: {
       lead:
-        "Business teams were making decisions on data they could not interrogate themselves.",
+        "A business team cannot get a KPI without going through a data analyst.",
       paragraphs: [
-        "Every non-trivial question — why did churn move last quarter, which segments drive margin, what happens if we shift pricing — had to be routed through a small analytics team. Requests queued for days, answers arrived as static exports, and follow-up questions restarted the whole cycle.",
-        "The organisation did not lack data. It lacked a way for the people accountable for outcomes to reason over that data with confidence, and to trust an answer enough to act on it in a meeting.",
-        "The platform was built to close that gap: give business users a conversational way to ask real questions, and give the organisation a guarantee that every answer is traceable to the exact records that produced it.",
+        "Raw enterprise data is heterogeneous and riddled with quality anomalies — missing values, duplicates, invalid formats, business rules broken across several columns. Someone technical has to look at it before anyone can read anything from it.",
+        "On the other end, predictive model outputs stay opaque to non-technical readers: a probability or a feature importance is not a business decision.",
+        "Two sub-questions structure the difficulty. How do you keep consistency between generic processing and sector-specific analysis? And how do you keep the experience accessible despite the diversity of the processing involved — analytical, visual and predictive?",
       ],
       stakeholders: [
         {
-          who: "Business & operations leads",
-          need: "Answers to open-ended questions in minutes, in language they already use.",
+          who: "Business users",
+          need: "A readable dashboard on their own data, without writing a query or waiting for a queue.",
         },
         {
-          who: "Data & analytics team",
-          need: "Relief from repetitive ad-hoc requests, without losing control of definitions.",
+          who: "Data analysts",
+          need: "Data quality made explicit and correctable, instead of discovered late inside a result.",
         },
         {
-          who: "Compliance & governance",
-          need: "Every number defensible, every access decision enforced and logged.",
+          who: "Sector teams (retail, manufacturing)",
+          need: "Analytical and predictive results phrased in the vocabulary of their domain.",
         },
       ],
     },
 
     challenge: {
       lead:
-        "The hard part was never generating text. It was guaranteeing that the text was right.",
+        "The non-functional constraints, as defined in the project specification, drove almost every structural decision.",
       items: [
         {
-          title: "Language models hallucinate structure",
-          body: "Letting a model write raw SQL against a warehouse produces answers that look authoritative and are silently wrong. In a decision-support tool that is worse than no tool at all.",
+          title: "Modularity and maintainability",
+          body: "Processing had to be separated with clear perimeters, so that one agent's behaviour could change without dragging the rest of the platform with it.",
         },
         {
-          title: "Questions are multi-step, not single-shot",
-          body: "A real question requires clarification, planning, retrieval, validation and narration. A single prompt cannot own all of those responsibilities and stay debuggable.",
+          title: "Extensibility",
+          body: "New sectors and new flows had to be added progressively, without rewriting what already worked.",
         },
         {
-          title: "Data quality is uneven",
-          body: "Source systems disagree, dimensions drift and records go missing. An analytics answer that ignores data quality quietly launders bad data into a boardroom slide.",
+          title: "Separation of responsibilities",
+          body: "Management, analysis, storage and rendering had to stay clearly distinct — no layer quietly doing another layer's job.",
         },
         {
-          title: "Governance is non-negotiable",
-          body: "Row-level access rules had to hold regardless of how a question was phrased — a prompt must never become a privilege-escalation path.",
+          title: "Data version traceability",
+          body: "Bronze, Silver and Gold versions had to be identifiable, and the origin of any result reconstructible after the fact.",
         },
         {
-          title: "Latency budgets are human",
-          body: "Anything over a handful of seconds breaks the conversational loop and users revert to asking the analytics team.",
+          title: "Interface responsiveness",
+          body: "The state of the workflow had to be visible at all times — the user should never wonder what the system is doing.",
+        },
+        {
+          title: "Security and robustness",
+          body: "Access restricted to authorised resources, and predictable behaviour when data, configuration or a model response is malformed.",
         },
       ],
     },
 
     solution: {
       paragraph:
-        "Instead of one model doing everything, the platform runs a small team of specialised agents behind an explicit orchestration graph. A planner decomposes the question, a retrieval agent composes queries against a typed semantic layer — never raw SQL — a data-quality agent validates the result set, a predictive agent extends the answer where forecasting is appropriate, and a narration agent renders the result with citations attached to every claim. A human-in-the-loop checkpoint sits between planning and execution for anything ambiguous or high-impact.",
+        "The platform is a set of specialised agents behind an orchestrator, not one model doing everything. A Data Preparation Agent ingests the raw file into Bronze, profiles it, scores its quality on five dimensions and proposes a correction plan the user validates before anything is mutated. An Insight Agent then generates the dashboard configuration and verifies every SQL query structurally before executing it on DuckDB, with values recomputed deterministically rather than read from the model's answer. Sector agents — Retail and Manufacturing — turn analytical and predictive results into a business reading of the domain. The Orchestrator suspends the flow whenever a human decision is required and resumes it after validation.",
       pillars: [
         {
-          title: "Typed semantic layer",
-          body: "Models compose against governed metrics and dimensions, which removes an entire class of hallucination at the source rather than filtering it afterwards.",
+          title: "The model proposes, deterministic code computes",
+          body: "The model proposes the analytical structure and the SQL; the values are recomputed by deterministic processing. That is design principle nº1 of the Insight Agent, not a late safety net.",
         },
         {
-          title: "Explicit agent graph",
-          body: "Orchestration is a state machine, not a prompt chain. Every transition is observable, replayable and independently testable.",
+          title: "A structural SQL guardrail",
+          body: "Before execution, the query is checked and adapted to the real schema through a sqlglot AST parser and run only on DuckDB. A regex, or a 'do not DELETE' line in a prompt, is not a guarantee — a structural syntactic check is.",
         },
         {
-          title: "Human-in-the-loop by design",
-          body: "Ambiguous or high-impact questions pause for confirmation instead of guessing, which is what makes the system usable in regulated conversations.",
+          title: "Quality as five separate dimensions",
+          body: "Completeness, Validity, Uniqueness, Accuracy, Consistency — each with its own rules, so the analyst knows precisely what to fix.",
         },
         {
-          title: "Citations as a first-class output",
-          body: "Every sentence in an answer carries the rows that support it, one click away.",
+          title: "Human-in-the-Loop as a structure, not an agent",
+          body: "The Orchestrator suspends processing, hands the decision to the Frontend, and resumes the flow once the user has ruled on it.",
         },
       ],
       mock: "console",
@@ -187,291 +191,300 @@ export const caseStudies: CaseStudy[] = [
 
     architecture: {
       overview:
-        "The system is organised as four cooperating planes: an interaction plane that owns the conversation, an orchestration plane that runs the agent graph, a data plane that owns governed access to the warehouse, and a platform plane for observability, security and operations. The boundaries were chosen so that the fastest-changing part — agent behaviour — can evolve without touching the parts that carry compliance guarantees.",
+        "Five layers, each with an explicit responsibility boundary: Presentation, API and security, Orchestration, Specialised agents, and Data. The concrete consequence documented in the report: the application Backend never talks directly to the Orchestrator and carries no preparation, analysis, cleaning or prediction work — it owns only the durable management of resources (users, projects, datasets, metadata, rights).",
       layers: [
         {
           id: "01",
-          name: "Interaction plane",
-          role: "Conversational UI, streaming responses, citation drill-down, feedback capture.",
-          tech: "React · TanStack · SSE",
+          name: "Presentation",
+          role: "User entry point; keeps the journey context, renders dashboards from generated configuration, makes human-decision steps explicit.",
+          tech: "React 18 · TypeScript · Zustand · Recharts",
         },
         {
           id: "02",
-          name: "Orchestration plane",
-          role: "Agent graph: planner, retriever, data-quality, predictive, narrator, plus human checkpoints.",
-          tech: "FastAPI · LangGraph",
+          name: "API and security",
+          role: "Application backend: users, projects, datasets, metadata, storage references, JWT/OIDC token verification and authorisation.",
+          tech: "FastAPI · Pydantic · SQLAlchemy · PostgreSQL/JSONB",
         },
         {
           id: "03",
-          name: "Data plane",
-          role: "Typed semantic layer, deterministic query compilation, row-level policy enforcement, result caching.",
-          tech: "PostgreSQL · Redis",
+          name: "Orchestration",
+          role: "Routes work between agents, suspends the flow on human checkpoints, resumes after validation. A platform component my components integrate with.",
+          tech: "LangGraph · MCP",
         },
         {
           id: "04",
-          name: "Platform plane",
-          role: "Structured traces per agent step, evaluation harness, auth, audit log, containerised deploys.",
-          tech: "OpenTelemetry · Docker",
+          name: "Specialised agents",
+          role: "Data Preparation, Insight, Retail and Manufacturing agents, plus the NLQ and predictive flows.",
+          tech: "Pandas · DuckDB · sqlglot · YData Profiling",
+        },
+        {
+          id: "05",
+          name: "Data",
+          role: "Bronze / Silver / Gold versions, object storage and dashboard configuration persistence.",
+          tech: "MinIO · PostgreSQL JSONB · dbt",
         },
       ],
       flow: [
-        "User asks a question in natural language",
-        "Planner classifies intent and decomposes into steps",
-        "Checkpoint: clarify with the user if ambiguous",
-        "Retriever compiles governed queries against the semantic layer",
-        "Data-quality agent validates coverage, freshness and outliers",
-        "Predictive agent extends the result where forecasting applies",
-        "Narrator renders the answer with citations attached",
-        "Every step is traced, cached and replayable",
+        "File imported into the Bronze layer, untouched",
+        "Sector detected and confirmed by the user",
+        "Descriptive profile and first dashboard generated",
+        "Quality scored on 5 dimensions, anomalies detected",
+        "Correction plan proposed at 4 levels — user validates before any mutation",
+        "Only approved corrections applied, score recomputed, Silver version produced",
+        "Dashboard updated on the cleaned version, structure preserved",
+        "Sector reading (Retail or Manufacturing) when the use case allows it",
       ],
       reasoning: [
         {
-          title: "Why a graph instead of a prompt chain",
-          body: "A state machine gives explicit transitions, retries scoped to a single node, and the ability to resume a run after a partial failure. Prompt chains hide all three, which makes production incidents unreproducible.",
+          title: "Why an AST parser rather than trusting the model",
+          body: "The model proposes the analytical structure and the SQL, but the values are recomputed by deterministic processing. Before execution the agent checks and adapts the query to the real schema, and it runs only on DuckDB. A prompt instruction is a suggestion; a structural check on the parsed query is a property of the system.",
+        },
+        {
+          title: "Why five layers rather than a monolith",
+          body: "Following the modularity principles of multi-agent systems, each layer owns one explicit responsibility boundary. Documented example: the application Backend never communicates directly with the Orchestrator and performs no preparation, analysis, cleaning or prediction — only durable resource management.",
+        },
+        {
+          title: "Why structural Human-in-the-Loop rather than one more autonomous agent",
+          body: "HITL is not an agent. The Orchestrator suspends processing, passes the decision to the Frontend and resumes after validation. It fires on precise points: choosing a cleaning strategy, imputing or deleting sensitive data, confirming a prediction target, validating before training, choosing a model. The Data Preparation Agent embodies it with four correction levels — Conservative (flags without modifying), Moderate (automatic low-risk correction), Aggressive (removes invalid or duplicated data), Manual (correction supplied explicitly by the user). The machine proposes, the user rules on the sensitive cases.",
+        },
+        {
+          title: "Why five quality dimensions rather than one global score",
+          body: "Completeness, Validity, Uniqueness, Accuracy, Consistency — each with its own rules; Consistency, for instance, covers business constraints across several columns, not just format rules. A single score would have hidden the nature of the problem; five dimensions tell the analyst exactly what to fix.",
         },
         {
           title: "Trade-off accepted",
-          body: "The graph adds orchestration code and a deployment surface that a single prompt would not need. That cost was accepted in exchange for observability — the ability to answer 'why did it say that' was a launch requirement.",
-        },
-        {
-          title: "Scalability",
-          body: "Agents are stateless; state lives in the run log. Horizontal scaling is a matter of adding workers, and expensive nodes are cached on the semantic-query hash rather than the raw question text.",
-        },
-        {
-          title: "Security",
-          body: "Row-level policies are enforced in the data plane, below the agents. No prompt, however crafted, can widen a user's access because the model never holds credentials.",
-        },
-        {
-          title: "Performance",
-          body: "Planning and narration stream; retrieval is parallelised across independent sub-questions. Cache hits on repeated semantic queries return in well under a second.",
+          body: "Systematically checking KPIs, columns and charts before rendering — design principle nº2 of the Insight Agent, meant to filter out elements that do not exist or cannot be computed — makes dashboard generation slower than simply displaying the model's answer. The choice was deliberate: a longer response time with a verified result beats an instant answer that may be wrong.",
         },
       ],
     },
 
     decisions: [
       {
-        question: "Why FastAPI rather than a JVM service?",
-        decision: "FastAPI as the orchestration runtime.",
+        question: "Why a sqlglot AST parser inside the Insight Agent's SQL verification?",
+        decision:
+          "Every generated query is parsed and checked structurally, adapted to the real schema, and executed only on DuckDB.",
         reason:
-          "The agent and evaluation ecosystem is Python-native; keeping orchestration in the same language as the model tooling removed a serialisation boundary and an entire class of drift between production and evaluation code.",
+          "The model proposes structure and SQL; the values must be recomputed deterministically. A regex or a 'never DELETE' instruction in the prompt is not a guarantee — a structural syntactic control is.",
         tradeoff:
-          "Less mature enterprise middleware than Spring Boot, and stricter discipline required around typing.",
+          "Legitimate but exotic queries can be rejected by the parser, and the schema adaptation step adds work before execution.",
         benefit:
-          "Async I/O suits fan-out agent workloads, and Pydantic gives typed contracts at the edges for free.",
+          "The boundary between what the model proposes and what the system guarantees is explicit and enforceable.",
       },
       {
-        question: "Why LangGraph rather than a bespoke orchestrator?",
-        decision: "Model the agent workflow as an explicit state graph.",
+        question: "Why five layers rather than a monolith?",
+        decision:
+          "Presentation, API and security, Orchestration, Specialised agents, Data — each with an explicit responsibility boundary.",
         reason:
-          "Multi-agent behaviour needed checkpoints, conditional branching and resumability. Building that from scratch would have meant reinventing a workflow engine mid-project.",
-        tradeoff: "A framework dependency on the critical path.",
-        benefit:
-          "Human-in-the-loop pauses, per-node retries and run replay came from the model of the system rather than from custom glue.",
-      },
-      {
-        question: "Why a semantic layer instead of text-to-SQL?",
-        decision: "Models compose typed metrics; they never emit raw SQL.",
-        reason:
-          "Correctness had to be structural. If the model cannot express an invalid join, it cannot produce an invalidly joined answer.",
+          "Modularity principles of multi-agent systems: new sectors and flows had to be added without rewriting the existing platform.",
         tradeoff:
-          "Every new metric requires modelling work before it becomes askable.",
+          "More integration surface and more contracts to keep aligned between layers.",
         benefit:
-          "Answer quality became a data-modelling problem — tractable and cumulative — rather than a prompt-tuning problem.",
+          "The Backend stays a resource manager: no direct communication with the Orchestrator, no preparation, analysis, cleaning or prediction work.",
       },
       {
-        question: "Why PostgreSQL for both state and analytics?",
-        decision: "One well-understood database, extended rather than replaced.",
+        question: "Why Human-in-the-Loop as a structure rather than an agent?",
+        decision:
+          "The Orchestrator suspends the run, the Frontend collects the decision, the flow resumes after validation.",
         reason:
-          "Operational simplicity beats theoretical fit at this data volume; a single backup, security and monitoring story covers run state, semantic metadata and embeddings via pgvector.",
-        tradeoff: "A specialised OLAP engine would win on very large scans.",
+          "Cleaning strategy, imputation or deletion of sensitive data, prediction target, validation before training and model choice are decisions with consequences — not steps to automate silently.",
+        tradeoff:
+          "Extra round-trips and a longer journey than a fully automatic pipeline.",
         benefit:
-          "One system to operate, and transactional guarantees across run state and results.",
+          "Four explicit correction levels — Conservative, Moderate, Aggressive, Manual — mean nothing is mutated that the user has not approved.",
       },
       {
-        question: "Why human-in-the-loop checkpoints?",
-        decision: "Pause and ask instead of guessing on ambiguity.",
+        question: "Why a quality score on five dimensions rather than one global figure?",
+        decision:
+          "Completeness, Validity, Uniqueness, Accuracy and Consistency scored separately, each with its own rules.",
         reason:
-          "Confidently wrong answers destroy adoption faster than slow ones. Ambiguity is a signal, not noise to be resolved silently.",
-        tradeoff: "Extra round-trips on a minority of questions.",
+          "Consistency covers business constraints across several columns, not just format checks; collapsing it into an average erases the information.",
+        tradeoff: "More rules to define, maintain and explain in the interface.",
         benefit:
-          "Trust — the platform became usable in decisions that carry consequences.",
+          "The Data Analyst knows precisely what to correct, and the score can be recomputed after cleaning to show the effect.",
       },
       {
-        question: "Why structured traces per agent step?",
-        decision: "Emit a typed trace event at every node transition.",
+        question: "Why PostgreSQL JSONB for dashboard configuration?",
+        decision:
+          "Persist generated dashboard configurations as JSONB rather than as a relational schema of indicators.",
         reason:
-          "Non-deterministic systems can only be debugged from evidence. Logs written after an incident are always the wrong logs.",
-        tradeoff: "Storage volume and instrumentation discipline.",
+          "Indicators evolve continuously; a normalised schema would have meant a migration for every new KPI shape.",
+        tradeoff: "Less database-level validation of the configuration structure.",
         benefit:
-          "Regressions are diagnosed by replaying a run rather than reproducing a mood.",
+          "Configuration evolves at the pace of the product, with SQLAlchemy/Alembic handling only the stable part of the model.",
       },
       {
-        question: "Why Docker Compose for the delivery unit?",
-        decision: "Ship the platform as a composed set of containers.",
+        question: "Why an update_dashboard flag rather than regenerating every time?",
+        decision:
+          "false triggers a full initial generation; true keeps the existing structure and recomputes values on the active data version.",
         reason:
-          "The target environment ranged from a laptop to a managed host; the same composition had to run in all of them without a bespoke setup guide.",
-        tradeoff: "Not an orchestration story for very large fleets.",
+          "After cleaning, the user is comparing the same dashboard on a better dataset — changing the layout would destroy that comparison.",
+        tradeoff: "Two code paths to keep consistent in the Insight Agent.",
         benefit:
-          "Onboarding, evaluation runs and demos all start from one command.",
+          "The effect of a correction plan is directly readable, because only the numbers moved.",
       },
     ],
 
     features: [
       {
-        title: "Natural-language analytics",
+        title: "Frontend",
         problem:
-          "Business users could not query the warehouse without an analyst in the loop.",
+          "The diversity of processing — analytical, visual, predictive — risked producing an interface only a technical user could follow.",
         solution:
-          "A conversational interface backed by planning and governed retrieval.",
-        userValue: "Ask a real question, get a defensible answer in minutes.",
-        businessImpact:
-          "Analytics capacity redirected from ad-hoc requests to modelling work.",
+          "A single entry point that keeps the journey context and interprets Insight Agent configurations to build KPI cards, charts, tables and insight blocks.",
+        userValue: "Steps requiring a human decision are made explicit rather than buried.",
+        businessImpact: "A business user can run the full journey without technical assistance.",
       },
       {
-        title: "Cited, auditable answers",
+        title: "Application backend",
         problem:
-          "Numbers circulated in slides with no way to verify their provenance.",
+          "Users, projects, datasets and rights needed durable, secure management without the API layer drifting into analytics work.",
         solution:
-          "Every claim links to the exact rows and metric definition behind it.",
-        userValue: "Confidence to present a number without hedging.",
-        businessImpact: "Audit conversations resolved by a link, not a project.",
+          "FastAPI service handling Keycloak-integrated user management, JWT/OIDC token verification and authorisation, projects, datasets, metadata, preferences and storage references — persisted in PostgreSQL through SQLAlchemy/Alembic, with JSONB for dashboard configurations.",
+        userValue: "Work is persisted and access is scoped to what each user may see.",
+        businessImpact: "A clean boundary: no processing logic leaks into the resource layer.",
       },
       {
-        title: "Data-quality guardrails",
+        title: "Data Preparation Agent",
         problem:
-          "Incomplete or stale source data quietly produced misleading conclusions.",
+          "Raw enterprise data arrives heterogeneous and full of anomalies, and cleaning it blindly destroys information.",
         solution:
-          "A dedicated agent validates coverage, freshness and outliers before narration.",
-        userValue: "Warnings surface in the answer rather than after the decision.",
-        businessImpact: "Fewer decisions taken on data that was not ready.",
+          "Bronze ingestion, descriptive profile, five-dimension quality scoring, anomaly detection, a four-level correction plan presented before execution, application of approved corrections only, score recomputed after cleaning, Silver version produced.",
+        userValue: "The user sees what is wrong and decides how far the correction goes.",
+        businessImpact: "Cleaning becomes an auditable step rather than an invisible transformation.",
       },
       {
-        title: "Predictive extensions",
+        title: "Insight Agent",
         problem:
-          "Historic reporting answered what happened, never what is likely next.",
+          "A generated dashboard is only useful if its numbers can be trusted and its updates stay comparable.",
         solution:
-          "A forecasting agent activates when the question is directional, with intervals shown.",
-        userValue: "Forward-looking context inside the same conversation.",
-        businessImpact: "Planning discussions start from a shared baseline.",
+          "Generation and update driven by the update_dashboard flag, structured SQL queries verified with the sqlglot AST guardrail and executed on DuckDB, robustness against data, configuration and LLM-response errors.",
+        userValue: "Numbers computed on real rows, and a dashboard that keeps its shape between versions.",
+        businessImpact: "Verified output before rendering, deliberately accepted as slower than a raw model answer.",
       },
       {
-        title: "Human-in-the-loop review",
+        title: "Retail Agent & Manufacturing Agent",
         problem:
-          "High-impact questions needed oversight before results were trusted.",
-        solution: "Explicit checkpoints pause a run for confirmation or correction.",
-        userValue: "Control over how a question is interpreted.",
-        businessImpact:
-          "Adoption in regulated conversations where automation alone was unacceptable.",
+          "Analytical and predictive outputs stayed unreadable for the people accountable for the domain.",
+        solution:
+          "A business reading of results per domain — no computation or training performed — plus a sector predictive configuration (task type, target, recommended variables, metrics, candidate models) passed to the predictive flow, then an explanation of the results after training.",
+        userValue: "Retail: churn, segmentation, basket, demand forecasting. Manufacturing: quality, defects, predictive maintenance, downtime.",
+        businessImpact: "Sector consistency without duplicating the generic pipeline.",
       },
       {
-        title: "Role-aware access",
+        title: "NLQ Agent and Predictive Data Validator",
         problem:
-          "One conversational surface over data with very different sensitivity levels.",
+          "Ad-hoc questions and pre-training data validation both had to stay inside the same guarantees as the rest of the platform.",
         solution:
-          "Row-level policies enforced beneath the agent layer, never in the prompt.",
-        userValue: "The same interface for everyone, scoped to what they may see.",
-        businessImpact: "A single tool instead of a per-department fork.",
+          "Contributed to the NLQ Agent code, and to the seven-step validation of the Predictive Data Validator, together with a teammate. Model training itself (Training Agent) was handled by the team — I collaborated with them on its integration.",
+        userValue: "Questions answered and prediction inputs checked before any model is trained.",
+        businessImpact: "Shared ownership on two components that cross several agents.",
       },
     ],
 
     stack: [
-      { group: "Backend", items: ["Python", "FastAPI", "Pydantic", "Celery"] },
       {
-        group: "Artificial Intelligence",
-        items: ["LangGraph", "OpenAI", "Anthropic", "pgvector", "RAG", "Evals"],
+        group: "Direct contribution — Frontend",
+        items: ["React 18", "TypeScript", "Vite", "Tailwind CSS", "shadcn/ui", "Recharts", "Zustand", "TanStack Query"],
       },
-      { group: "Frontend", items: ["React", "TypeScript", "TanStack", "Tailwind CSS"] },
-      { group: "Database", items: ["PostgreSQL", "Redis", "dbt"] },
-      { group: "DevOps", items: ["Docker", "Docker Compose", "GitHub Actions"] },
-      { group: "Architecture", items: ["Multi-Agent", "Event-Driven", "Hexagonal", "CQRS"] },
-      { group: "Testing", items: ["Pytest", "Vitest", "Evaluation harness", "Golden datasets"] },
-      { group: "Documentation", items: ["ADRs", "OpenAPI", "Runbooks"] },
+      {
+        group: "Direct contribution — Backend & data",
+        items: ["FastAPI", "Pydantic", "SQLAlchemy", "Alembic", "PostgreSQL/JSONB", "Pandas", "DuckDB", "sqlglot", "YData Profiling", "dbt"],
+      },
+      {
+        group: "Wider platform ecosystem — integrated, not built by me",
+        items: ["MinIO", "Redis", "Keycloak", "JWT", "OIDC", "LangChain", "LangGraph", "MCP", "Docker", "Docker Compose"],
+      },
+      {
+        group: "Wider platform ecosystem — AI & ML",
+        items: ["Azure OpenAI (gpt-5.4-mini)", "scikit-learn", "XGBoost", "LightGBM", "MLflow"],
+      },
     ],
 
     gallery: [
       {
-        title: "Analytics workspace",
-        caption: "Conversation, result and citations in one surface.",
+        title: "Generated dashboard",
+        caption: "KPI cards, charts and tables built from the Insight Agent configuration.",
         kind: "dashboard",
       },
       {
-        title: "Agent run trace",
-        caption: "Every node transition, timing and decision, replayable.",
-        kind: "console",
-      },
-      {
-        title: "Metric explorer",
-        caption: "The typed semantic layer, browsable by business users.",
+        title: "Quality report",
+        caption: "Five dimensions scored separately, with the anomalies behind each one.",
         kind: "table",
       },
       {
-        title: "Forecast view",
-        caption: "Predictive extension with intervals rendered inline.",
-        kind: "chart",
+        title: "Correction plan",
+        caption: "Four levels — Conservative, Moderate, Aggressive, Manual — validated before execution.",
+        kind: "form",
       },
       {
-        title: "System architecture",
-        caption: "Interaction, orchestration, data and platform planes.",
+        title: "Agent flow",
+        caption: "The Orchestrator suspending the run on a human checkpoint.",
+        kind: "console",
+      },
+      {
+        title: "Five-layer architecture",
+        caption: "Presentation, API and security, Orchestration, Agents, Data.",
         kind: "architecture",
       },
       {
-        title: "Mobile review",
-        caption: "Approve a checkpoint away from the desk.",
-        kind: "mobile",
+        title: "Sector reading",
+        caption: "Predictive results phrased in retail or manufacturing vocabulary.",
+        kind: "chart",
       },
     ],
 
     demo: {
-      title: "Product walkthrough",
+      title: "End-to-end journey",
       description:
-        "An end-to-end run: an open-ended business question, the planner decomposing it, a human checkpoint, governed retrieval, and a narrated answer with citations.",
+        "From an imported file to a sector reading, with an explicit human validation at every sensitive step rather than a silent automatic decision.",
       transcript: [
-        "A business question is asked in plain language.",
-        "The planner decomposes it and surfaces its interpretation for confirmation.",
-        "Retrieval composes governed queries against the semantic layer.",
-        "The data-quality agent flags a partial period in the source data.",
-        "The narrator renders the answer, each claim linked to its rows.",
+        "File imported, sector detected and confirmed by the user.",
+        "Data profile and first dashboard generated on the raw version.",
+        "Quality checked on five dimensions; a correction plan is proposed.",
+        "The user validates the plan; only approved corrections are applied.",
+        "Dashboard updated on the cleaned Silver version, structure preserved.",
+        "The sector agent turns the results into a business reading of the domain.",
       ],
     },
 
     lessons: {
       technical: [
         {
-          title: "The semantic layer mattered more than the model",
-          body: "Every meaningful quality jump came from better data modelling, not from a stronger model. Once that was clear, effort moved to where it compounded.",
+          title: "A prompt is not a guarantee",
+          body: "Everything that had to hold — SQL safety, KPI existence, computed values — ended up enforced by deterministic code around the model, never by instructions inside it.",
         },
         {
-          title: "Non-determinism needs evidence, not intuition",
-          body: "Structured traces and a golden-dataset evaluation harness turned 'it feels worse' into a measurable regression with a diff.",
+          title: "Model choice is a benchmark, not a preference",
+          body: "Azure OpenAI gpt-5.4-mini was selected after comparing it against OpenAI GPT-4 mini as a reference point, plus NVIDIA Nemotron and Gemini Flash, both tested and not retained.",
         },
         {
-          title: "Orchestration boundaries are product boundaries",
-          body: "Splitting planning, retrieval and narration made each independently improvable — and made it obvious which one was failing.",
+          title: "Responsibility boundaries survive contact with the product",
+          body: "Keeping the Backend out of all processing sounded academic until new agents were added — and none of them required touching the resource layer.",
         },
         {
-          title: "Trust is a latency budget of its own",
-          body: "Users tolerate a pause for a confirmed interpretation, but not a fast answer they have to double-check.",
+          title: "Five dimensions beat one number",
+          body: "Splitting the quality score changed the conversation from 'the data is bad' to 'these three columns break a business rule'.",
         },
       ],
       differentToday: [
-        "Build the evaluation harness before the second agent, not after the fifth.",
-        "Version the semantic layer from day one — metric definitions drift faster than expected.",
-        "Model cost per run as a first-class metric alongside latency and quality.",
+        "Instrument the false-rejection rate of the SQL guardrail, to tune strictness on evidence instead of intuition.",
+        "Cache verified dashboard configurations, to recover part of the latency the verification step deliberately costs.",
+        "Version the quality rule set alongside the data versions, so a score can be compared across time.",
       ],
     },
 
     impact: {
       statement:
-        "The platform moved analytics from a queued service to a conversation, without giving up the governance the organisation is held to.",
+        "A business user goes from a raw file to a sector reading of their data without writing a query — and every sensitive step passes through an explicit human validation rather than a silent automatic decision.",
       beneficiaries: [
-        { who: "Business teams", value: "Self-service answers to open-ended questions." },
-        { who: "Analysts", value: "Time returned to modelling and deeper work." },
-        { who: "Compliance", value: "A traceable answer for every number produced." },
+        { who: "Business users", value: "A dashboard on their own data, without a technical intermediary." },
+        { who: "Data analysts", value: "Quality problems localised precisely, correction plans they control." },
+        { who: "Sector teams", value: "Predictive results explained in the vocabulary of their domain." },
       ],
       metrics: [
-        { label: "Time to insight", value: "Days → Minutes" },
-        { label: "Answer traceability", value: "100% cited" },
-        { label: "Governed metrics", value: "80+ typed" },
+        { label: "Components designed and built", value: "6" },
+        { label: "Quality dimensions scored", value: "5" },
+        { label: "Correction levels", value: "4" },
       ],
     },
   },
