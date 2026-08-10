@@ -60,10 +60,10 @@ export const experiences: Experience[] = [
         context:
           "Exploratory questions never fit a pre-built dashboard, and letting an LLM run free SQL on production data is a security hazard.",
         action:
-          "Received NLQ-generated SQL and validated it through a sqlglot AST parser (SELECT-only; DROP/DELETE/UPDATE/INSERT/ALTER rejected before execution), executed it on the active dataset, turned results into visual components injected into the live dashboard, and kept context through Redis session memory with PostgreSQL conversation history.",
+          "Contributed to the NLQ Agent code and to the seven-step validation of the Predictive Data Validator alongside a teammate; on the Insight Agent side (my own perimeter), generated SQL is verified through a sqlglot AST parser and adapted to the real schema before running on DuckDB, results become visual components injected into the live dashboard, and context is kept through Redis session memory with PostgreSQL conversation history.",
         result:
           "Users ask questions in plain French; the answer — KPI, chart or table — is added to their dashboard, which enriches itself across the conversation and survives between sessions.",
-        tech: ["sqlglot AST validation", "DuckDB", "Redis session memory", "PostgreSQL history", "React 18", "Zustand"],
+        tech: ["sqlglot AST guardrail", "DuckDB", "Redis session memory", "PostgreSQL history", "React 18", "Zustand"],
       },
       {
         title: "Sector prediction flow with actionable business explanations",
