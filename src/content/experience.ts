@@ -31,7 +31,7 @@ export const experiences: Experience[] = [
     location: "Rabat, Morocco",
     projectName: "Intelligent Analytics — Multi-agent AI analytics platform",
     description:
-      "Designed and built six components of a multi-agent analytics platform letting non-technical managers exploit their business data end-to-end — from raw import to sector predictions — without writing code or waiting on a data team.",
+      "Designed and built six components — Frontend, application Backend, Data Preparation Agent, Insight Agent, Retail Agent, Manufacturing Agent — of a multi-agent analytics platform letting non-technical managers exploit their business data end-to-end — from raw import to sector predictions — without writing code or waiting on a data team.",
     businessContext:
       "Business users had operational and commercial data but depended on technical teams for every analysis. The goal: give them analytical autonomy through a guided, sector-aware system that keeps humans in control of critical data decisions.",
     achievements: [
@@ -40,17 +40,17 @@ export const experiences: Experience[] = [
         context:
           "Business users waited on analysts for every chart, and dashboards had to be configured by hand for each dataset.",
         action:
-          "Built the complete Insight Agent: Azure OpenAI GPT-4o generates the analytics configuration, a deterministic validator checks columns, aggregations and visualisation types, KPIs (SUM/AVG/YOY/CAGR/DELTA) are computed on real rows via DuckDB, the frontend renders dynamically, and the resulting dashboard can be exported to Power BI.",
+          "Built the complete Insight Agent: gpt-5.4-mini (Azure OpenAI) generates the analytics configuration, a deterministic validator checks columns, aggregations and visualisation types, KPIs (SUM/AVG/YOY/CAGR/DELTA) are computed on real rows via DuckDB, the frontend renders dynamically, and the resulting dashboard can be exported to Power BI.",
         result:
           "Importing a file produces a sector-adapted dashboard with KPIs, charts and insight blocks — no configuration, no SQL. Indicators are always computed on real rows, never invented by the model.",
-        tech: ["Azure OpenAI GPT-4o", "DuckDB", "Power BI export", "Recharts", "React 18", "TanStack Query"],
+        tech: ["gpt-5.4-mini (Azure OpenAI)", "DuckDB", "Power BI export", "Recharts", "React 18", "TanStack Query"],
       },
       {
         title: "Data cleaning validated action by action by the user",
         context:
           "Automated cleaning pipelines silently mutate data — unacceptable when the user is accountable for the numbers.",
         action:
-          "Built the Data Preparation Agent: untouched Bronze ingestion, automatic profiling, 5-dimension DAMA-DMBOK quality scoring (completeness 30%, validity 30%, accuracy 20%, uniqueness 10%, consistency 10%), detection of 7 anomaly types, 9 corrective strategies, a 7-step Predictive Data Validator, and an interactive Human-in-the-Loop plan producing Silver artefacts plus before/after reports.",
+          "Built the Data Preparation Agent: untouched Bronze ingestion, automatic profiling, 5-dimension DAMA-DMBOK quality scoring (completeness 30%, validity 30%, accuracy 20%, uniqueness 10%, consistency 10%), detection of 7 anomaly types, 9 corrective strategies, a contribution to the 7-step validation of the Predictive Data Validator, and an interactive Human-in-the-Loop plan producing Silver artefacts plus before/after reports.",
         result:
           "The user sees a quality score, column-level anomalies and a cleaning plan they approve, refuse or override. No data is modified without explicit consent.",
         tech: ["LangGraph", "YData Profiling", "7-step Predictive Data Validator", "Medallion Bronze/Silver", "MinIO", "HITL checkpoints"],
@@ -60,20 +60,20 @@ export const experiences: Experience[] = [
         context:
           "Exploratory questions never fit a pre-built dashboard, and letting an LLM run free SQL on production data is a security hazard.",
         action:
-          "Received NLQ-generated SQL and validated it through a sqlglot AST parser (SELECT-only; DROP/DELETE/UPDATE/INSERT/ALTER rejected before execution), executed it on the active dataset, turned results into visual components injected into the live dashboard, and kept context through Redis session memory with PostgreSQL conversation history.",
+          "Contributed to the NLQ Agent code and to the seven-step validation of the Predictive Data Validator alongside a teammate; on the Insight Agent side (my own perimeter), generated SQL is verified through a sqlglot AST parser and adapted to the real schema before running on DuckDB, results become visual components injected into the live dashboard, and context is kept through Redis session memory with PostgreSQL conversation history.",
         result:
           "Users ask questions in plain French; the answer — KPI, chart or table — is added to their dashboard, which enriches itself across the conversation and survives between sessions.",
-        tech: ["sqlglot AST validation", "DuckDB", "Redis session memory", "PostgreSQL history", "React 18", "Zustand"],
+        tech: ["sqlglot AST guardrail", "DuckDB", "Redis session memory", "PostgreSQL history", "React 18", "Zustand"],
       },
       {
         title: "Sector prediction flow with actionable business explanations",
         context:
           "ML metrics like RMSE or AUC mean nothing to a retail manager deciding what to do on Monday morning.",
         action:
-          "Built the Retail Agent (16 use cases: churn, demand forecasting, segmentation, stock, fraud, customer value) and Manufacturing Agent (scrap, predictive maintenance, defects, downtime), resolved business configuration through a Shared Config Registry, trained candidate models in parallel with joblib and tracked runs in MLflow, produced sector-worded explanations, validated 29 Retail unit tests with pytest, and integrated both agents into the central LangGraph orchestrator with conditional routing and a standardised contract to the Training Agent.",
+          "Built the Retail Agent (16 use cases: churn, demand forecasting, segmentation, stock, fraud, customer value) and the Manufacturing Agent (scrap, predictive maintenance, defects, downtime): each provides a sector predictive configuration (task type, target, recommended variables, metrics, candidate models) to the predictive flow, then explains the results in domain vocabulary — no computation or training performed inside the agents. Validated 29 Retail unit tests with pytest, collaborated with the team on integrating the Training Agent, and wired both agents into the central LangGraph orchestrator with conditional routing.",
         result:
           "A user launches a prediction and receives both ML metrics and what to do about them, phrased in their own industry vocabulary.",
-        tech: ["LangGraph StateGraph", "Shared Config Registry", "scikit-learn", "XGBoost", "LightGBM", "joblib", "MLflow", "pytest"],
+        tech: ["Retail Agent", "Manufacturing Agent", "Sector predictive configuration", "LangGraph routing", "pytest"],
       },
       {
         title: "One coherent interface, one session, four workflows",
@@ -87,10 +87,10 @@ export const experiences: Experience[] = [
       },
     ],
     architecture:
-      "Six components delivered inside a team platform, as named in the project: Frontend (React 18), API Backend (FastAPI/PostgreSQL), SSO Keycloak, Data Preparation Agent, Insight Agent, and the Sector Agents (Retail, Manufacturing) — the latter wired into the central LangGraph orchestrator with conditional routing into the predictive workflow.",
+      "Six components delivered inside a team platform, as named in the project: Frontend (React 18), application Backend (FastAPI/PostgreSQL, Keycloak-integrated security), Data Preparation Agent, Insight Agent, Retail Agent and Manufacturing Agent — functionally integrated with the central LangGraph orchestrator and the shared services the user journey depends on. The orchestrator itself and the shared config registry are platform components my components integrate with, not part of my design perimeter.",
     stack: [
-      "Python", "FastAPI", "LangGraph", "Azure OpenAI GPT-4o", "sqlglot", "PostgreSQL JSONB", "Redis",
-      "MinIO", "DuckDB", "MLflow", "joblib", "scikit-learn", "XGBoost", "React 18",
+      "Python", "FastAPI", "LangGraph", "gpt-5.4-mini (Azure OpenAI)", "sqlglot", "PostgreSQL JSONB", "Redis",
+      "MinIO", "DuckDB", "Pandas", "YData Profiling", "React 18",
       "TypeScript", "Zustand", "TanStack Query", "Power BI", "pytest", "Docker", "Keycloak 23",
     ],
   },

@@ -43,7 +43,7 @@ const capabilityMarquee = [
   "Angular",
   "Docker · CI/CD",
   "Keycloak OIDC",
-  "MLflow",
+  "sqlglot AST guardrail",
 ];
 
 function HomePage() {
