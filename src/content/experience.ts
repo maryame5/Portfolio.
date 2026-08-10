@@ -40,10 +40,10 @@ export const experiences: Experience[] = [
         context:
           "Business users waited on analysts for every chart, and dashboards had to be configured by hand for each dataset.",
         action:
-          "Built the complete Insight Agent: Azure OpenAI GPT-4o generates the analytics configuration, a deterministic validator checks columns, aggregations and visualisation types, KPIs (SUM/AVG/YOY/CAGR/DELTA) are computed on real rows via DuckDB, the frontend renders dynamically, and the resulting dashboard can be exported to Power BI.",
+          "Built the complete Insight Agent: gpt-5.4-mini (Azure OpenAI) generates the analytics configuration, a deterministic validator checks columns, aggregations and visualisation types, KPIs (SUM/AVG/YOY/CAGR/DELTA) are computed on real rows via DuckDB, the frontend renders dynamically, and the resulting dashboard can be exported to Power BI.",
         result:
           "Importing a file produces a sector-adapted dashboard with KPIs, charts and insight blocks — no configuration, no SQL. Indicators are always computed on real rows, never invented by the model.",
-        tech: ["Azure OpenAI GPT-4o", "DuckDB", "Power BI export", "Recharts", "React 18", "TanStack Query"],
+        tech: ["gpt-5.4-mini (Azure OpenAI)", "DuckDB", "Power BI export", "Recharts", "React 18", "TanStack Query"],
       },
       {
         title: "Data cleaning validated action by action by the user",
@@ -89,7 +89,7 @@ export const experiences: Experience[] = [
     architecture:
       "Six components delivered inside a team platform, as named in the project: Frontend (React 18), API Backend (FastAPI/PostgreSQL), SSO Keycloak, Data Preparation Agent, Insight Agent, and the Sector Agents (Retail, Manufacturing) — the latter wired into the central LangGraph orchestrator with conditional routing into the predictive workflow.",
     stack: [
-      "Python", "FastAPI", "LangGraph", "Azure OpenAI GPT-4o", "sqlglot", "PostgreSQL JSONB", "Redis",
+      "Python", "FastAPI", "LangGraph", "gpt-5.4-mini (Azure OpenAI)", "sqlglot", "PostgreSQL JSONB", "Redis",
       "MinIO", "DuckDB", "MLflow", "joblib", "scikit-learn", "XGBoost", "React 18",
       "TypeScript", "Zustand", "TanStack Query", "Power BI", "pytest", "Docker", "Keycloak 23",
     ],
