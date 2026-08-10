@@ -31,7 +31,7 @@ export const experiences: Experience[] = [
     location: "Rabat, Morocco",
     projectName: "Intelligent Analytics — Multi-agent AI analytics platform",
     description:
-      "Designed and built six components of a multi-agent analytics platform letting non-technical managers exploit their business data end-to-end — from raw import to sector predictions — without writing code or waiting on a data team.",
+      "Designed and built six components — Frontend, application Backend, Data Preparation Agent, Insight Agent, Retail Agent, Manufacturing Agent — of a multi-agent analytics platform letting non-technical managers exploit their business data end-to-end — from raw import to sector predictions — without writing code or waiting on a data team.",
     businessContext:
       "Business users had operational and commercial data but depended on technical teams for every analysis. The goal: give them analytical autonomy through a guided, sector-aware system that keeps humans in control of critical data decisions.",
     achievements: [
@@ -50,7 +50,7 @@ export const experiences: Experience[] = [
         context:
           "Automated cleaning pipelines silently mutate data — unacceptable when the user is accountable for the numbers.",
         action:
-          "Built the Data Preparation Agent: untouched Bronze ingestion, automatic profiling, 5-dimension DAMA-DMBOK quality scoring (completeness 30%, validity 30%, accuracy 20%, uniqueness 10%, consistency 10%), detection of 7 anomaly types, 9 corrective strategies, a 7-step Predictive Data Validator, and an interactive Human-in-the-Loop plan producing Silver artefacts plus before/after reports.",
+          "Built the Data Preparation Agent: untouched Bronze ingestion, automatic profiling, 5-dimension DAMA-DMBOK quality scoring (completeness 30%, validity 30%, accuracy 20%, uniqueness 10%, consistency 10%), detection of 7 anomaly types, 9 corrective strategies, a contribution to the 7-step validation of the Predictive Data Validator, and an interactive Human-in-the-Loop plan producing Silver artefacts plus before/after reports.",
         result:
           "The user sees a quality score, column-level anomalies and a cleaning plan they approve, refuse or override. No data is modified without explicit consent.",
         tech: ["LangGraph", "YData Profiling", "7-step Predictive Data Validator", "Medallion Bronze/Silver", "MinIO", "HITL checkpoints"],
@@ -87,10 +87,10 @@ export const experiences: Experience[] = [
       },
     ],
     architecture:
-      "Six components delivered inside a team platform, as named in the project: Frontend (React 18), API Backend (FastAPI/PostgreSQL), SSO Keycloak, Data Preparation Agent, Insight Agent, and the Sector Agents (Retail, Manufacturing) — the latter wired into the central LangGraph orchestrator with conditional routing into the predictive workflow.",
+      "Six components delivered inside a team platform, as named in the project: Frontend (React 18), application Backend (FastAPI/PostgreSQL, Keycloak-integrated security), Data Preparation Agent, Insight Agent, Retail Agent and Manufacturing Agent — functionally integrated with the central LangGraph orchestrator and the shared services the user journey depends on. The orchestrator itself and the shared config registry are platform components my components integrate with, not part of my design perimeter.",
     stack: [
       "Python", "FastAPI", "LangGraph", "gpt-5.4-mini (Azure OpenAI)", "sqlglot", "PostgreSQL JSONB", "Redis",
-      "MinIO", "DuckDB", "MLflow", "joblib", "scikit-learn", "XGBoost", "React 18",
+      "MinIO", "DuckDB", "Pandas", "YData Profiling", "React 18",
       "TypeScript", "Zustand", "TanStack Query", "Power BI", "pytest", "Docker", "Keycloak 23",
     ],
   },
