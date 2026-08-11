@@ -62,6 +62,26 @@ function ExperiencePage() {
                   </p>
                 </div>
 
+                {e.scope && (
+                  <div className="mt-7 grid gap-4 md:grid-cols-3">
+                    {e.scope.map((tier) => (
+                      <div key={tier.label} className="rounded-xl border border-border p-5">
+                        <p className="eyebrow mb-3">{tier.label}</p>
+                        <ul className="space-y-2.5">
+                          {tier.items.map((item) => (
+                            <li
+                              key={item}
+                              className="border-l border-accent/30 pl-3 text-[13px] leading-relaxed text-muted-foreground"
+                            >
+                              {item}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
                 <div className="mt-10 space-y-5">
                   <p className="eyebrow">What I delivered</p>
                   {e.achievements.map((a, idx) => (
