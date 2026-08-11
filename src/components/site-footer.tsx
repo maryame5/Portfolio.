@@ -12,8 +12,9 @@ export function SiteFooter() {
             <p className="text-lg font-medium text-foreground">{site.name}</p>
             <p className="mt-3 text-sm text-muted-foreground">{site.role} — {site.location}</p>
             <p className="mt-6 text-sm text-subtle">
-              Designed and engineered end-to-end. Architecture, backend, agents and interface.
+              Frontend, backend, data preparation and analytics agents — built and integrated end-to-end.
             </p>
+
           </div>
           <div className="flex flex-wrap gap-x-14 gap-y-8">
             <div className="space-y-3">
