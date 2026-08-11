@@ -73,30 +73,18 @@ function HomePage() {
 
             <Reveal delay={0.05}>
               <h1 className="mt-8 text-[2.2rem] font-semibold leading-[1.06] tracking-tight text-foreground md:text-[3.4rem]">
-                AI &amp; Software Engineer{" "}
-                <span className="text-muted-foreground">|</span> Full-Stack Developer{" "}
-                <span className="text-muted-foreground">|</span>{" "}
-                <span className="serif-accent text-accent">Data &amp; Analytics Agent Architect</span>
+                I build the{" "}
+                <span className="serif-accent text-accent">guardrails</span> that separate
+                what an LLM proposes from what a system can guarantee.
               </h1>
             </Reveal>
 
-            <Reveal delay={0.08}>
-              <p className="mt-6 max-w-xl text-xl leading-snug text-foreground">
-                {site.tagline}
-              </p>
-            </Reveal>
-
             <Reveal delay={0.1}>
-              <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground">
-                {site.headline}
-              </p>
-            </Reveal>
-
-            <Reveal delay={0.12}>
-              <p className="mt-6 max-w-xl border-l border-accent/40 pl-4 text-sm leading-relaxed text-subtle">
+              <p className="mt-7 max-w-xl text-base leading-relaxed text-muted-foreground">
                 {site.intro}
               </p>
             </Reveal>
+
 
 
             <Reveal delay={0.15}>
