@@ -6,12 +6,12 @@ export const site = {
   shortName: "Maryame",
   initials: "ME",
   role: "AI & Software Engineer",
-  title: "AI & Software Engineer | Full-Stack Developer | Data & Analytics Agent Architect",
+  title: "I build the guardrails that separate what an LLM proposes from what a system can guarantee.",
   headline:
-    "Data & Software Engineering Student @ INSEA | Intelligent Analytics, Data Quality & Sector Agents",
-  tagline: "Building intelligent software products from data to impact.",
+    "AI & Software Engineer — Data & Software Engineering @ INSEA",
   intro:
-    "Three engineering internships shipped in real conditions — tech consulting, fintech and public sector. I design the architecture, build the backend, train the agents and craft the interface that makes it all usable.",
+    "At DXC Technology, I delivered the Frontend, the application Backend, the Data Preparation Agent, the Insight Agent, and the Retail/Manufacturing sector agents of a multi-agent analytics platform — plus their integration with the Orchestrator and shared services. Every SQL query the model generates passes through an AST validator (sqlglot) before running on DuckDB. No number ever comes straight from the LLM.",
+
   location: "Rabat, Morocco",
   email: "elkhalfimaryame@gmail.com",
   phone: "+212 641 929 689",
