@@ -6,6 +6,11 @@ export type Achievement = {
   tech: string[];
 };
 
+export type ScopeTier = {
+  label: string;
+  items: string[];
+};
+
 export type Experience = {
   slug: string;
   company: string;
@@ -16,10 +21,12 @@ export type Experience = {
   projectName: string;
   description: string;
   businessContext: string;
+  scope?: ScopeTier[];
   achievements: Achievement[];
   architecture: string;
   stack: string[];
 };
+
 
 export const experiences: Experience[] = [
   {
