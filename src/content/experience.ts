@@ -41,6 +41,33 @@ export const experiences: Experience[] = [
       "Designed and built six components — Frontend, application Backend, Data Preparation Agent, Insight Agent, Retail Agent, Manufacturing Agent — of a multi-agent analytics platform letting non-technical managers exploit their business data end-to-end — from raw import to sector predictions — without writing code or waiting on a data team.",
     businessContext:
       "Business users had operational and commercial data but depended on technical teams for every analysis. The goal: give them analytical autonomy through a guided, sector-aware system that keeps humans in control of critical data decisions.",
+    scope: [
+      {
+        label: "Designed and built",
+        items: [
+          "Frontend — the user entry point: keeps the journey context, interprets the Insight Agent's dashboard config into KPI cards, charts and tables, and makes every human-decision step explicit in the UI.",
+          "Application Backend — durable resource management: users (Keycloak integration), applicative security (JWT/OIDC token verification, authorization), projects, datasets, metadata, preferences and storage references. PostgreSQL via SQLAlchemy/Alembic, with JSONB for dashboard configs to avoid a schema migration on every new indicator.",
+          "Data Preparation Agent — Bronze ingestion, descriptive profiling, a 5-dimension quality score (Completeness, Validity, Uniqueness, Accuracy, Consistency), anomaly detection, a 4-level correction plan (Conservative: flag only / Moderate: low-risk auto-fix / Aggressive: remove invalid or duplicate data / Manual: user-supplied correction) presented before execution, quality re-scored after cleaning, Silver version produced.",
+          "Insight Agent — dashboard generation and update driven by an `update_dashboard` flag (false = generate from scratch, true = keep structure and recalculate values on the active data version); SQL verification and execution on DuckDB guarded by an AST parser (sqlglot) that blocks anything but SELECT statements before it runs.",
+          "Retail Agent & Manufacturing Agent — business-domain reading of analytical and predictive results (they run no computation or training themselves): Retail covers churn, segmentation, basket analysis and demand forecasting; Manufacturing covers quality tracking, defect detection, predictive maintenance and downtime analysis.",
+          "Functional integration of all of the above with the Orchestrator and the shared services the user journey depends on.",
+        ],
+      },
+      {
+        label: "Contributed to",
+        items: [
+          "NLQ Agent — natural-language-to-SQL intent detection.",
+          "Predictive Data Validator — the 7-step validation logic before training.",
+        ],
+      },
+      {
+        label: "Not built by me",
+        items: [
+          "Training Agent (model training itself) — I collaborated with the team on integrating the Training Agent (MLflow, scikit-learn, XGBoost, LightGBM).",
+        ],
+      },
+    ],
+
     achievements: [
       {
         title: "A full dashboard generated the moment data is imported",
