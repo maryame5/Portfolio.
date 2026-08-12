@@ -51,7 +51,7 @@ export function SiteNav() {
             <Link
               key={l.to}
               to={l.to}
-              className="relative text-sm text-muted-foreground transition-colors hover:text-foreground"
+              className="nav-underline relative text-sm text-muted-foreground transition-colors hover:text-foreground"
               activeProps={{ className: "text-sm text-foreground" }}
             >
               {l.label}
@@ -62,7 +62,7 @@ export function SiteNav() {
         <div className="flex items-center gap-3">
           <a
             href={site.resumeRequestUrl}
-            className="hidden items-center gap-1.5 rounded-full border border-border-strong px-4 py-1.5 text-sm text-foreground hover:border-accent hover:text-accent sm:inline-flex"
+            className="press hidden items-center gap-1.5 rounded-full border border-border-strong px-4 py-1.5 text-sm text-foreground hover:border-accent hover:text-accent sm:inline-flex"
           >
             Ask for my CV
             <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={2} />
@@ -70,7 +70,7 @@ export function SiteNav() {
           <button
             aria-label="Toggle menu"
             onClick={() => setOpen((v) => !v)}
-            className="grid h-9 w-9 place-items-center rounded-lg border border-border text-foreground md:hidden"
+            className="press grid h-9 w-9 place-items-center rounded-lg border border-border text-foreground md:hidden"
           >
             {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
           </button>
