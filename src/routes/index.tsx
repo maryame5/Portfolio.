@@ -4,6 +4,7 @@ import { SiteShell } from "@/components/site-shell";
 import { Reveal } from "@/components/reveal";
 import { HeroVisual } from "@/components/hero-visual";
 import { site, stats, principles } from "@/content/site";
+import { CountUp } from "@/components/count-up";
 import { experiences } from "@/content/experience";
 import { projects, flagshipProject } from "@/content/projects";
 import { technologyDomains } from "@/content/technologies";
@@ -74,7 +75,7 @@ function HomePage() {
             <Reveal delay={0.05}>
               <h1 className="mt-8 text-[2.2rem] font-semibold leading-[1.06] tracking-tight text-foreground md:text-[3.4rem]">
                 I build the{" "}
-                <span className="serif-accent text-accent">guardrails</span> that separate
+                <span className="serif-accent text-gradient">guardrails</span> that separate
                 what an LLM proposes from what a system can guarantee.
               </h1>
             </Reveal>
@@ -133,7 +134,7 @@ function HomePage() {
                     aria-hidden
                     className="absolute left-0 top-0 h-full w-px bg-gradient-to-b from-transparent via-accent/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                   />
-                  <p className="num-display text-4xl font-semibold">{s.value}</p>
+                  <p className="num-display text-4xl font-semibold"><CountUp value={s.value} /></p>
                   <p className="mt-3 text-sm text-foreground">{s.label}</p>
                   <p className="mt-1.5 font-mono text-[10px] uppercase tracking-[0.12em] text-subtle">
                     {s.detail}
@@ -200,7 +201,7 @@ function HomePage() {
           <div className="mt-12 grid gap-4 lg:grid-cols-3">
             {flagshipProject.highlights.slice(0, 3).map((h, i) => (
               <Reveal key={h} delay={0.05 * i}>
-                <div className="card-surface hover-lift h-full p-6">
+                <div className="card-surface hover-lift hover-glow h-full p-6">
                   <span className="font-mono text-[11px] text-accent">
                     {String(i + 1).padStart(2, "0")}
                   </span>
@@ -328,14 +329,14 @@ function HomePage() {
           <Reveal>
             <p className="eyebrow mb-4">Engineering principles</p>
             <h2 className="max-w-2xl text-3xl font-semibold leading-tight md:text-5xl">
-              How I decide, <span className="serif-accent text-accent">before</span> I build.
+              How I decide, <span className="serif-accent text-gradient">before</span> I build.
             </h2>
           </Reveal>
 
           <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {principles.map((p, i) => (
               <Reveal key={p.id} delay={0.04 * i}>
-                <div className="card-surface hover-lift h-full p-6">
+                <div className="card-surface hover-lift hover-glow h-full p-6">
                   <div className="flex items-center justify-between">
                     <span className="grid h-9 w-9 place-items-center rounded-lg border border-border-strong bg-surface text-accent">
                       <p.icon className="h-4 w-4" strokeWidth={1.75} />
@@ -377,7 +378,7 @@ function HomePage() {
                 <Link
                   to="/projects/$slug"
                   params={{ slug: p.slug }}
-                  className="card-surface hover-lift group flex h-full flex-col p-7"
+                  className="card-surface hover-lift hover-glow group flex h-full flex-col p-7"
                 >
                   <div className="flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.14em] text-subtle">
                     <span>{p.category}</span>
@@ -462,7 +463,7 @@ function HomePage() {
           <Reveal>
             <p className="eyebrow mb-4">Technology</p>
             <h2 className="max-w-2xl text-3xl font-semibold leading-tight md:text-5xl">
-              Tools are a means. <span className="serif-accent text-accent">Outcomes</span> are the point.
+              Tools are a means. <span className="serif-accent text-gradient">Outcomes</span> are the point.
             </h2>
           </Reveal>
 

@@ -3,6 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { SiteShell } from "@/components/site-shell";
 import { Reveal } from "@/components/reveal";
+import { CountUp } from "@/components/count-up";
 import { MockVisual } from "@/components/case-study/mock-visual";
 import { caseStudies } from "@/content/case-studies";
 import { projects, type Project } from "@/content/projects";
@@ -63,7 +64,7 @@ function ProjectsPage() {
         <div className="mx-auto max-w-5xl">
           <p className="eyebrow mb-6">Projects</p>
           <h1 className="max-w-[20ch] text-4xl font-semibold tracking-tight text-foreground md:text-6xl">
-            Nine products, three{" "}
+            Nine engagements, three{" "}
             <span className="serif-accent text-gradient">deep dives</span>.
           </h1>
           <p className="mt-6 max-w-[58ch] text-lg leading-relaxed text-muted-foreground">
@@ -74,13 +75,13 @@ function ProjectsPage() {
 
           <dl className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-border bg-border md:grid-cols-4">
             {[
-              ["09", "Products built"],
-              ["03", "In production"],
+              ["09", "Projects & internships"],
+              ["03", "Deep-dive case studies"],
               ["04", "Domains covered"],
               ["30+", "Technologies used"],
             ].map(([v, k]) => (
               <div key={k} className="bg-canvas/80 p-5">
-                <dt className="num-display text-2xl font-semibold">{v}</dt>
+                <dt className="num-display text-2xl font-semibold"><CountUp value={v} /></dt>
                 <dd className="mt-1 font-mono text-[10px] uppercase tracking-[0.14em] text-subtle">
                   {k}
                 </dd>
@@ -104,7 +105,7 @@ function ProjectsPage() {
                 <Link
                   to="/projects/$slug"
                   params={{ slug: c.slug }}
-                  className="card-surface hover-lift group block p-7 md:p-9"
+                  className="card-surface hover-lift hover-glow group block p-7 md:p-9"
                 >
                   <div className="grid gap-9 md:grid-cols-[1.15fr_1fr] md:items-center">
                     <div>
@@ -180,7 +181,7 @@ function ProjectsPage() {
               const study = caseStudyBySlug[p.slug];
               return (
                 <Reveal as="li" key={p.slug} delay={Math.min(i, 6) * 0.03}>
-                  <div className="card-surface overflow-hidden">
+                  <div className="card-surface hover-glow overflow-hidden transition-colors">
                     <button
                       onClick={() => setOpen(isOpen ? null : p.slug)}
                       aria-expanded={isOpen}

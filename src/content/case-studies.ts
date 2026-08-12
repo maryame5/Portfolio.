@@ -496,9 +496,9 @@ export const caseStudies: CaseStudy[] = [
     oneLiner:
       "A back-office CRM service that unifies client, portfolio and support data behind one governed API for a regulated investment firm.",
     status: "Enterprise",
-    duration: "10 months",
+    duration: "4 months (Oct 2025 – Jan 2026)",
     role: "Software Engineer — domain modelling, backend services, integrations",
-    primaryTech: ["Spring Boot", "RabbitMQ", "PostgreSQL", "React", "JWT"],
+    primaryTech: ["Spring Boot", "OpenFeign", "Spring Security", "Redis", "PostgreSQL"],
     heroEmphasis: ["Enterprise CRM", "Microservices", "Back-office", "Event-Driven"],
     heroMock: "table",
 
@@ -818,7 +818,7 @@ export const caseStudies: CaseStudy[] = [
     oneLiner:
       "A public-sector platform that moves regulated social service requests from paper counters to a tracked, transparent digital workflow.",
     status: "Internship",
-    duration: "6 months",
+    duration: "3 months (Jul 2025 – Sep 2025)",
     role: "Full-stack Engineer — Angular front-end, Spring Boot services, workflow modelling",
     primaryTech: ["Angular", "Spring Boot", "PostgreSQL", "WebSockets", "SendGrid"],
     heroEmphasis: [

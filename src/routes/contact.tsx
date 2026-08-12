@@ -48,7 +48,7 @@ function ContactPage() {
         title={
           <>
             Available from {site.availability.startDate}.{" "}
-            <span className="serif-accent text-accent">Let's talk.</span>
+            <span className="serif-accent text-gradient">Let's talk.</span>
           </>
         }
         lead="Looking for an entry-level / junior engineering role in AI, backend or full-stack development. Based in Rabat, open to remote."

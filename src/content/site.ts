@@ -18,7 +18,7 @@ export const site = {
   availability: {
     status: "Available",
     type: "Entry-level / Junior engineering roles",
-    startDate: "June 2026",
+    startDate: "September 2026",
   },
   socials: {
     github: "https://github.com/maryame5",

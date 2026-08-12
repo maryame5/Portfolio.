@@ -407,3 +407,81 @@
     animation-delay: 0ms !important;
   }
 }
+
+/* --- Interaction polish -------------------------------------------------- */
+@utility hover-glow {
+  transition:
+    border-color 200ms ease,
+    box-shadow 240ms ease,
+    transform 240ms cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  &:hover {
+    border-color: oklch(0.78 0.15 178 / 0.45);
+    box-shadow: 0 0 0 1px oklch(0.78 0.15 178 / 0.18), 0 18px 40px -30px oklch(0 0 0 / 0.9);
+  }
+
+  &:active {
+    transform: translateY(0) scale(0.995);
+  }
+}
+
+@utility nav-underline {
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    height: 1px;
+    width: 100%;
+    background: var(--color-accent);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  &:hover::after,
+  &[data-status="active"]::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+
+@utility press {
+  transition:
+    transform 150ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    background-color 200ms ease,
+    border-color 200ms ease,
+    color 200ms ease;
+
+  &:active {
+    transform: translateY(1px) scale(0.985);
+  }
+}
+
+/* Route transition: brief fade/slide so pages feel like one product */
+@utility route-enter {
+  animation: route-in 180ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes route-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* Edge flow toward the selected topology node — plays once per interaction */
+@utility edge-flow {
+  stroke-dasharray: 0.18 0.82;
+  animation: edge-dash 700ms cubic-bezier(0.4, 0, 0.2, 1) 1 both;
+}
+
+@keyframes edge-dash {
+  from { stroke-dashoffset: 1; }
+  to   { stroke-dashoffset: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .route-enter,
+  .edge-flow {
+    animation: none !important;
+  }
+}
