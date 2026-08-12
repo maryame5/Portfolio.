@@ -84,7 +84,7 @@ export const experiences: Experience[] = [
         context:
           "Automated cleaning pipelines silently mutate data — unacceptable when the user is accountable for the numbers.",
         action:
-          "Built the Data Preparation Agent: untouched Bronze ingestion, automatic profiling, 5-dimension DAMA-DMBOK quality scoring (completeness 30%, validity 30%, accuracy 20%, uniqueness 10%, consistency 10%), detection of 7 anomaly types, 9 corrective strategies, a contribution to the 7-step validation of the Predictive Data Validator, and an interactive Human-in-the-Loop plan producing Silver artefacts plus before/after reports.",
+          "Built the Data Preparation Agent: untouched Bronze ingestion, automatic profiling, 5-dimension DAMA-DMBOK quality scoring (Completeness, Validity, Uniqueness, Accuracy, Consistency), detection of 7 anomaly types, 9 corrective strategies, a contribution to the 7-step validation of the Predictive Data Validator, and an interactive Human-in-the-Loop plan producing Silver artefacts plus before/after reports.",
         result:
           "The user sees a quality score, column-level anomalies and a cleaning plan they approve, refuse or override. No data is modified without explicit consent.",
         tech: ["LangGraph", "YData Profiling", "7-step Predictive Data Validator", "Medallion Bronze/Silver", "MinIO", "HITL checkpoints"],
