@@ -201,7 +201,7 @@ function HomePage() {
           <div className="mt-12 grid gap-4 lg:grid-cols-3">
             {flagshipProject.highlights.slice(0, 3).map((h, i) => (
               <Reveal key={h} delay={0.05 * i}>
-                <div className="card-surface hover-lift h-full p-6">
+                <div className="card-surface hover-lift hover-glow h-full p-6">
                   <span className="font-mono text-[11px] text-accent">
                     {String(i + 1).padStart(2, "0")}
                   </span>
@@ -336,7 +336,7 @@ function HomePage() {
           <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {principles.map((p, i) => (
               <Reveal key={p.id} delay={0.04 * i}>
-                <div className="card-surface hover-lift h-full p-6">
+                <div className="card-surface hover-lift hover-glow h-full p-6">
                   <div className="flex items-center justify-between">
                     <span className="grid h-9 w-9 place-items-center rounded-lg border border-border-strong bg-surface text-accent">
                       <p.icon className="h-4 w-4" strokeWidth={1.75} />
@@ -378,7 +378,7 @@ function HomePage() {
                 <Link
                   to="/projects/$slug"
                   params={{ slug: p.slug }}
-                  className="card-surface hover-lift group flex h-full flex-col p-7"
+                  className="card-surface hover-lift hover-glow group flex h-full flex-col p-7"
                 >
                   <div className="flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.14em] text-subtle">
                     <span>{p.category}</span>
