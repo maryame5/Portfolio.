@@ -7,6 +7,7 @@ export const site = {
   initials: "ME",
   role: "AI & Software Engineer",
   title: "I build the guardrails that separate what an LLM proposes from what a system can guarantee.",
+  tagline: "I build software that turns messy business data into answers people can actually trust.",
   headline:
     "AI & Software Engineer — Data & Software Engineering @ INSEA",
   intro:

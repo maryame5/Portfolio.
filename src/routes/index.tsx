@@ -98,6 +98,12 @@ function HomePage() {
               </h1>
             </Reveal>
 
+            <Reveal delay={0.08}>
+              <p className="mt-5 text-lg font-medium text-foreground/90 md:text-xl">
+                {site.tagline}
+              </p>
+            </Reveal>
+
             <Reveal delay={0.1}>
               <p className="mt-7 max-w-xl text-base leading-relaxed text-muted-foreground">
                 {site.intro}
