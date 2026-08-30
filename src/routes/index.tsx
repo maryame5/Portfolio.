@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, ArrowUpRight, Mail, MapPin } from "lucide-react";
+import { ArrowRight, ArrowUpRight, FileText, MapPin } from "lucide-react";
 import { SiteShell } from "@/components/site-shell";
 import { Reveal } from "@/components/reveal";
 import { HeroVisual } from "@/components/hero-visual";
@@ -44,7 +44,7 @@ const capabilityMarquee = [
   "Angular",
   "Docker · CI/CD",
   "Keycloak OIDC",
-  "sqlglot AST guardrail",
+  "AST SQL Validation",
 ];
 
 function selectedProjectLink(slug: string) {
@@ -88,7 +88,10 @@ function HomePage() {
             </Reveal>
 
             <Reveal delay={0.05}>
-              <h1 className="mt-8 text-[2.2rem] font-semibold leading-[1.06] tracking-tight text-foreground md:text-[3.4rem]">
+              <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+                {site.headline}
+              </p>
+              <h1 className="mt-4 text-[2.2rem] font-semibold leading-[1.06] tracking-tight text-foreground md:text-[3.4rem]">
                 I build the{" "}
                 <span className="serif-accent text-gradient">guardrails</span> that separate
                 what an LLM proposes from what a system can guarantee.
@@ -113,11 +116,13 @@ function HomePage() {
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                 </Link>
                 <a
-                  href={site.resumeRequestUrl}
+                  href={site.resumeUrl}
+                  target="_blank"
+                  rel="noreferrer noopener"
                   className="inline-flex items-center gap-2 rounded-full border border-border-strong px-5 py-2.5 text-sm text-foreground hover:border-accent hover:text-accent"
                 >
-                  <Mail className="h-4 w-4" />
-                  Ask for my CV
+                  <FileText className="h-4 w-4" />
+                  View CV
                 </a>
               </div>
             </Reveal>
@@ -528,10 +533,12 @@ function HomePage() {
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <a
-                href={site.resumeRequestUrl}
+                href={site.resumeUrl}
+                target="_blank"
+                rel="noreferrer noopener"
                 className="inline-flex items-center gap-2 rounded-full border border-border-strong px-5 py-2.5 text-sm text-foreground hover:border-accent hover:text-accent"
               >
-                <Mail className="h-4 w-4" /> Ask for my CV
+                <FileText className="h-4 w-4" /> View CV
               </a>
             </div>
           </Reveal>

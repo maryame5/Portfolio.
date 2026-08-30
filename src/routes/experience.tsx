@@ -98,7 +98,7 @@ function ExperiencePage() {
                               ["Action", a.action],
                               ["Result", a.result],
                             ].map(([k, v]) => (
-                              <div key={k} className="grid gap-1 md:grid-cols-[80px_1fr] md:gap-4">
+                              <div key={k} className="grid gap-1 border-l-2 border-accent/20 pl-3 md:border-l-0 md:pl-0 md:grid-cols-[80px_1fr] md:gap-4">
                                 <dt className="font-mono text-[10px] uppercase tracking-[0.12em] text-subtle">
                                   {k}
                                 </dt>

@@ -158,20 +158,33 @@ function ProjectsPage() {
               </h2>
             </div>
             <div className="flex flex-wrap gap-2">
-              {filters.map((f) => (
-                <button
-                  key={f}
-                  onClick={() => setFilter(f)}
-                  aria-pressed={filter === f}
-                  className={`rounded-full border px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.12em] transition-colors ${
-                    filter === f
-                      ? "border-accent bg-accent-soft text-accent"
-                      : "border-border text-subtle hover:border-border-strong hover:text-foreground"
-                  }`}
-                >
-                  {f}
-                </button>
-              ))}
+              {filters.map((f) => {
+                const domainColor =
+                  f === "AI & Data"
+                    ? { active: "border-accent bg-accent-soft text-accent", dot: "bg-accent" }
+                    : f === "Backend"
+                      ? { active: "border-accent-2 bg-[oklch(0.7_0.16_300/0.12)] text-accent-2", dot: "bg-accent-2" }
+                      : f === "Full-Stack"
+                        ? { active: "border-accent-3 bg-[oklch(0.8_0.13_78/0.12)] text-accent-3", dot: "bg-accent-3" }
+                        : { active: "border-accent bg-accent-soft text-accent", dot: "bg-accent" };
+                const isActive = filter === f;
+                return (
+                  <button
+                    key={f}
+                    onClick={() => setFilter(f)}
+                    aria-pressed={isActive}
+                    className={`inline-flex items-center gap-2 rounded-full border px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.12em] transition-colors ${isActive
+                        ? domainColor.active
+                        : "border-border text-subtle hover:border-border-strong hover:text-foreground"
+                      }`}
+                  >
+                    {f !== "All" && (
+                      <span className={`h-1.5 w-1.5 rounded-full transition-colors ${isActive ? domainColor.dot : "bg-subtle/40"}`} />
+                    )}
+                    {f}
+                  </button>
+                );
+              })}
             </div>
           </div>
 
@@ -201,11 +214,14 @@ function ProjectsPage() {
                           {p.summary}
                         </span>
                       </span>
-                      <ChevronDown
-                        className={`mt-1 h-4 w-4 shrink-0 text-subtle transition-transform duration-300 ${
-                          isOpen ? "rotate-180 text-accent" : ""
-                        }`}
-                      />
+                      <span className={`mt-0.5 flex shrink-0 items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.12em] transition-colors ${isOpen ? "text-accent" : "text-subtle"
+                        }`}>
+                        <span className="hidden sm:inline">{isOpen ? "Close" : "Expand"}</span>
+                        <ChevronDown
+                          className={`h-4 w-4 transition-transform duration-300 ${isOpen ? "rotate-180" : ""
+                            }`}
+                        />
+                      </span>
                     </button>
 
                     {isOpen && (

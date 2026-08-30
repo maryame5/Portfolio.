@@ -17,18 +17,15 @@ export const site = {
   phone: "+212 641 929 689",
   availability: {
     status: "Available",
-    type: "Entry-level / Junior engineering roles",
+    type: "Junior engineering roles — AI, Backend & Full-Stack",
     startDate: "September 2026",
   },
   socials: {
     github: "https://github.com/maryame5",
     linkedin: "https://linkedin.com/in/maryame-el-khalfi",
   },
-  // No generic CV published yet — every "resume" CTA asks for it by email
-  // instead of pointing at a file that does not exist.
-  resumeRequestUrl:
-    "mailto:elkhalfimaryame@gmail.com?subject=CV%20request%20—%20Maryame%20El%20Khalfi",
-
+  resumeUrl: "/Maryame_ElKhalfi_CV_AI_Software_Engineer.pdf",
+  resumeRequestUrl: "/Maryame_ElKhalfi_CV_AI_Software_Engineer.pdf",
 };
 
 export const stats = [

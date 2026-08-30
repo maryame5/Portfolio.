@@ -12,7 +12,7 @@ export function SiteFooter() {
             <p className="text-lg font-medium text-foreground">{site.name}</p>
             <p className="mt-3 text-sm text-muted-foreground">{site.role} — {site.location}</p>
             <p className="mt-6 text-sm text-subtle">
-              Frontend, backend, data preparation and analytics agents — built and integrated end-to-end.
+              Frontend, backend, multi-agent analytics &amp; distributed Java microservices — built and integrated end-to-end.
             </p>
 
           </div>
