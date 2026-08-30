@@ -10,13 +10,14 @@ export function CountUp({ value, duration = 600 }: { value: string; duration?: n
   const target = match ? Number(match[1]) : 0;
   const suffix = match ? match[2] : "";
   const pad = match ? match[1].length : 0;
+  const isOrdinal = /^(st|nd|rd|th)$/i.test(suffix);
 
   const ref = useRef<HTMLSpanElement | null>(null);
   const [display, setDisplay] = useState(value);
 
   useEffect(() => {
     const el = ref.current;
-    if (!el || !match) return;
+    if (!el || !match || isOrdinal) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     if (typeof IntersectionObserver === "undefined") return;
 
@@ -51,7 +52,7 @@ export function CountUp({ value, duration = 600 }: { value: string; duration?: n
       cancelAnimationFrame(raf);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [value]);
+  }, [value, isOrdinal]);
 
   return (
     <span ref={ref} className="tabular-nums">

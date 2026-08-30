@@ -47,6 +47,21 @@ const capabilityMarquee = [
   "sqlglot AST guardrail",
 ];
 
+function selectedProjectLink(slug: string) {
+  switch (slug) {
+    case "cqos-trading-platform":
+      return { to: "/projects/$slug", params: { slug: "admin-crm-service" } as const };
+    case "aos-micepp-portal":
+      return { to: "/projects/$slug", params: { slug: "aos-micepp" } as const };
+    case "easyapply":
+    case "airport-intelligence":
+    case "bank-review-pipeline":
+      return { to: "/projects" as const };
+    default:
+      return { to: "/projects/$slug", params: { slug } as const };
+  }
+}
+
 function HomePage() {
 
   const otherProjects = projects.filter((p) => p.slug !== flagshipProject.slug).slice(0, 5);
@@ -375,11 +390,7 @@ function HomePage() {
           <div className="mt-14 grid gap-4 md:grid-cols-2">
             {otherProjects.map((p, i) => (
               <Reveal key={p.slug} delay={0.04 * i}>
-                <Link
-                  to="/projects/$slug"
-                  params={{ slug: p.slug }}
-                  className="card-surface hover-lift hover-glow group flex h-full flex-col p-7"
-                >
+                <Link {...selectedProjectLink(p.slug)} className="card-surface hover-lift hover-glow group flex h-full flex-col p-7">
                   <div className="flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.14em] text-subtle">
                     <span>{p.category}</span>
                     <span>{p.year}</span>

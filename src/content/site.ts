@@ -93,12 +93,6 @@ export const education = [
     period: "2023 — 2026",
   },
   {
-    institution: "Lycée Omar Ibn Al-Khattab, Casablanca",
-    degree: "CPGE — French preparatory classes",
-    field: "Mathematics & Physics (MP)",
-    period: "2021 — 2023",
-  },
-  {
     institution: "Lycée Azzaitoune",
     degree: "Baccalauréat",
     field: "Mathematical Sciences",
