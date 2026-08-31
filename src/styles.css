@@ -479,9 +479,62 @@
   to   { stroke-dashoffset: 0; }
 }
 
+/* Interactive Mouse Spotlight Card Effect */
+@utility spotlight-card {
+  position: relative;
+  background: radial-gradient(
+    600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    oklch(0.78 0.15 178 / 0.08),
+    transparent 40%
+  ), var(--color-surface);
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: radial-gradient(
+      400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      oklch(0.78 0.15 178 / 0.4),
+      transparent 40%
+    );
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 300ms ease;
+  }
+
+  &:hover::before {
+    opacity: 1;
+  }
+}
+
+/* Animated Text Shimmer */
+@utility text-shimmer {
+  background: linear-gradient(
+    110deg,
+    oklch(0.975 0.005 95) 30%,
+    oklch(0.78 0.15 178) 50%,
+    oklch(0.975 0.005 95) 70%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 6s infinite linear;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .route-enter,
-  .edge-flow {
+  .edge-flow,
+  .text-shimmer {
     animation: none !important;
   }
 }

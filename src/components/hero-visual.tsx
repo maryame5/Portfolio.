@@ -112,17 +112,27 @@ export function HeroVisual() {
           {edges.map((e, i) => {
             const lit = activeId !== null && (e.from === activeId || e.to === activeId);
             return (
-              <path
-                key={e.d}
-                d={e.d}
-                pathLength={1}
-                fill="none"
-                stroke="var(--color-accent)"
-                strokeWidth={lit ? 1.6 : 1}
-                strokeOpacity={lit ? 0.95 : 0.5}
-                className={lit ? "edge-flow" : "draw-in"}
-                style={{ ["--reveal-delay" as string]: `${300 + i * 120}ms` }}
-              />
+              <g key={e.d}>
+                <path
+                  d={e.d}
+                  pathLength={1}
+                  fill="none"
+                  stroke="var(--color-accent)"
+                  strokeWidth={lit ? 1.8 : 1}
+                  strokeOpacity={lit ? 0.95 : 0.4}
+                  className={lit ? "edge-flow" : "draw-in"}
+                  style={{ ["--reveal-delay" as string]: `${300 + i * 120}ms` }}
+                />
+                {/* Live Data Packet Flow Particle */}
+                <circle r={lit ? "3" : "2"} fill="var(--color-accent)">
+                  <animateMotion
+                    path={e.d}
+                    dur={`${2.4 + i * 0.4}s`}
+                    repeatCount="indefinite"
+                    begin={`${i * 0.5}s`}
+                  />
+                </circle>
+              </g>
             );
           })}
 

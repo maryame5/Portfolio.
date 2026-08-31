@@ -53,19 +53,6 @@ export const experiences: Experience[] = [
           "Functional integration of all of the above with the Orchestrator and the shared services the user journey depends on.",
         ],
       },
-      {
-        label: "Contributed to",
-        items: [
-          "NLQ Agent — natural-language-to-SQL intent detection.",
-          "Predictive Data Validator — the 7-step validation logic before training.",
-        ],
-      },
-      {
-        label: "Not built by me",
-        items: [
-          "Training Agent (model training itself) — I collaborated with the team on integrating the Training Agent (MLflow, scikit-learn, XGBoost, LightGBM).",
-        ],
-      },
     ],
 
     achievements: [

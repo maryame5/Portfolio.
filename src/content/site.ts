@@ -6,8 +6,8 @@ export const site = {
   shortName: "Maryame",
   initials: "ME",
   role: "AI & Software Engineer",
-  title: "I build the guardrails that separate what an LLM proposes from what a system can guarantee.",
-  tagline: "I build software that turns messy business data into answers people can actually trust.",
+  title: "I build software that turns messy business data into answers people can actually trust.",
+  tagline: "I build the guardrails that separate what an LLM proposes from what a system can guarantee.",
   headline:
     "AI & Software Engineer — Data & Software Engineering @ INSEA",
   intro:

@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, ArrowUpRight, FileText, MapPin } from "lucide-react";
+import { ArrowRight, ArrowUpRight, FileText } from "lucide-react";
 import { SiteShell } from "@/components/site-shell";
 import { Reveal } from "@/components/reveal";
 import { HeroVisual } from "@/components/hero-visual";
@@ -91,21 +91,24 @@ function HomePage() {
               <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
                 {site.headline}
               </p>
-              <h1 className="mt-4 text-[2.2rem] font-semibold leading-[1.06] tracking-tight text-foreground md:text-[3.4rem]">
-                I build the{" "}
-                <span className="serif-accent text-gradient">guardrails</span> that separate
-                what an LLM proposes from what a system can guarantee.
+              <h1 className="mt-4 text-[2.2rem] font-semibold leading-[1.08] tracking-tight text-foreground md:text-[3.2rem]">
+                I build software that turns messy business data into{" "}
+                <span className="serif-accent text-gradient">answers people can actually trust.</span>
               </h1>
             </Reveal>
 
             <Reveal delay={0.08}>
-              <p className="mt-5 text-lg font-medium text-foreground/90 md:text-xl">
-                {site.tagline}
-              </p>
+              <div className="mt-6 flex items-start gap-3 rounded-xl border border-accent/25 bg-accent-soft/40 p-4 backdrop-blur-sm max-w-xl">
+                <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-accent animate-pulse" />
+                <p className="text-sm font-medium leading-relaxed text-foreground/90">
+                  <span className="serif-accent text-accent font-normal italic mr-1">Architecting the guardrails</span>
+                  that separate what an LLM proposes from what an enterprise system can guarantee.
+                </p>
+              </div>
             </Reveal>
 
             <Reveal delay={0.1}>
-              <p className="mt-7 max-w-xl text-base leading-relaxed text-muted-foreground">
+              <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground">
                 {site.intro}
               </p>
             </Reveal>
@@ -134,15 +137,6 @@ function HomePage() {
             </Reveal>
 
 
-            <Reveal delay={0.2}>
-              <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 font-mono text-[11px] uppercase tracking-[0.14em] text-subtle">
-                <span className="signature normal-case">{site.shortName}</span>
-                <span className="inline-flex items-center gap-1.5">
-                  <MapPin className="h-3 w-3" /> {site.location}
-                </span>
-                <span>INSEA · Data &amp; Software Engineering</span>
-              </div>
-            </Reveal>
 
           </div>
 
