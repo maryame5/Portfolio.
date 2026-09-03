@@ -11,6 +11,7 @@ export type Project = {
   stack: string[];
   featured?: boolean;
   repo?: string;
+  demoVideoUrl?: string;
   metrics?: { label: string; value: string }[];
 };
 
@@ -23,6 +24,7 @@ export const projects: Project[] = [
     year: "2026",
     context: "DXC Technology — final-year engineering project",
     featured: true,
+    demoVideoUrl: "https://youtu.be/kumoT83Tu64",
     summary:
       "A multi-agent analytics platform that takes a business user from a raw file to sector predictions — profiling, cleaning, dashboards, natural-language questions and ML — without a single line of code.",
     narrative:
@@ -47,7 +49,45 @@ export const projects: Project[] = [
       "React 18", "TypeScript", "Zustand", "TanStack Query", "Recharts",
       "Keycloak 23", "Power BI", "pytest", "Docker",
     ],
-
+  },
+  {
+    slug: "intelligent-job-agent",
+    name: "Intelligent Job Application Agent",
+    category: "AI Agents · Automation · LLM Orchestration",
+    year: "2026",
+    summary:
+      "An autonomous multi-source job search and application agent orchestrated with LangGraph — featuring targeted scraping across 5 job boards, hybrid semantic matching, zero-hallucination document generation with an Evidence Guard, and Human-in-the-Loop email dispatch.",
+    narrative:
+      "Job hunting across multiple platforms is time-consuming and prone to generic applications. This autonomous agent automates the end-to-end workflow: scraping targeted job boards (LinkedIn, Indeed, Rekrute, Emploi.ma, Bayt), running hybrid semantic-lexical scoring against candidate profiles on an A/B/C/D matrix, generating tailored CVs and cover letters strictly anchored in verified facts via an Evidence Guard validator, and providing an interactive FastAPI dashboard for explicit human review before any application email is dispatched.",
+    highlights: [
+      "Orchestration of a resilient multi-agent pipeline with LangGraph (StateGraph) — modular sequencing for multi-source scraping, schema normalization, strict hash-based deduplication, and pipeline health monitoring (LangGraph, Python, Playwright, BeautifulSoup).",
+      "Hybrid matching engine combining weighted lexical scoring with vector semantic similarity to evaluate candidate-job fit across an actionable A/B/C/D strategic matrix (Scikit-learn, Semantic Embeddings, Google Gemini API).",
+      "Dynamic CV and cover letter generation featuring an integrated Evidence Guard and deterministic OutputValidator guaranteeing zero hallucination with targeted self-repair routines (Azure OpenAI GPT-4o, Jinja2, WeasyPrint).",
+      "Interactive FastAPI review dashboard for application preview and secure Human-in-the-Loop email dispatch workflow governed by atomic concurrency locks (FastAPI, Tailwind CSS, Threading Locks, SMTP).",
+      "Triple-tier output evaluation system (45% Personalization, 35% Factuality, 20% HR Readability) driving continuous application quality feedback loops (OfferEvalScoring, Pandas, CSV Tracking).",
+    ],
+    architecture:
+      "LangGraph StateGraph coordinating Playwright/BS4 scrapers → Scikit-learn & Gemini hybrid semantic matcher → Azure OpenAI GPT-4o generator with Evidence Guard → WeasyPrint PDF renderer → FastAPI Human-in-the-Loop review UI with atomic lock email dispatch.",
+    metrics: [
+      { label: "Scraping sources supported", value: "5 platforms" },
+      { label: "Hallucination tolerance", value: "0% (Evidence Guard)" },
+      { label: "Quality evaluation weights", value: "45% Pers. / 35% Fact. / 20% Read." },
+    ],
+    stack: [
+      "Python",
+      "LangGraph",
+      "FastAPI",
+      "Azure OpenAI (GPT-4o)",
+      "Google Gemini API",
+      "Playwright",
+      "BeautifulSoup",
+      "Scikit-learn",
+      "Semantic embeddings",
+      "WeasyPrint",
+      "Docker",
+      "Pandas",
+      "Tailwind CSS",
+    ],
   },
   {
     slug: "cqos-trading-platform",
@@ -83,6 +123,7 @@ export const projects: Project[] = [
     context: "Ministry of Investment (MICEPP)",
     featured: true,
     repo: "https://github.com/maryame5/aos_micepp",
+    demoVideoUrl: "https://youtu.be/6sUTNl_Ztg8",
     summary:
       "A public-service portal digitising social benefit claims for civil servants, with real-time tracking, complaint auditing and an admin back-office.",
     narrative:
@@ -133,6 +174,7 @@ export const projects: Project[] = [
     year: "2024",
     context: "National hackathon — 3rd place, delivered in 48h",
     repo: "https://github.com/maryame5/Intelligente-analytics-aeroportuaire",
+    demoVideoUrl: "https://youtu.be/NyGqdqOOttY",
     summary:
       "A predictive platform surfacing the service factors that drive passenger satisfaction, queryable in natural language.",
     narrative:
@@ -234,6 +276,182 @@ export const projects: Project[] = [
     ],
     architecture: "Sequential Python pipeline: text parsing → prompt construction → diffusion generation → frame compilation.",
     stack: ["Python", "Stable Diffusion", "spaCy", "MoviePy"],
+  },
+  {
+    slug: "public-employment-portal",
+    name: "Public Employment Portal — BPMN Workflow",
+    category: "Enterprise Systems · Process Automation",
+    year: "2024",
+    summary:
+      "End-to-end BPMN 2.0 modeling and Bonitasoft BPMS automation of national public recruitment workflows.",
+    narrative:
+      "Public sector recruitment requires transparent, auditable processes from registration to final selection. This system models the entire hiring journey using BPMN 2.0 swimlanes, automates task routing via Bonitasoft BPMS, and persists structured applicant data in PostgreSQL.",
+    highlights: [
+      "BPMN 2.0 process mapping under IBM Blueworks Live with complex swimlanes and Playback simulation.",
+      "Workflow automation under Bonitasoft BPMS with configurable task execution engine.",
+      "Business Data Model (BDM) persisted in PostgreSQL with custom relational constraints.",
+      "Interactive web task forms, contracts, and automated validation connectors.",
+    ],
+    architecture:
+      "BPMN 2.0 process engine running on Bonitasoft BPMS connected to a PostgreSQL database and web form interface.",
+    stack: ["BPMN 2.0", "Bonitasoft", "IBM Blueworks Live", "PostgreSQL", "HTML/CSS"],
+  },
+  {
+    slug: "e-learning-platform",
+    name: "E-Learning Platform",
+    category: "Full-Stack · Django · Web Development",
+    year: "2024",
+    summary:
+      "Multi-role educational platform managing courses, student progress analytics, and real-time discussion spaces.",
+    narrative:
+      "Built with Django, this platform supports Students, Instructors, and Admins. Teachers can publish courses, duplicate content with one click, and export CSV analytics, while students track completion metrics and interact in CSRF-secured AJAX discussion threads.",
+    highlights: [
+      "Django MVC architecture with Custom User Model for multi-role workflows.",
+      "Instructor dashboard with one-click course duplication and CSV reporting.",
+      "Student progress tracking (completion rate, 7-day history) and recommendation engine.",
+      "Real-time AJAX discussion boards secured with CSRF tokens.",
+    ],
+    architecture:
+      "Django MVC application with custom ORM models, SQLite database, Bootstrap 5 UI, and AJAX endpoints.",
+    stack: ["Python", "Django", "SQLite", "Bootstrap 5", "JavaScript", "AJAX"],
+  },
+  {
+    slug: "django-auction-site",
+    name: "Django Auction Site",
+    category: "Backend · Django · Web Development",
+    year: "2024",
+    summary:
+      "Dynamic online auction platform with real-time bidding rules, watchlists, category filters, and admin moderation.",
+    narrative:
+      "A full-featured auction engine built on Django ORM managing active listings, minimum bid increments, and automated winner notifications upon listing expiration.",
+    highlights: [
+      "Relational domain model under Django ORM (Listings, Bids, Comments, Watchlist, Categories).",
+      "Strict bidding validation rules and user authentication security.",
+      "Automated end-of-auction winner notifications for buyers and sellers.",
+      "Customized Django Admin dashboard for live moderation of listings and bids.",
+    ],
+    architecture:
+      "Layered Django application with relational ORM model and server-rendered views.",
+    stack: ["Python", "Django", "HTML/CSS", "Bootstrap", "SQLite"],
+  },
+  {
+    slug: "chafafiya-portal",
+    name: "CHAFafiya — Government Transparency Portal",
+    category: "Civic Tech · UI/UX · Design Thinking",
+    year: "2024",
+    summary:
+      "Civic transparency platform for tracking and visualizing Moroccan public infrastructure investments, built using Design Thinking.",
+    narrative:
+      "Designed to make public expenditure readable for citizens, CHAFafiya features regional investment dashboards, searchable project databases, and high-fidelity Figma prototypes tested with public servants.",
+    highlights: [
+      "Design Thinking methodology (empathy, ideation, prototyping) informed by 20+ user research interviews.",
+      "Interactive regional investment dashboards and filterable public project databases.",
+      "High-fidelity Figma prototype with reusable design system tokens and responsive grid.",
+      "Public-sector data visualization tailored for non-technical citizens.",
+    ],
+    architecture:
+      "Design Thinking product definition, Figma design system, and responsive front-end prototype.",
+    stack: ["Figma", "Design Thinking", "User Research", "Prototyping", "Design Systems"],
+  },
+  {
+    slug: "azure-hybrid-infrastructure",
+    name: "Azure Hybrid VNet & Active Directory",
+    category: "Cloud Infrastructure · SysOps · Network Security",
+    year: "2024",
+    summary:
+      "Secure hybrid cloud virtual network and domain infrastructure on Azure with Active Directory DS and GPO enforcement.",
+    narrative:
+      "Designed and deployed an enterprise Azure Virtual Network (10.0.0.0/24) hosting a Windows Server 2022 domain controller. Configured Active Directory DS, DHCP/DNS roles, Organizational Units (OUs), and strict Group Policy Objects (GPOs).",
+    highlights: [
+      "Azure VNet deployment with Windows Server 2022 DC and Windows 10 client environment.",
+      "Active Directory DS forest, local domain, DNS roles, and dynamic DHCP scope.",
+      "Organizational Unit (OU) structure separating restricted and privileged accounts.",
+      "Strict GPOs enforcing USB blocking, installation restrictions, and network isolation.",
+    ],
+    architecture:
+      "Microsoft Azure VNet hosting Windows Server 2022 AD DS controller and Windows 10 endpoints governed by GPOs.",
+    stack: [
+      "Microsoft Azure",
+      "Windows Server 2022",
+      "Active Directory (AD DS)",
+      "DHCP/DNS",
+      "GPO",
+      "Azure VNet",
+    ],
+  },
+  {
+    slug: "iot-energy-platform",
+    name: "IoT Domestic Energy Consumption Platform",
+    category: "IoT · Systems Engineering · Project Management",
+    year: "2024",
+    summary:
+      "IoT platform planning and systems engineering for real-time monitoring of household electricity, water, and gas consumption.",
+    narrative:
+      "End-to-end systems engineering and project management for a multi-sensor IoT platform. Optimized scheduling using PERT to reduce delivery timeline by 31% (from 45 to 31 days) through task parallelization.",
+    highlights: [
+      "4-phase WBS project planning under MS Project and Gantter.",
+      "PERT schedule optimization achieving 31% timeline reduction (45 → 31 days).",
+      "Hardware stack dimensioning: ESP32 microcontrollers, YF-S201 flow sensors, SCT-013 current clamps, and gas sensors.",
+      "Financial budget estimation (46,620 MAD) with dynamic human and material resource allocation.",
+    ],
+    architecture:
+      "Distributed ESP32 sensor node architecture delivering telemetry to a central monitoring pipeline.",
+    stack: [
+      "ESP32",
+      "Arduino",
+      "C/C++",
+      "SCT-013",
+      "YF-S201",
+      "MS Project",
+      "Gantter",
+      "WBS/PERT",
+    ],
+  },
+  {
+    slug: "smart-home-iot",
+    name: "Smart Home IoT Automation System",
+    category: "IoT · Embedded Systems · C++",
+    year: "2024",
+    summary:
+      "Automated smart home security, lighting, and climate control system built on Arduino UNO firmware and Tinkercad simulation.",
+    narrative:
+      "Modeled and programmed an automated home control system utilizing analog/digital sensors (MQ-2 gas, PIR motion, HC-SR04 ultrasonic, LDR light) to trigger alarm buzzers, servo door locks, and climate control motors.",
+    highlights: [
+      "Multi-sensor circuit design and simulation under Tinkercad using Arduino UNO.",
+      "Embedded C/C++ firmware managing hardware interrupts and sensor reading loops.",
+      "Actuator mechanisms: alarm buzzer, servo access lock, and DC motors.",
+      "Power consumption optimization using hardware sleep modes for non-priority components.",
+    ],
+    architecture:
+      "Embedded C/C++ control loop on Arduino UNO driving sensors, relays, buzzers, and servos.",
+    stack: [
+      "Arduino UNO",
+      "C/C++",
+      "Tinkercad",
+      "MQ-2",
+      "PIR",
+      "HC-SR04",
+      "LDR",
+    ],
+  },
+  {
+    slug: "student-portfolio-app",
+    name: "Student Portfolio Mobile App",
+    category: "Mobile Development · Java · Android",
+    year: "2024",
+    summary:
+      "Native Android application for managing student academic records, course grades, projects, and contact data.",
+    narrative:
+      "Developed in Java with Android Studio, this native app provides full CRUD management for student portfolios, persistent local storage with MySQL synchronization, and a responsive mobile interface.",
+    highlights: [
+      "Native Android MVC architecture built with Android Studio and SDK tools.",
+      "Full CRUD operations for academic grades, projects, contact details, and documents.",
+      "Local MySQL data persistence and student profile synchronization.",
+      "Touch-optimized, responsive mobile XML layout.",
+    ],
+    architecture:
+      "Android MVC application with XML layouts, activity controllers, and MySQL database persistence.",
+    stack: ["Java", "Android Studio", "MySQL", "Android SDK", "XML Layouts"],
   },
 ];
 

@@ -9,7 +9,14 @@ export function SiteFooter() {
       <div className="relative mx-auto max-w-6xl px-6 py-16">
         <div className="flex flex-col justify-between gap-12 md:flex-row">
           <div className="max-w-sm">
-            <p className="text-lg font-medium text-foreground">{site.name}</p>
+            <div className="flex items-center gap-3">
+              <img
+                src={site.logoUrl ?? "/logo.png"}
+                alt={site.name}
+                className="h-10 w-10 rounded-xl object-cover border border-border-strong"
+              />
+              <p className="text-lg font-medium text-foreground">{site.name}</p>
+            </div>
             <p className="mt-3 text-sm text-muted-foreground">{site.role} — {site.location}</p>
             <p className="mt-6 text-sm text-subtle">
               Frontend, backend, multi-agent analytics &amp; distributed Java microservices — built and integrated end-to-end.

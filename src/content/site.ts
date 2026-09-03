@@ -5,6 +5,7 @@ export const site = {
   name: "Maryame El Khalfi",
   shortName: "Maryame",
   initials: "ME",
+  logoUrl: "/logo.png",
   role: "AI & Software Engineer",
   title: "I build software that turns messy business data into answers people can actually trust.",
   tagline: "I build the guardrails that separate what an LLM proposes from what a system can guarantee.",
@@ -91,6 +92,12 @@ export const education = [
     period: "2023 — 2026",
   },
   {
+    institution: "Lycée Omar Ibn Al-Khattab, Meknès",
+    degree: "CPGE (Classes Préparatoires aux Grandes Écoles)",
+    field: "Physics & Engineering Sciences (PSI)",
+    period: "2021 — 2023",
+  },
+  {
     institution: "Lycée Azzaitoune",
     degree: "Baccalauréat",
     field: "Mathematical Sciences",
@@ -106,6 +113,6 @@ export const certifications = [
 
 export const languages = [
   { language: "Arabic", level: "Native" },
-  { language: "French", level: "Fluent — C1" },
-  { language: "English", level: "Professional — B2" },
+  { language: "French", level: "Professional" },
+  { language: "English", level: "Professional " },
 ];

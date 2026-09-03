@@ -456,12 +456,11 @@ export function CaseStudyTemplate({ study }: { study: CaseStudy }) {
               {study.demo.description}
             </p>
           </Reveal>
-
           <Reveal delay={0.08} className="mt-12">
             {study.demo.videoUrl ? (
               <div className="aspect-video overflow-hidden rounded-xl border border-border bg-surface">
                 <iframe
-                  src={study.demo.videoUrl}
+                  src={getYouTubeEmbedUrl(study.demo.videoUrl)}
                   title={`${study.name} demo video`}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture"
                   allowFullScreen
@@ -639,4 +638,14 @@ export function CaseStudyTemplate({ study }: { study: CaseStudy }) {
       </Section>
     </article>
   );
+}
+
+function getYouTubeEmbedUrl(url: string): string {
+  if (!url) return url;
+  if (url.includes("/embed/")) return url;
+  const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/);
+  if (match && match[1]) {
+    return `https://www.youtube.com/embed/${match[1]}`;
+  }
+  return url;
 }

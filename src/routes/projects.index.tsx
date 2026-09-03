@@ -40,14 +40,15 @@ const caseStudyBySlug: Record<string, string> = {
 
 function domainOf(p: Project) {
   const c = p.category.toLowerCase();
-  if (c.includes("ai") || c.includes("agent") || c.includes("machine learning") || c.includes("nlp"))
+  if (c.includes("ai") || c.includes("agent") || c.includes("machine learning") || c.includes("nlp") || c.includes("generative"))
     return "AI & Data";
-  if (c.includes("data")) return "AI & Data";
+  if (c.includes("data") || c.includes("etl")) return "AI & Data";
+  if (c.includes("cloud") || c.includes("iot") || c.includes("sysops") || c.includes("systems")) return "Cloud & Systems";
   if (c.includes("java") || c.includes("backend") || c.includes("microservices")) return "Backend";
   return "Full-Stack";
 }
 
-const filters = ["All", "AI & Data", "Backend", "Full-Stack"] as const;
+const filters = ["All", "AI & Data", "Backend", "Full-Stack", "Cloud & Systems"] as const;
 
 function ProjectsPage() {
   const [filter, setFilter] = useState<(typeof filters)[number]>("All");
@@ -64,7 +65,7 @@ function ProjectsPage() {
         <div className="mx-auto max-w-5xl">
           <p className="eyebrow mb-6">Projects</p>
           <h1 className="max-w-[20ch] text-4xl font-semibold tracking-tight text-foreground md:text-6xl">
-            Nine engagements, three{" "}
+            Seventeen engagements, three{" "}
             <span className="serif-accent text-gradient">deep dives</span>.
           </h1>
           <p className="mt-6 max-w-[58ch] text-lg leading-relaxed text-muted-foreground">
@@ -75,9 +76,9 @@ function ProjectsPage() {
 
           <dl className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-border bg-border md:grid-cols-4">
             {[
-              ["09", "Projects & internships"],
+              [String(projects.length).padStart(2, "0"), "Projects & engagements"],
               ["03", "Deep-dive case studies"],
-              ["04", "Domains covered"],
+              ["05", "Domains covered"],
               ["30+", "Technologies used"],
             ].map(([v, k]) => (
               <div key={k} className="bg-canvas/80 p-5">
@@ -174,8 +175,8 @@ function ProjectsPage() {
                     onClick={() => setFilter(f)}
                     aria-pressed={isActive}
                     className={`inline-flex items-center gap-2 rounded-full border px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.12em] transition-colors ${isActive
-                        ? domainColor.active
-                        : "border-border text-subtle hover:border-border-strong hover:text-foreground"
+                      ? domainColor.active
+                      : "border-border text-subtle hover:border-border-strong hover:text-foreground"
                       }`}
                   >
                     {f !== "All" && (

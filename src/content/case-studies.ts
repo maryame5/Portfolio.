@@ -437,6 +437,7 @@ export const caseStudies: CaseStudy[] = [
       title: "End-to-end journey",
       description:
         "From an imported file to a sector reading, with an explicit human validation at every sensitive step rather than a silent automatic decision.",
+      videoUrl: "https://youtu.be/kumoT83Tu64",
       transcript: [
         "File imported, sector detected and confirmed by the user.",
         "Data profile and first dashboard generated on the raw version.",
@@ -1083,6 +1084,7 @@ export const caseStudies: CaseStudy[] = [
       title: "Citizen-to-agent walkthrough",
       description:
         "A complete request lifecycle: a citizen submits with documents, an agent reviews and requests a correction, and the citizen is notified and resubmits.",
+      videoUrl: "https://youtu.be/6sUTNl_Ztg8",
       transcript: [
         "A citizen selects a service and completes the generated form.",
         "Supporting documents are validated and uploaded.",

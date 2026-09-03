@@ -37,9 +37,11 @@ export function SiteNav() {
 
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
         <Link to="/" className="group flex items-center gap-3">
-          <span className="grid h-8 w-8 place-items-center rounded-lg border border-border-strong bg-surface font-mono text-[11px] font-medium text-accent">
-            {site.initials}
-          </span>
+          <img
+            src={site.logoUrl ?? "/logo.png"}
+            alt={site.name}
+            className="h-10 w-10 rounded-xl object-cover border border-border-strong transition-transform duration-300 group-hover:scale-105"
+          />
           <span className="text-sm font-medium tracking-tight text-foreground">
             {site.shortName}
           </span>
