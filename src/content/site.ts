@@ -33,8 +33,8 @@ export const site = {
 export const stats = [
   { value: "3", label: "Engineering internships", detail: "Consulting · FinTech · Public sector" },
   { value: "6", label: "Components shipped on one AI platform", detail: "Agents, backend, frontend" },
-  { value: "29", label: "Unit tests on the Retail agent contract", detail: "pytest, DXC Technology" },
-  { value: "3rd", label: "National hackathon", detail: "Airport analytics, 48h" },
+  { value: "120", label: "Unit tests on the Retail agent contract", detail: "pytest, DXC Technology" },
+  { value: "3rd", label: "National hackathon", detail: "Airport analytics" },
 ];
 
 export const differentiators = [

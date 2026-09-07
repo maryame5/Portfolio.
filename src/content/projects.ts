@@ -33,7 +33,7 @@ export const projects: Project[] = [
       "Insight Agent: gpt-5.4-mini (Azure OpenAI) generates the dashboard configuration, a deterministic validator checks it, DuckDB computes every KPI on real rows — plus Power BI export of the generated dashboard.",
       "Data Preparation Agent: DAMA-DMBOK quality scoring across 5 dimensions, 7 anomaly types, 9 corrective strategies, and a 7-step Predictive Data Validator (contributed), with Human-in-the-Loop approval before any mutation.",
       "SQL guardrail: a sqlglot AST parser inside the Insight Agent — SELECT-only, every mutating statement rejected before execution — with Redis session memory and PostgreSQL conversation history.",
-      "Retail Agent (16 use cases) and Manufacturing Agent routed conditionally by the central LangGraph orchestrator: they supply the sector predictive configuration and explain results in domain vocabulary, with 29 pytest unit tests on the retail contract.",
+      "Retail Agent (16 use cases) and Manufacturing Agent routed conditionally by the central LangGraph orchestrator: they supply the sector predictive configuration and explain results in domain vocabulary, with 120 pytest unit tests on the retail contract.",
       "React 18 frontend with four guided workflows, a global Zustand store, and Keycloak 23 OIDC single sign-on with RBAC across services.",
     ],
     architecture:
@@ -172,13 +172,13 @@ export const projects: Project[] = [
     name: "Airport Intelligence Analytics",
     category: "AI · Machine Learning · Analytics",
     year: "2024",
-    context: "National hackathon — 3rd place, delivered in 48h",
+    context: "National hackathon — 3rd place",
     repo: "https://github.com/maryame5/Intelligente-analytics-aeroportuaire",
     demoVideoUrl: "https://youtu.be/NyGqdqOOttY",
     summary:
       "A predictive platform surfacing the service factors that drive passenger satisfaction, queryable in natural language.",
     narrative:
-      "Airports collect thousands of passenger data points but struggle to identify concrete levers. Delivered in 48 hours with a team, this platform lets any manager ask a question in French and get back the factors driving satisfaction, the geographic hotspots and a projected return on corrective actions.",
+      "Airports collect thousands of passenger data points but struggle to identify concrete levers. Delivered with a team for a national hackathon, this platform lets any manager ask a question in French and get back the factors driving satisfaction, the geographic hotspots and a projected return on corrective actions.",
     highlights: [
       "Predictive engine ranking 14 service factors with 93% accuracy on real data.",
       "Natural-language querying over the airport database — no SQL required.",

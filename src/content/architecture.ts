@@ -43,7 +43,7 @@ export const architectureCases: ArchitectureCase[] = [
       {
         decision: "Conditional routing through a central LangGraph orchestrator.",
         rationale:
-          "Each agent exposes a standardised contract to the Training Agent; the orchestrator routes on the detected sector. Agents stay independently testable — 29 unit tests on the retail contract alone.",
+          "Each agent exposes a standardised contract to the Training Agent; the orchestrator routes on the detected sector. Agents stay independently testable — 120 unit tests on the retail contract.",
       },
     ],
     tradeoffs: [

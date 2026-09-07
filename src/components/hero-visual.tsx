@@ -61,7 +61,7 @@ const nodes: Node[] = [
     y: 78,
     w: 104,
     role: "Sector agent: retail KPIs computed deterministically.",
-    contract: "29 unit tests pin the output contract; the LLM never returns a number itself.",
+    contract: "120 unit tests pin the output contract; the LLM never returns a number itself.",
     decision: "KPIs are code, not model output, so results are reproducible.",
   },
   {
